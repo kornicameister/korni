@@ -1,8 +1,10 @@
-# JS source for [![kornicameister-github-io]][kornicameister-github-io]
+# JS source for kornicameister.github.io
 
 [![Build Status][travis-badge]][travis-badge-url]
 [![Dependency Status][david-badge]][david-badge-url]
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
+
+Visit page [![kornicameister-github-io]][kornicameister-github-io]
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
