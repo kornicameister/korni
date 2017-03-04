@@ -8,6 +8,8 @@ addons:
     packages:
       - google-chrome-stable
 
+cache: yarn
+
 language: node_js
 node_js:
   - "node"
