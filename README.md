@@ -4,8 +4,6 @@
 [![Dependency Status][david-badge]][david-badge-url]
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
 
-Visit page [![kornicameister-github-io]][kornicameister-github-io]
-
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -36,5 +34,3 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [david-badge-url]: https://david-dm.org/kornicameister/src.kornicameister.github.io
 [david-dev-badge]: https://david-dm.org/kornicameister/src.kornicameister.github.io/dev-status.svg
 [david-dev-badge-url]: https://david-dm.org/kornicameister/src.kornicameister.github.io?type=dev
-
-[kornicameister-github-io]: https://kornicameister.github.io
