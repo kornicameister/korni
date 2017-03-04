@@ -19,6 +19,4 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 script:
-  - npm lint
-  - npm test
-  - npm e2e
+  - ng test --single-run --build --colors --progress
