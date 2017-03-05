@@ -1,3 +1,19 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-container mode="side">
+
+  <md-sidenav #start (open)="closeStartButton.focus()">
+    Start Sidenav.
+    <br>
+    <button md-button #closeStartButton (click)="start.close()">Close</button>
+  </md-sidenav>
+  <md-sidenav #end align="end">
+    End Sidenav.
+    <button md-button (click)="end.close()">Close</button>
+  </md-sidenav>
+
+  <div [fxLayout]="direction">
+    <div fxFlex>
+      FFFFF
+    </div>
+  </div>
+
+</md-sidenav-container>

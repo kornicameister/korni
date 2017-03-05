@@ -39,3 +39,9 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# YARN errors
+yarn-error.log
