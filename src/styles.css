@@ -1,5 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "https://fonts.googleapis.com/css?family=Roboto:400,500,700";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* body rules */
+
 body {
-  font-family: Roboto, Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+
+/* global rules */
+
+body,
+app-root,
+md-sidenav-container {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+md-sidenav-containe.km-dark {
+    background: black;
+}
+
+.km-toolbar-icon {
+    padding: 0 14px;
+}
+
+.km-toolbar-spacer {
+    flex: 1 1 auto;
 }
