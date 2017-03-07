@@ -8,7 +8,7 @@
         <button md-button (click)="sidenav.toggle()">
             <md-icon class="km-toolbar-icon">more_vert</md-icon>
         </button>
-        <span>{{ title }}</span>
+        <span><h2>{{ title }}</h2></span>
         <span class="km-toolbar-spacer"></span>
         <span class="button-row">
             <button md-mini-fab *ngFor="let el of accounts; let i=index" (click)="openInTab(i)" [mdTooltip]="el.label" mdTooltipPosition="below">
@@ -21,10 +21,10 @@
          fxLayoutAlign="space-around center" 
          class="km-spa-content">
         <div fxFlex="80%" fxFlexAlign="stretch">
-            <h1>{{ title }}</h1>
+            <!-- main content goes here -->
         </div>
         <aside fxFlex fxFlexFill fxHide.md fxHide.sm fxHide.xs>
-            <h1>{{ title }}</h1>
+            <!-- bio goes here-->
         </aside>
     </div>
 
