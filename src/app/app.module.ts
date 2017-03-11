@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+// application module imports
+import { BioModule } from './bio/bio.module';
+// application module imports
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,7 +17,10 @@ import { AppComponent } from './app.component';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    // application
+    BioModule
+    // application
   ],
   declarations: [
     AppComponent
