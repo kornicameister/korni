@@ -3,6 +3,8 @@ import { TestBed, ComponentFixtureAutoDetect, async } from '@angular/core/testin
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { BioModule } from './bio/bio.module';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -11,7 +13,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        BioModule
       ],
       providers: [
         { provide: ComponentFixtureAutoDetect, useValue: true }
@@ -54,6 +57,12 @@ describe('AppComponent', () => {
       const compiled = fixture.debugElement.nativeElement;
       expect(compiled.querySelector('md-sidenav-container md-toolbar')).toBeTruthy();
     });
+
+    it('should have km-bio component inside aside', async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('md-sidenav-container div>aside>km-bio')).toBeTruthy();
+    }));
   })
 
 });
