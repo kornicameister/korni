@@ -11,3 +11,9 @@ md-sidenav-container.km-black {
 md-sidenav {
     width: 200px;
 }
+
+.km-spa-content .km-content {
+    padding-right: 2px;
+    padding-left: 2px;
+    margin: 5px;
+}
