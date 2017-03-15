@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { BioComponent } from "./bio/bio.component";
 
 @Component({
-  selector: 'app-root',
+  selector: 'km-root',
   templateUrl: './app.component.html',
   styleUrls: [
-    './app.component.css'
+    './app.component.scss'
   ]
 })
 export class AppComponent {

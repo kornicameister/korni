@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'km-bio',
   templateUrl: './bio.component.html',
   styleUrls: [
-    './bio.component.css'
+    './bio.component.scss'
   ]
 })
 export class BioComponent {

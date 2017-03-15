@@ -46,5 +46,5 @@ describe('BioComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Bio');
   }));
-  
+
 })
