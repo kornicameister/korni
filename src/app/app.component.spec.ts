@@ -1,9 +1,11 @@
 import { TestBed, ComponentFixtureAutoDetect, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BioModule } from './bio/bio.module';
+import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 
@@ -14,7 +16,9 @@ describe('AppComponent', () => {
       imports: [
         MaterialModule,
         FlexLayoutModule,
-        BioModule
+        BioModule,
+        AppRoutingModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: ComponentFixtureAutoDetect, useValue: true }

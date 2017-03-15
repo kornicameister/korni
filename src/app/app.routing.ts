@@ -13,8 +13,7 @@ export const APP_ROUTES: Routes = [
     CommonModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [ RouterModule ],
+  providers: []
 })
 export class AppRoutingModule {}
