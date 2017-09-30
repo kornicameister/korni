@@ -19,5 +19,9 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - "npm install --global create-react-app"
 
-script:
-  - npm run test
+jobs:
+  include:
+    - stage: test
+      script: yarn test
+    - stage: build
+      script: yarn build
