@@ -21,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-function TopBar(props) {
+const TopBar = props => {
   const classes = props.classes;
   return (
     <div className={classes.root}>
@@ -35,7 +35,7 @@ function TopBar(props) {
       </AppBar>
     </div>
   );
-}
+};
 
 TopBar.propTypes = {
   classes: PropTypes.object.isRequired
