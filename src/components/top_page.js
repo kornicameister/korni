@@ -4,10 +4,12 @@ import { routeNode } from 'react-router5';
 // importing pages (i.e. components)
 import NotFoundPage from '../pages/not_found';
 import HomePage from '../pages/home';
+import AboutPage from '../pages/home';
 // importing pages (i.e. components)
 
 const components = {
-  home: HomePage
+  home: HomePage,
+  about: AboutPage
 };
 
 const TopPage = props => {
