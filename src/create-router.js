@@ -7,7 +7,6 @@ import routes from './routes';
 
 const configureRouter = (useListenersPlugin: boolean = false) => {
   const router = createRouter(routes, {
-    defaultRoute: 'home',
     allowNotFound: true
   })
     // Plugins
