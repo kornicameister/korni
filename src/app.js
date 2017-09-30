@@ -1,14 +1,17 @@
 // @flow weak
-
 import React from 'react';
 
 import TopBar from './components/top_bar';
-import './app.css';
+import TopPage from './components/top_page';
 
 const App = () => (
-  <div className="App">
-    <TopBar />
-    <p className="App-intro">Initial version ;)</p>
+  <div>
+    <header>
+      <TopBar />
+    </header>
+    <main>
+      <TopPage />
+    </main>
   </div>
 );
 

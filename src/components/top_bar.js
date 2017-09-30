@@ -27,7 +27,7 @@ const TopBar = props => {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Avatar alt="kornicameister" src={logo} classNames={classes.avatar} />
+          <Avatar alt="kornicameister" src={logo} classnames={classes.avatar} />
           <Typography type="title" color="inherit">
             kornicameister
           </Typography>
