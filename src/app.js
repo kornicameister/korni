@@ -1,19 +1,45 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
 
 import TopBar from './components/top_bar';
-import './app.css';
+import TopPage from './components/top_page';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <TopBar />
-        <p className="App-intro">Initial version ;)</p>
-      </div>
-    );
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 30
   }
-}
+});
 
-export default App;
+const App = props => {
+  const classes = props.classes;
+  return (
+    <div classname={classes.root}>
+      <header>
+        <TopBar />
+      </header>
+      <main>
+        <Grid
+          container
+          spacing={24}
+          direction={'column'}
+          justify={'center'}
+          align={'center'}
+        >
+          <Grid item xs={12}>
+            <TopPage />
+          </Grid>
+        </Grid>
+      </main>
+    </div>
+  );
+};
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);

@@ -4,11 +4,23 @@ import 'typeface-roboto';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { RouterProvider } from 'react-router5';
 
 import './index.css';
 import Root from './root';
 
+import createRouter from './create-router';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+const router = createRouter(true);
+const app = (
+  <RouterProvider router={router}>
+    <Root />
+  </RouterProvider>
+);
+const placeholder = document.getElementById('root');
+
+router.start(() => {
+  ReactDOM.render(app, placeholder);
+});
 registerServiceWorker();

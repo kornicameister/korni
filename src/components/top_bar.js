@@ -21,13 +21,13 @@ const styles = theme => ({
   }
 });
 
-function TopBar(props) {
+const TopBar = props => {
   const classes = props.classes;
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Avatar alt="kornicameister" src={logo} classNames={classes.avatar} />
+          <Avatar alt="kornicameister" src={logo} classnames={classes.avatar} />
           <Typography type="title" color="inherit">
             kornicameister
           </Typography>
@@ -35,7 +35,7 @@ function TopBar(props) {
       </AppBar>
     </div>
   );
-}
+};
 
 TopBar.propTypes = {
   classes: PropTypes.object.isRequired
