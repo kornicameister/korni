@@ -4,7 +4,7 @@ import { routeNode } from 'react-router5';
 // importing pages (i.e. components)
 import NotFoundPage from '../pages/not_found';
 import HomePage from '../pages/home';
-import AboutPage from '../pages/home';
+import AboutPage from '../pages/about';
 // importing pages (i.e. components)
 
 const components = {
