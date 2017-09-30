@@ -25,3 +25,10 @@ jobs:
       script: yarn test
     - stage: build
       script: yarn build
+
+deploy:
+  provider: script
+  script: yarn deploy
+  on:
+    tag: true
+    branch: master

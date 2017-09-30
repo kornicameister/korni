@@ -1,9 +1,10 @@
 {
   "name": "src.kornicameister.github.io",
-  "homepage": "http://kornicameister.github.io",
+  "homepage": "http://kornicameister.github.io/korni",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.3",
     "material-ui": "^1.0.0-beta.12",
@@ -20,6 +21,8 @@
     ]
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
