@@ -26,7 +26,7 @@ jobs:
     - stage: build
       script: yarn build
     - stage: deploy
-      script: yarn install
+      script: yarn install && yarn build
       deploy:
         - provider: releases
           api_key:
@@ -38,8 +38,11 @@ jobs:
             tags: true
             repo: kornicameister/korni
             branch: master
-        - provider: script
-          script: ./scripts/deploy.sh
+        - provider: pages
+          skip_cleanup: true
+          github_token:
+            secure: SRyCfehjpKZ/K9GtVPgtCIPZxwTvXzI9pwt2HmQxCEJCKBSTOC4VVafS2C5VOPKr+pXf5EWTQsPU/Xd18+dDLrL6GDYUZBKiKXeEHnkdl1vsZ2ngRDjYMODsVs46zJacgFxE9AervRlreyLKf4cZEBVtnQqXaxusJIn6gk/BH8e31hwgoThEeKeA0GYXIAGFpcrHfQLGaqhnyGTbLF2v24Wug9kuRfN3TBbDjNjAcEBOX4DNYrjnbYPf+aZW4tATeWvYKCeDAGZvbebr9tQ9Fx/qKYB0ln5xGrFm0TUcNp4kqEeCZj+iqhLiV25lFo1ZGC9Wl0X6wxWT4AOAdWR47S9gW4HXyahspZA1BzL0864bOB3oFBUSIsms+w8SBGzVrH3BFtEX0QkNtIYLQNoLJ39p1idm4GCaSDuMaBdyrk/Nb9b2g0C1qZ5VlSvIjFfQXsdxOHCYTUdU9TTo3qJDzyLuvMqlXeojwUfyIi5RmPvVHQrS/fXlm8XHxpof7yY2p06oATTue6k10YfDSLonH/YRFmjvC+Zi2U/wSNDs5UA+AjDiPAiN9Y+kQcvqwJK2vZtuU/a9hJ+iMthgd34R7yioC3vFQM3F72sEG40L2A7vqTAtmHyjBu1R4HFBiMLTO2cXDv71jripMJPYecTMYOWhoIfJRKGiVsF8tHawUh4=
+          local_dir: build
           on:
             tags: true
             repo: kornicameister/korni
