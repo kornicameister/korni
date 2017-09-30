@@ -39,7 +39,7 @@ jobs:
             repo: kornicameister/korni
             branch: master
         - provider: script
-          script: yarn install ; yarn deploy
+          script: ./scripts/deploy.sh
           on:
             tags: true
             repo: kornicameister/korni
