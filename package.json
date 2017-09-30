@@ -1,20 +1,16 @@
 {
   "name": "src.kornicameister.github.io",
   "homepage": "http://kornicameister.github.io/korni",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
-    "lint-staged": "^4.2.3",
     "material-ui": "^1.0.0-beta.12",
-    "prettier": "^1.7.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router5": "^5.1.0",
     "react-scripts": "1.0.14",
     "router5": "^5.2.2",
-    "source-map-explorer": "^1.5.0",
     "typeface-roboto": "^0.0.35"
   },
   "lint-staged": {
@@ -32,5 +28,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    "lint-staged": "^4.2.3",
+    "prettier": "^1.7.3",
+    "source-map-explorer": "^1.5.0"
   }
 }
