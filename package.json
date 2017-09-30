@@ -1,5 +1,6 @@
 {
   "name": "src.kornicameister.github.io",
+  "homepage": "http://kornicameister.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
