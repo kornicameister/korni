@@ -1,6 +1,4 @@
 // Copyright 2017 @ kornicameister
-// @flow weak
-
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 

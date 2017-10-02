@@ -1,5 +1,4 @@
 // Copyright 2017 @ kornicameister
-// @flow weak
 import 'typeface-roboto';
 
 import * as React from 'react';
