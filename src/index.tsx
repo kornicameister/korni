@@ -2,8 +2,8 @@
 // @flow weak
 import 'typeface-roboto';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router5';
 
 import './index.css';

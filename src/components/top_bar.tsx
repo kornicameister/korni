@@ -1,8 +1,8 @@
 // Copyright 2017 @ kornicameister
 // @flow weak
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
