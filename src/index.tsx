@@ -11,7 +11,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js'
 // bootstrap
 
 // css
