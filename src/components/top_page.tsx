@@ -1,5 +1,4 @@
 import { createElement } from 'react';
-import { routeNode } from 'react-router5';
 
 // importing pages (i.e. components)
 import NotFoundPage from '../pages/not_found';
@@ -12,11 +11,11 @@ const components = {
   about: AboutPage
 };
 
-const TopPage = props => {
+const TopPage = (props: any) => {
   const { route } = props;
   const segment = route && route.name.split('.')[0];
 
   return createElement(components[segment] || NotFoundPage);
 };
 
-export default routeNode('')(TopPage);
+export default TopPage;

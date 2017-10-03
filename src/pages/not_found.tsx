@@ -1,33 +1,18 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 
-import { routeNode } from 'react-router5';
+import { Jumbotron } from 'reactstrap';
 
-const styles = theme => ({
-  root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3
-  })
-});
-
-const NotFoundPage = props => {
-  const { route, classes } = props;
+const NotFoundPage = (props: any) => {
+  const { route } = props;
   return (
     <div>
-      <Paper className={classes.root} elevation={4}>
-        <Typography type="headline" component="h3">
-          Requested page <b>{route.path}</b> not found
-        </Typography>
-        <Typography type="body1" component="p">
+      <Jumbotron>
+        <h3>Requested page <b>{route.path}</b> not found</h3>
+        <p>
           Seems like <b>{route.path}</b> is not part of this page. Sorry ;-((((
-        </Typography>
-      </Paper>
+        </p>
+      </Jumbotron>
     </div>
   );
 };
-NotFoundPage.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default routeNode('404')(withStyles(styles)(NotFoundPage));
+export default NotFoundPage;

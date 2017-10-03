@@ -1,36 +1,28 @@
 // Copyright 2017 @ kornicameister
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 
-import logo from '../static/logo.svg';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand } from 'reactstrap';
 
-const styles = theme => ({
-  root: {
-    width: '100%'
-  },
-  avatar: {
-    margin: 10
+export default class TopBar extends React.Component {
+  state = {
+    is_open: false
   }
-});
 
-const TopBar = (props:any) => {
-  const classes = props.classes;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Avatar alt="kornicameister" src={logo} classnames={classes.avatar} />
-          <Typography type="title" color="inherit">
-            kornicameister
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+  toggle() {
+    let is_open: boolean = this.state.is_open
+    this.setState({ is_open: !is_open })
+  }
 
-TopBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(TopBar);
+  render() {
+    return (
+      <div>
+        <Navbar color="faded" dark expand="md">
+          <NavbarBrand href="/">kornicameister</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.is_open} navbar>
+          </Collapse>
+        </Navbar>
+      </div>
+    )
+  }
+}

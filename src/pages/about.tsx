@@ -1,5 +1,4 @@
-import React from 'react';
-import { routeNode } from 'react-router5';
+import * as React from 'react';
 
 const AboutPage = () => <p>About page with router</p>;
-export default routeNode('about')(AboutPage);
+export default AboutPage;

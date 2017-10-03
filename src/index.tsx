@@ -3,29 +3,18 @@ import 'typeface-roboto';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { RouterProvider } from 'react-router5';
+import { HashRouter as Router } from 'react-router-dom';
 
-import Root from './root';
-import createRouter from './create-router';
+import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 
-// bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-// bootstrap
-
 // css
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 // css
 
-const router = createRouter(true);
-const app = (
-  <RouterProvider router={router}>
-    <Root />
-  </RouterProvider>
+ReactDOM.render(
+  <Router><App></App></Router>,
+  document.getElementById('root'),
+  registerServiceWorker
 );
-const placeholder = document.getElementById('root');
-
-router.start(() => {
-  ReactDOM.render(app, placeholder);
-});
-registerServiceWorker();
