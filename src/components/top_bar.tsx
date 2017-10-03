@@ -2,12 +2,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Avatar from 'material-ui/Avatar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-
 import logo from '../static/logo.svg';
 
 const styles = theme => ({
@@ -19,7 +13,7 @@ const styles = theme => ({
   }
 });
 
-const TopBar = props => {
+const TopBar = (props:any) => {
   const classes = props.classes;
   return (
     <div className={classes.root}>

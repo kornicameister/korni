@@ -5,11 +5,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router5';
 
-import './index.css';
 import Root from './root';
-
 import createRouter from './create-router';
 import registerServiceWorker from './registerServiceWorker';
+
+// bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js'
+// bootstrap
+
+// css
+import './index.css';
+// css
 
 const router = createRouter(true);
 const app = (

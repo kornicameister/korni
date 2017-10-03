@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
 
 import TopBar from './components/top_bar';
 import TopPage from './components/top_page';
@@ -13,7 +11,7 @@ const styles = theme => ({
   }
 });
 
-const App = props => {
+const App = (props:any) => {
   const classes = props.classes;
   return (
     <div classname={classes.root}>
