@@ -12,7 +12,7 @@ const App = (props: any) => {
         <TopBar />
       </header>
       <main>
-        <Container>
+        <Container fluid>
           <Row><Col><TopPage /></Col></Row>
         </Container>
       </main>

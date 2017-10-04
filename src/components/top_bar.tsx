@@ -1,11 +1,11 @@
 // Copyright 2017 @ kornicameister
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+// import { Route, Switch } from 'react-router-dom';
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand,
   Nav, NavItem, NavLink } from 'reactstrap';
 
-import {AsyncHome, AsyncAbout} from '../routes';
+// import {AsyncHome, AsyncAbout, AsyncNotFound} from '../routes';
 
 export default class TopBar extends React.Component {
   state = {
@@ -19,24 +19,20 @@ export default class TopBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar color="faded" dark expand="md">
-          <NavbarBrand href="/">kornicameister</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.is_open} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/about">About</NavLink>
-              </NavItem>
-            </Nav>
-            <Switch>
-              <Route path="/" component={AsyncHome}/>
-              <Route path="/about" component={AsyncAbout}/>
-            </Switch>
-          </Collapse>
-        </Navbar>
-      </div>
+      <Navbar color="dark" expand="md" fixed="top" toggleable dark full>
+        <NavbarBrand href="/">kornicameister</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} left={true}/>
+        <Collapse isOpen={this.state.is_open} navbar>
+          <Nav className="ml-auto" navbar pills>
+            <NavItem>
+              <NavLink href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/about">About</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     )
   }
 }
