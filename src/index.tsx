@@ -1,5 +1,7 @@
 // Copyright 2017 @ kornicameister
 import 'typeface-roboto';
+import 'react-transition-group';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';

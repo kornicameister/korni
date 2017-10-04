@@ -27,9 +27,9 @@ export default class App extends React.Component {
       <Container>
 
         <header>
-          <Navbar color="dark" expand="md" className="rounded" toggleable dark>
+          <Navbar color="dark" expand="md" className="rounded" dark>
           <NavbarBrand href="/">kornicameister</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavBar} left={true}/>
+          <NavbarToggler onClick={this.toggleNavBar} />
           <Collapse isOpen={this.state.is_open} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
