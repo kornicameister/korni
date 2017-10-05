@@ -1,15 +1,20 @@
 import * as React from 'react';
+import {
+  Container,
+  Jumbotron,
+  Media
+} from 'reactstrap';
 
 export default class AboutPage extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron jumbotron-fluid">
-        <div className="container">
-          <div className="media">
+      <Jumbotron fluid>
+        <Container fluid>
+          <Media>
             <img className="d-flex align-self-center rounded mr-3"
               alt="kornicameister gravatar" src="https://s.gravatar.com/avatar/140db4c0a9767838be5a5289ad78eca6?s=120" />
-            <div className="media-body">
+            <Media body>
               <h5 className="mt-0">About me</h5>
               <div className="lead">
                 <p>What to tell...I am a guy whose work is his pride.</p>
@@ -30,10 +35,10 @@ export default class AboutPage extends React.Component {
                     Everything I ever accomplished and will accomplish is dedicated to them.
                   </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Media>
+          </Media>
+        </Container>
+      </Jumbotron>
     )
   }
 
