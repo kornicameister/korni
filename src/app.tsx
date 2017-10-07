@@ -25,11 +25,16 @@ export default class App extends React.Component {
   }
 
   renderTravisBadge() {
-    let url: string = 'https://travis-ci.org/kornicameister/korni.svg?branch=master';
+    let href: string = 'https://travis-ci.org/kornicameister/korni';
+    let url: string = `${href}.svg?branch=master`;
     let alt: string = 'Travis Status'
+
     return (
-      <img id="korni_travis_build" alt={alt} src={url} className="img-fluid"></img>
+      <a href={href}>
+        <img id="korni_travis_build" alt={alt} src={url} className="img-fluid"></img>
+      </a>
     )
+
   }
 
   renderNav() {
