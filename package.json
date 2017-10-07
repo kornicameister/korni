@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-beta",
+    "classnames": "^2.2.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-loadable": "^4.0.5",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^2.8.11",
+    "@types/classnames": "^2.2.3",
     "@types/jest": "^21.1.1",
     "@types/node": "^8.0.31",
     "@types/prop-types": "^15.5.2",
