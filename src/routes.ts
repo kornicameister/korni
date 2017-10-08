@@ -16,3 +16,7 @@ export const AsyncAbout = Loadable({
   loading: RouteLoader,
   delay: 600
 });
+export const AsyncStats = Loadable({
+  loader: () => import('./pages/stats'),
+  loading: RouteLoader
+});

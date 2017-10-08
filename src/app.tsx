@@ -10,7 +10,8 @@ import {
 import {
   AsyncHome,
   AsyncAbout,
-  AsyncNotFound
+  AsyncNotFound,
+  AsyncStats
 } from './routes';
 import TravisBadge from './common/travis_badge';
 
@@ -33,6 +34,9 @@ export default class App extends React.Component {
         </NavItem>
         <NavItem>
           <RouterNavLink to="/about" className="nav-link">About</RouterNavLink>
+        </NavItem>
+        <NavItem>
+          <RouterNavLink to="/stats" className="nav-link">Stats</RouterNavLink>
         </NavItem>
       </Nav>
     )
@@ -62,6 +66,7 @@ export default class App extends React.Component {
               <Switch>
                 <Route path='/' component={AsyncHome} exact />
                 <Route path='/about' component={AsyncAbout} exact />
+                <Route path='/stats' component={AsyncStats} exact />
                 <Route component={AsyncNotFound} />
               </Switch>
             </Col>
