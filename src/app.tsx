@@ -12,6 +12,7 @@ import {
   AsyncAbout,
   AsyncNotFound
 } from './routes';
+import TravisBadge from './common/travis_badge';
 
 export default class App extends React.Component {
 
@@ -22,19 +23,6 @@ export default class App extends React.Component {
   toggleNavBar() {
     let is_open: boolean = this.state.is_open
     this.setState({ is_open: !is_open })
-  }
-
-  renderTravisBadge() {
-    let href: string = 'https://travis-ci.org/kornicameister/korni';
-    let url: string = `${href}.svg?branch=master`;
-    let alt: string = 'Travis Status'
-
-    return (
-      <a id="travis_badge" href={href}>
-        <img alt={alt} src={url} className="img-fluid"></img>
-      </a>
-    )
-
   }
 
   renderNav() {
@@ -58,7 +46,7 @@ export default class App extends React.Component {
           <NavbarToggler onClick={this.toggleNavBar} />
           <Collapse isOpen={this.state.is_open} navbar>
             {this.renderNav()}
-            {this.renderTravisBadge()}
+            <TravisBadge />
           </Collapse>
         </Navbar>
       </header>
