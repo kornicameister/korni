@@ -5,7 +5,7 @@ import {
   Jumbotron,
 } from 'reactstrap';
 
-import StatsPage from './stats';
+import StatsPage from './stats_page';
 
 describe('StatsPage', () => {
 
