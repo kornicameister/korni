@@ -30,8 +30,8 @@ export default class App extends React.Component {
     let alt: string = 'Travis Status'
 
     return (
-      <a href={href}>
-        <img id="korni_travis_build" alt={alt} src={url} className="img-fluid"></img>
+      <a id="travis_badge" href={href}>
+        <img alt={alt} src={url} className="img-fluid"></img>
       </a>
     )
 
