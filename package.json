@@ -38,7 +38,7 @@
     "@types/react-dom": "^16.0.1",
     "@types/react-loadable": "^4.0.4",
     "@types/react-router-dom": "^4.0.8",
-    "@types/reactstrap": "^4.6.1",
+    "@types/reactstrap": "^4.6.4",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "gh-pages": "^1.0.0",
