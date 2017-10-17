@@ -5,11 +5,13 @@ collectors:
   actors:
   - type: js-npm
     versions: "L.Y.Y"
-    github_labels:
-    - dependency
-    - update
+    settings:
+      github_labels:
+      - dependency
+      - update
   - type: repo-issue
     versions: "Y.0.0"
-    github_labels:
-    - dependency
-    - update
+    settings:
+      github_labels:
+      - dependency
+      - update
