@@ -29,7 +29,7 @@
     "react-scripts-ts": "^2.8.0",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3",
-    "typeface-roboto": "^0.0.35"
+    "typeface-roboto": "^0.0.41"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
