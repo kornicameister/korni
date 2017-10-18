@@ -44,7 +44,7 @@
     "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
     "jest-enzyme": "^4.0.0",
-    "lint-staged": "^4.2.3",
+    "lint-staged": "^4.3.0",
     "prettier": "^1.7.4",
     "react-test-renderer": "^16.0.0",
     "source-map-explorer": "^1.5.0"
