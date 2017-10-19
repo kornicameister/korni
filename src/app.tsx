@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { Container, Row, Col } from 'reactstrap';
-import { Route, Switch, NavLink as RouterNavLink } from 'react-router-dom';
+import { Route, Switch,  NavLink as RouterNavLink } from 'react-router-dom';
 import {
   Collapse, Navbar, NavbarToggler, NavbarBrand,
-  Nav, NavItem
+  Nav, NavItem, Fade
 } from 'reactstrap';
 
 import {
@@ -63,12 +63,14 @@ export default class App extends React.Component {
         <Container>
           <Row>
             <Col>
-              <Switch>
-                <Route path='/' component={AsyncHome} exact />
-                <Route path='/about' component={AsyncAbout} exact />
-                <Route path='/stats' component={AsyncStats} exact />
-                <Route component={AsyncNotFound} />
-              </Switch>
+              <Fade>
+                <Switch>
+                  <Route path='/' component={AsyncHome} exact />
+                  <Route path='/about' component={AsyncAbout} exact />
+                  <Route path='/stats' component={AsyncStats} exact />
+                  <Route component={AsyncNotFound} />
+                </Switch>
+              </Fade>
             </Col>
           </Row>
         </Container>

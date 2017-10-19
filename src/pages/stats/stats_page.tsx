@@ -9,7 +9,8 @@ import {
   LoadableKorni,
   LoadableGithub,
   LoadableGitlab
-} from './stats_routes'
+} from './stats_routes';
+import './stats_page.css';
 
 class StatTab {
   readonly id: string;
@@ -62,7 +63,7 @@ export default class StatsPage extends React.Component<StatsPageProps, StatsPage
     let state = self.state;
 
     return (
-      <Nav tabs>
+      <Nav className="stats-nav" tabs>
         {
           TABS.map((tab) => {
             return <NavLink
