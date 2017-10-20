@@ -23,6 +23,8 @@ jobs:
   include:
     - stage: test
       script: yarn test
+    - stage: test
+      script: yarn coverage
     - stage: build
       script: yarn build
     - stage: deploy
