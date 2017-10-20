@@ -16,7 +16,11 @@ class StatTab {
   readonly id: string;
   readonly cmp: React.ComponentType & LoadableComponent;
   readonly label: string;
-  constructor(id: string, label: string, cmp: React.ComponentType & LoadableComponent) {
+  constructor(
+    id: string,
+    label: string,
+    cmp: React.ComponentType & LoadableComponent
+  ) {
     this.id = id;
     this.cmp = cmp;
     this.label = label;
@@ -28,22 +32,20 @@ const TABS: StatTab[] = [
   new StatTab('wakatime', 'WakaTime', LoadableWakaTime),
   new StatTab('whatpulse', 'WhatPulse', LoadableWhatPulse),
   new StatTab('gitlab', 'Gitlab', LoadableGitlab),
-  new StatTab('github', 'Github', LoadableGithub),
-]
+  new StatTab('github', 'Github', LoadableGithub)
+];
 
 interface StatsPageState {
-  activeTab: string
+  activeTab?: string;
 }
-interface StatsPageProps { }
 
-export default class StatsPage extends React.Component<StatsPageProps, StatsPageState> {
-
-  constructor(props: StatsPageProps, state: StatsPageState) {
-    super(props, state)
+export default class StatsPage extends React.Component<any, StatsPageState> {
+  constructor(props: any, state: StatsPageState) {
+    super(props, state);
 
     this.state = {
       activeTab: TABS[0].id // use first tab as active one
-    }
+    };
 
     this.toggleTab.bind(this);
     this.renderTabs.bind(this);
@@ -64,18 +66,21 @@ export default class StatsPage extends React.Component<StatsPageProps, StatsPage
 
     return (
       <Nav className="stats-nav" tabs>
-        {
-          TABS.map((tab) => {
-            return <NavLink
+        {TABS.map(tab => {
+          return (
+            <NavLink
               key={tab.id}
               className={classnames({ active: state.activeTab === tab.id })}
-              onClick={() => { self.toggleTab(tab.id); }}>
+              onClick={() => {
+                self.toggleTab(tab.id);
+              }}
+            >
               {tab.label.toUpperCase()}
             </NavLink>
-          })
-        }
+          );
+        })}
       </Nav>
-    )
+    );
   }
 
   renderTabsContent() {
@@ -84,15 +89,15 @@ export default class StatsPage extends React.Component<StatsPageProps, StatsPage
 
     return (
       <TabContent activeTab={state.activeTab}>
-        {
-          TABS.map((tab) => {
-            return <TabPane key={tab.id} tabId={tab.id}>
+        {TABS.map(tab => {
+          return (
+            <TabPane key={tab.id} tabId={tab.id}>
               {React.createElement(tab.cmp, {})}
             </TabPane>
-          })
-        }
+          );
+        })}
       </TabContent>
-    )
+    );
   }
 
   render() {
@@ -101,6 +106,6 @@ export default class StatsPage extends React.Component<StatsPageProps, StatsPage
         {this.renderTabs()}
         {this.renderTabsContent()}
       </Container>
-    )
+    );
   }
 }
