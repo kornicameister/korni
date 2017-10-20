@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import BaseStats from '../stats_base_component';
-
-export default class KorniStats extends BaseStats {
+export default class KorniStats extends React.Component<any, any> {
   render() {
     return <span>@korni</span>
   }
