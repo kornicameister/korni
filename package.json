@@ -16,7 +16,8 @@
     "start": "react-scripts-ts start",
     "analyze": "source-map-explorer build/static/js/main.*",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "react-scripts-ts test --env=jsdom --verbose",
+    "coverage": "react-scripts-ts test --env=jsdom --silent --coverage",
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
