@@ -2,6 +2,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import RouteLoader from './router';
+import Spinner from './common/spinner';
 
 
 describe('RouteLoader', () => {
@@ -54,10 +55,7 @@ describe('RouteLoader', () => {
     }
 
     const wrapper = shallow(<RouteLoader {...props} />);
-    const div = wrapper.find('div');
-
-    expect(div).toHaveLength(1);
-    expect(div.get(0).props.className).toEqual('alert alert-info')
+    expect(wrapper.find(Spinner)).toHaveLength(1);
   });
 
   it('renders nothing if component loaded', () => {
