@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
+    "src/**/*.{js,jsx,json,css,ts,tsx}": [
       "prettier --single-quote --write",
       "git add"
     ]
