@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { LoadingComponentProps } from 'react-loadable';
-import {
-  Container,
-  Jumbotron
-} from 'reactstrap';
+import { Container } from 'reactstrap';
+
+import Spinner from './common/spinner';
 
 export default class RouteLoader extends React.Component<LoadingComponentProps> {
 
@@ -19,7 +18,7 @@ export default class RouteLoader extends React.Component<LoadingComponentProps> 
       if (this.props.timedOut) {
         return <div className={classes} role="alert">Loader timed out!</div>;
       } else if (this.props.pastDelay) {
-        return <div className={classes} role="alert">Loading...</div>;
+        return <Spinner className="mx-auto"/>;
       } else {
         return null;
       }
@@ -32,11 +31,9 @@ export default class RouteLoader extends React.Component<LoadingComponentProps> 
 
   render() {
     return (
-      <Jumbotron fluid>
-        <Container fluid>
-          {this.renderLoader()}
-        </Container>
-      </Jumbotron>
+      <Container className="clearfix" fluid>
+        {this.renderLoader()}
+      </Container>
     )
   }
 }
