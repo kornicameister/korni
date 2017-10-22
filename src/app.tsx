@@ -1,16 +1,17 @@
 import * as React from 'react';
 
 import { Container, Row, Col } from 'reactstrap';
-import { Route, Switch, NavLink as RouterNavLink } from 'react-router-dom';
+import { Route, Switch,  NavLink as RouterNavLink } from 'react-router-dom';
 import {
   Collapse, Navbar, NavbarToggler, NavbarBrand,
-  Nav, NavItem
+  Nav, NavItem, Fade
 } from 'reactstrap';
 
 import {
   AsyncHome,
   AsyncAbout,
-  AsyncNotFound
+  AsyncNotFound,
+  AsyncStats
 } from './routes';
 import TravisBadge from './common/travis_badge';
 
@@ -33,6 +34,9 @@ export default class App extends React.Component {
         </NavItem>
         <NavItem>
           <RouterNavLink to="/about" className="nav-link">About</RouterNavLink>
+        </NavItem>
+        <NavItem>
+          <RouterNavLink to="/stats" className="nav-link">Stats</RouterNavLink>
         </NavItem>
       </Nav>
     )
@@ -59,11 +63,14 @@ export default class App extends React.Component {
         <Container>
           <Row>
             <Col>
-              <Switch>
-                <Route path='/' component={AsyncHome} exact />
-                <Route path='/about' component={AsyncAbout} exact />
-                <Route component={AsyncNotFound} />
-              </Switch>
+              <Fade>
+                <Switch>
+                  <Route path='/' component={AsyncHome} exact />
+                  <Route path='/about' component={AsyncAbout} exact />
+                  <Route path='/stats' component={AsyncStats} exact />
+                  <Route component={AsyncNotFound} />
+                </Switch>
+              </Fade>
             </Col>
           </Row>
         </Container>
