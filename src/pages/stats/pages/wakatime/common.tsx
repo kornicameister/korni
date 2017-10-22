@@ -26,9 +26,8 @@ export abstract class WakaTimeContainer extends React.Component<
   ContainerState
 > {
   protected dataUrl: string;
-  protected label: string;
 
-  constructor(dataUrl: string, label: string) {
+  constructor(dataUrl: string) {
     super();
 
     this.state = {
@@ -36,7 +35,6 @@ export abstract class WakaTimeContainer extends React.Component<
       stage: DataLoadingStage.NONE
     };
     this.dataUrl = dataUrl;
-    this.label = label;
   }
 
   render() {
