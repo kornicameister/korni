@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-export default class WhatPulseStats extends React.Component<any, any>{
+export default class WhatPulseStats extends React.Component<any, any> {
   render() {
-    return <span>WhatPulse</span>
+    return <span>TBD</span>;
   }
 }
