@@ -54,6 +54,7 @@ export default class WakaTimeStats extends React.Component<any, any> {
           </div>
         </div>
         <div>
+          // NOTE(kornicameister) rework all to be charts later on
           <WakaTimeLang visible={this.state.chunks['lang']} />
           <WakaTimeEditor visible={this.state.chunks['editor']} />
           <WakaTimeOS visible={this.state.chunks['os']} />
