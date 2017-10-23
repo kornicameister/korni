@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta",
     "classnames": "^2.2.5",
+    "d3": "^4.11.0",
     "jsonp": "^0.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
+    "@types/d3": "^4.11.0",
     "@types/enzyme": "^2.8.11",
     "@types/jest": "^21.1.4",
     "@types/jsonp": "^0.2.0",
