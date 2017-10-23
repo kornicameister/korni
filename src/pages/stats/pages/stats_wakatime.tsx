@@ -5,7 +5,20 @@ import WakaTimeLang from './wakatime/lang';
 import WakaTimeEditor from './wakatime/editor';
 import WakaTimeOS from './wakatime/os';
 
-export default class WakaTimeStats extends React.Component<any, any> {
+type Stat = 'editor' | 'lang' | 'os';
+interface State {
+  chunks: {
+    editor: boolean;
+    lang: boolean;
+    os: boolean;
+  };
+}
+
+class StatButton {
+  constructor(public id: Stat, public label: string, public active: boolean) {}
+}
+
+export default class WakaTimeStats extends React.Component<any, State> {
   constructor() {
     super();
 
@@ -31,23 +44,23 @@ export default class WakaTimeStats extends React.Component<any, any> {
             aria-label="WakaTime stats"
           >
             {[
-              ['lang', 'Language', this.state.chunks.lang],
-              ['editor', 'Editor', this.state.chunks.editor],
-              ['os', 'OS', this.state.chunks.os]
-            ].map(btn => {
+              new StatButton('lang', 'Language', this.state.chunks.lang),
+              new StatButton('editor', 'Editor', this.state.chunks.editor),
+              new StatButton('os', 'OS', this.state.chunks.os)
+            ].map((btn: StatButton) => {
               let btnClasses = classnames('btn', {
-                'btn-dark': btn[2],
-                'btn-secondary': !btn[2],
-                active: btn[2]
+                'btn-dark': btn.active,
+                'btn-secondary': !btn.active,
+                active: btn.active
               });
               return (
                 <button
-                  key={btn[0]}
+                  key={btn.id}
                   type="button"
-                  onClick={() => this.toggle(btn[0])}
+                  onClick={() => this.toggle(btn.id)}
                   className={btnClasses}
                 >
-                  {btn[1]}
+                  {btn.label}
                 </button>
               );
             })}
@@ -63,12 +76,12 @@ export default class WakaTimeStats extends React.Component<any, any> {
     );
   }
 
-  private toggle(chunk: string) {
+  private toggle(chunk: Stat) {
     this.setState({
       chunks: {
-        lang: chunk == 'lang',
-        editor: chunk == 'editor',
-        os: chunk == 'os'
+        lang: chunk === 'lang',
+        editor: chunk === 'editor',
+        os: chunk === 'os'
       }
     });
   }
