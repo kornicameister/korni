@@ -14,31 +14,23 @@ interface WakaTimeStatsState {
   };
 }
 
-interface StatButtonProps {
+const StatButton: React.SFC<{
   id: Stat;
-  label: string;
+  label: String;
   active: boolean;
   onClick: React.MouseEventHandler<any>;
-}
-
-class StatButton extends React.Component<StatButtonProps, any> {
-  constructor(props: StatButtonProps, state: any) {
-    super(props, state);
-  }
-
-  render() {
-    let btnClasses = classnames('btn', {
-      'btn-dark': this.props.active,
-      'btn-secondary': !this.props.active,
-      active: this.props.active
-    });
-    return (
-      <button type="button" className={btnClasses} onClick={this.props.onClick}>
-        {this.props.label}
-      </button>
-    );
-  }
-}
+}> = ({ id, label, active, onClick }) => {
+  let btnClasses = classnames('btn', {
+    'btn-dark': active,
+    'btn-secondary': !active,
+    active: active
+  });
+  return (
+    <button type="button" className={btnClasses} onClick={onClick}>
+      {label}
+    </button>
+  );
+};
 
 export default class WakaTimeStats extends React.Component<
   any,
