@@ -1,7 +1,7 @@
 {
   "name": "src.kornicameister.github.io",
   "homepage": "http://kornicameister.github.io/korni",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,ts,tsx}": [
