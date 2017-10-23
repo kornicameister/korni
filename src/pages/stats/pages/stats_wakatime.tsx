@@ -6,7 +6,7 @@ import WakaTimeEditor from './wakatime/editor';
 import WakaTimeOS from './wakatime/os';
 
 type Stat = 'editor' | 'lang' | 'os';
-interface State {
+interface WakaTimeStatsState {
   chunks: {
     editor: boolean;
     lang: boolean;
@@ -14,14 +14,38 @@ interface State {
   };
 }
 
-class StatButton {
-  constructor(public id: Stat, public label: string, public active: boolean) {}
+interface StatButtonProps {
+  id: Stat;
+  label: string;
+  active: boolean;
+  onClick: React.MouseEventHandler<any>;
 }
 
-export default class WakaTimeStats extends React.Component<any, State> {
-  constructor() {
-    super();
+class StatButton extends React.Component<StatButtonProps, any> {
+  constructor(props: StatButtonProps, state: any) {
+    super(props, state);
+  }
 
+  render() {
+    let btnClasses = classnames('btn', {
+      'btn-dark': this.props.active,
+      'btn-secondary': !this.props.active,
+      active: this.props.active
+    });
+    return (
+      <button type="button" className={btnClasses} onClick={this.props.onClick}>
+        {this.props.label}
+      </button>
+    );
+  }
+}
+
+export default class WakaTimeStats extends React.Component<
+  any,
+  WakaTimeStatsState
+> {
+  constructor(props: any, state: WakaTimeStatsState) {
+    super(props, state);
     this.state = {
       chunks: {
         editor: false,
@@ -43,27 +67,24 @@ export default class WakaTimeStats extends React.Component<any, State> {
             role="group"
             aria-label="WakaTime stats"
           >
-            {[
-              new StatButton('lang', 'Language', this.state.chunks.lang),
-              new StatButton('editor', 'Editor', this.state.chunks.editor),
-              new StatButton('os', 'OS', this.state.chunks.os)
-            ].map((btn: StatButton) => {
-              let btnClasses = classnames('btn', {
-                'btn-dark': btn.active,
-                'btn-secondary': !btn.active,
-                active: btn.active
-              });
-              return (
-                <button
-                  key={btn.id}
-                  type="button"
-                  onClick={() => this.toggle(btn.id)}
-                  className={btnClasses}
-                >
-                  {btn.label}
-                </button>
-              );
-            })}
+            <StatButton
+              id="lang"
+              label="Language"
+              active={this.state.chunks.lang}
+              onClick={() => this.toggle('lang')}
+            />
+            <StatButton
+              id="editor"
+              label="Editor"
+              active={this.state.chunks.editor}
+              onClick={() => this.toggle('editor')}
+            />
+            <StatButton
+              id="os"
+              label="OS"
+              active={this.state.chunks.os}
+              onClick={() => this.toggle('os')}
+            />
           </div>
         </div>
         <div>
