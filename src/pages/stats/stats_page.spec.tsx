@@ -48,7 +48,7 @@ describe('StatsPage', () => {
       const label: string = 'wakatime';
 
       // ensure that wakatime, as non-first tab is not active
-      const c = el.find(TabPane).findWhere((n: any) => {
+      let c = el.find(TabPane).findWhere((n: any) => {
         return (
           n.key() === label && n.parent(TabContent).props().activeTab === label
         );

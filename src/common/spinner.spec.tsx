@@ -3,6 +3,7 @@ import Spinner from './spinner';
 
 describe('Spinner', () => {
   it('renders properly', () => {
-    <Spinner />;
+    const el = <Spinner />;
+    expect(el).toBeTruthy();
   });
 });

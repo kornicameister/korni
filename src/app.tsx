@@ -1,31 +1,47 @@
 import * as React from 'react';
-
-import { Container, Row, Col } from 'reactstrap';
-import { Route, Switch, NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink, Route, Switch } from 'react-router-dom';
 import {
+  Col,
   Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
+  Container,
+  Fade,
   Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
   NavItem,
-  Fade
+  Row
 } from 'reactstrap';
 
-import { AsyncHome, AsyncAbout, AsyncNotFound, AsyncStats } from './routes';
 import TravisBadge from './common/travis_badge';
+import { AsyncAbout, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
-export default class App extends React.Component {
-  state: any = {
-    is_open: false
-  };
+interface IAppState {
+  is_open: boolean;
+}
 
-  toggleNavBar() {
-    let is_open: boolean = this.state.is_open;
+export default class App extends React.Component<any, IAppState> {
+  constructor() {
+    super();
+    this.state = {
+      is_open: false
+    };
+  }
+
+  public render() {
+    return (
+      <Container>
+        {this.renderBar()}
+        {this.renderContent()}
+      </Container>
+    );
+  }
+  private toggleNavBar() {
+    const is_open: boolean = this.state.is_open;
     this.setState({ is_open: !is_open });
   }
 
-  renderNav() {
+  private renderNav() {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
@@ -47,7 +63,7 @@ export default class App extends React.Component {
     );
   }
 
-  renderBar() {
+  private renderBar() {
     return (
       <header>
         <Navbar color="dark" expand="md" className="rounded" dark>
@@ -62,7 +78,7 @@ export default class App extends React.Component {
     );
   }
 
-  renderContent() {
+  private renderContent() {
     return (
       <main>
         <Container>
@@ -80,15 +96,6 @@ export default class App extends React.Component {
           </Row>
         </Container>
       </main>
-    );
-  }
-
-  render() {
-    return (
-      <Container>
-        {this.renderBar()}
-        {this.renderContent()}
-      </Container>
     );
   }
 }

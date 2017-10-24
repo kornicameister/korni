@@ -9,7 +9,7 @@ class WakaTimeLangStatsView extends React.Component<IViewProps, any> {
   public render() {
     const { data, stage } = this.props;
     if (stage === DataLoadingStage.ERROR) {
-      return <div>Error</div>;
+      return <div>{data}</div>;
     } else if (stage === DataLoadingStage.DONE) {
       return (
         <Table responsive striped reflow hover>

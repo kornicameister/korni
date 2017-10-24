@@ -1,16 +1,16 @@
-import * as React from 'react';
 import * as classnames from 'classnames';
+import * as React from 'react';
 
 import './spinner.css';
 
 function getBarStyle(i: number): object {
-  let animationDelay: string = (i - 12) / 10 + 's';
-  let transform: string = 'rotate(' + i * 30 + 'deg) translate(146%)';
+  const animationDelay: string = (i - 12) / 10 + 's';
+  const transform: string = 'rotate(' + i * 30 + 'deg) translate(146%)';
   return {
     WebkitAnimationDelay: animationDelay,
-    animationDelay: animationDelay,
     WebkitTransform: transform,
-    transform: transform
+    animationDelay,
+    transform
   };
 }
 
