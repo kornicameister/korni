@@ -23,7 +23,9 @@ jobs:
   include:
     - stage: verify
       script: yarn test
+    - stage: verify
       script: yarn lint
+    - stage: verify
       script: yarn coverage
     - stage: build
       script: yarn build
