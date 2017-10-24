@@ -31,6 +31,7 @@
       ]
     },
     "no-reference-import": false,
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "max-line-length": 80
   }
 }

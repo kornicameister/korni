@@ -71,8 +71,8 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
 
   private renderTabs() {
     return (
-      <Nav className="stats-nav" tabs>
-        {TABS.map(tab => {
+      <Nav className='stats-nav' tabs>
+        {TABS.map((tab) => {
           return (
             <NavLink
               key={tab.id}
@@ -94,7 +94,7 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
   private renderTabsContent() {
     return (
       <TabContent activeTab={this.state.activeTab}>
-        {TABS.map(tab => {
+        {TABS.map((tab) => {
           return (
             <TabPane key={tab.id} tabId={tab.id}>
               {React.createElement(tab.cmp, {})}

@@ -10,7 +10,7 @@ export default class RouteLoader extends React.Component<
 > {
   public render() {
     return (
-      <Container className="clearfix" fluid>
+      <Container className='clearfix' fluid>
         {this.renderLoader()}
       </Container>
     );
@@ -27,18 +27,18 @@ export default class RouteLoader extends React.Component<
     if (this.props.isLoading) {
       if (this.props.timedOut) {
         return (
-          <div className={classes} role="alert">
+          <div className={classes} role='alert'>
             Loader timed out!
           </div>
         );
       } else if (this.props.pastDelay) {
-        return <Spinner className="mx-auto" />;
+        return <Spinner className='mx-auto' />;
       } else {
         return null;
       }
     } else if (this.props.error) {
       return (
-        <div className={classes} role="alert">
+        <div className={classes} role='alert'>
           Error! Component failed to load
         </div>
       );

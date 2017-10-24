@@ -43,19 +43,19 @@ export default class App extends React.Component<any, IAppState> {
 
   private renderNav() {
     return (
-      <Nav className="ml-auto" navbar>
+      <Nav className='ml-auto' navbar>
         <NavItem>
-          <RouterNavLink to="/" className="nav-link">
+          <RouterNavLink to='/' className='nav-link'>
             Home
           </RouterNavLink>
         </NavItem>
         <NavItem>
-          <RouterNavLink to="/about" className="nav-link">
+          <RouterNavLink to='/about' className='nav-link'>
             About
           </RouterNavLink>
         </NavItem>
         <NavItem>
-          <RouterNavLink to="/stats" className="nav-link">
+          <RouterNavLink to='/stats' className='nav-link'>
             Stats
           </RouterNavLink>
         </NavItem>
@@ -66,8 +66,8 @@ export default class App extends React.Component<any, IAppState> {
   private renderBar() {
     return (
       <header>
-        <Navbar color="dark" expand="md" className="rounded" dark>
-          <NavbarBrand href="/">kornicameister</NavbarBrand>
+        <Navbar color='dark' expand='md' className='rounded' dark>
+          <NavbarBrand href='/'>kornicameister</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavBar} />
           <Collapse isOpen={this.state.is_open} navbar>
             {this.renderNav()}
@@ -86,9 +86,9 @@ export default class App extends React.Component<any, IAppState> {
             <Col>
               <Fade>
                 <Switch>
-                  <Route path="/" component={AsyncHome} exact />
-                  <Route path="/about" component={AsyncAbout} exact />
-                  <Route path="/stats" component={AsyncStats} exact />
+                  <Route path='/' component={AsyncHome} exact />
+                  <Route path='/about' component={AsyncAbout} exact />
+                  <Route path='/stats' component={AsyncStats} exact />
                   <Route component={AsyncNotFound} />
                 </Switch>
               </Fade>

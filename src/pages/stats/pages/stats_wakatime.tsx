@@ -21,12 +21,12 @@ const StatButton: React.SFC<{
   onClick: React.MouseEventHandler<any>;
 }> = ({ id, label, active, onClick }) => {
   const btnClasses = classnames('btn', {
-    active: active,
+    'active': active,
     'btn-dark': active,
     'btn-secondary': !active
   });
   return (
-    <button type="button" className={btnClasses} onClick={onClick}>
+    <button type='button' className={btnClasses} onClick={onClick}>
       {label}
     </button>
   );
@@ -53,27 +53,27 @@ export default class WakaTimeStats extends React.Component<
     };
     return (
       <div>
-        <div className="mx-auto" style={btnGroupWrapperStyle}>
+        <div className='mx-auto' style={btnGroupWrapperStyle}>
           <div
             className={classnames('btn-group')}
-            role="group"
-            aria-label="WakaTime stats"
+            role='group'
+            aria-label='WakaTime stats'
           >
             <StatButton
-              id="lang"
-              label="Language"
+              id='lang'
+              label='Language'
               active={this.state.chunks.lang}
               onClick={() => this.toggle('lang')}
             />
             <StatButton
-              id="editor"
-              label="Editor"
+              id='editor'
+              label='Editor'
               active={this.state.chunks.editor}
               onClick={() => this.toggle('editor')}
             />
             <StatButton
-              id="os"
-              label="OS"
+              id='os'
+              label='OS'
               active={this.state.chunks.os}
               onClick={() => this.toggle('os')}
             />

@@ -5,7 +5,7 @@ const localStorageMock = {
   setItem: jest.fn()
 };
 global.localStorage = localStorageMock;
-global.requestAnimationFrame = callback => {
+global.requestAnimationFrame = (callback) => {
   setTimeout(callback, 0);
 };
 // init env

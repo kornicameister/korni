@@ -24,7 +24,7 @@ export default class AboutPage extends React.Component {
 
     return (
       <img
-        className="d-flex align-self-center rounded mr-3 img-fluid"
+        className='d-flex align-self-center rounded mr-3 img-fluid'
         alt={alt}
         src={src}
       />
@@ -48,11 +48,11 @@ export default class AboutPage extends React.Component {
 
     return (
       <div>
-        <h5 className="mt-0">About me</h5>
-        <div className="lead">
+        <h5 className='mt-0'>About me</h5>
+        <div className='lead'>
           {paragraphs.map((text, index) => {
             return (
-              <p className="text-justify" key={index}>
+              <p className='text-justify' key={index}>
                 {text}
               </p>
             );

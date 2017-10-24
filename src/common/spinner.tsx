@@ -14,13 +14,13 @@ function getBarStyle(i: number): object {
   };
 }
 
-const Spinner: React.SFC<any> = props => {
+const Spinner: React.SFC<any> = (props) => {
   const bars = [];
   const its: number = 12;
 
   for (let i: number = 0; i < its; i++) {
     bars.push(
-      <div style={getBarStyle(i)} className="react-spinner-bar" key={i} />
+      <div style={getBarStyle(i)} className='react-spinner-bar' key={i} />
     );
   }
 
