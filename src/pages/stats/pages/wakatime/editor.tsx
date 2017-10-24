@@ -3,14 +3,14 @@ import { Table } from 'reactstrap';
 
 import Spinner from '../../../../common/spinner';
 
-import { ViewProps, DataLoadingStage, WakaTimeContainer } from './common';
+import { DataLoadingStage, IViewProps, WakaTimeContainer } from './common';
 
-class WakaTimeEditorView extends React.Component<ViewProps, any> {
-  render() {
-    let { data, stage } = this.props;
-    if (stage == DataLoadingStage.ERROR) {
+class WakaTimeEditorView extends React.Component<IViewProps, any> {
+  public render() {
+    const { data, stage } = this.props;
+    if (stage === DataLoadingStage.ERROR) {
       return <div>Error</div>;
-    } else if (stage == DataLoadingStage.DONE) {
+    } else if (stage === DataLoadingStage.DONE) {
       return (
         <Table responsive striped reflow hover>
           <thead>
@@ -41,13 +41,14 @@ class WakaTimeEditorView extends React.Component<ViewProps, any> {
 }
 
 export default class WakaTimeEditor extends WakaTimeContainer {
-  private static langUrl: string = 'https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/568be270-731c-4a8c-b454-9e537a174642.json';
+  private static langUrl: string = `https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/
+                                    568be270-731c-4a8c-b454-9e537a174642.json`;
 
   constructor() {
     super(WakaTimeEditor.langUrl);
   }
 
-  renderContent() {
+  protected renderContent() {
     return (
       <WakaTimeEditorView data={this.state.data} stage={this.state.stage} />
     );

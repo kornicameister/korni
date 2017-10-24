@@ -1,0 +1,35 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "switch-default": true,
+    "no-switch-case-fall-through": true,
+    "no-console": [
+      true,
+      "log"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "no-trailing-whitespace": true,
+    "quotemark": {
+      "options": [
+        "single",
+        "jsx-single",
+        "avoid-escape"
+      ]
+    },
+    "trailing-comma": {
+      "options": {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    },
+    "max-classes-per-file": {
+      "options": [
+        2
+      ]
+    },
+    "no-reference-import": false
+  }
+}

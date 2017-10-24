@@ -1,6 +1,6 @@
 // Copyright 2017 @ kornicameister
-import 'typeface-roboto';
 import 'react-transition-group';
+import 'typeface-roboto';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -18,6 +18,7 @@ ReactDOM.render(
     <App />
   </Router>,
   document.getElementById('root'),
-  () => { registerServiceWorker() }
+  () => {
+    registerServiceWorker();
+  }
 );
-

@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { Container, Nav, NavLink, TabContent, TabPane } from 'reactstrap';
-import { LoadableComponent } from 'react-loadable';
 import * as classnames from 'classnames';
+import * as React from 'react';
+import { LoadableComponent } from 'react-loadable';
+import { Container, Nav, NavLink, TabContent, TabPane } from 'reactstrap';
 
-import {
-  LoadableWakaTime,
-  LoadableWhatPulse,
-  LoadableKorni,
-  LoadableGithub,
-  LoadableGitlab
-} from './stats_routes';
 import './stats_page.css';
+import {
+  LoadableGithub,
+  LoadableGitlab,
+  LoadableKorni,
+  LoadableWakaTime,
+  LoadableWhatPulse
+} from './stats_routes';
 
 class StatTab {
-  readonly id: string;
-  readonly cmp: React.ComponentType & LoadableComponent;
-  readonly label: string;
+  public readonly id: string;
+  public readonly cmp: React.ComponentType & LoadableComponent;
+  public readonly label: string;
   constructor(
     id: string,
     label: string,
@@ -35,12 +35,12 @@ const TABS: StatTab[] = [
   new StatTab('github', 'Github', LoadableGithub)
 ];
 
-interface StatsPageState {
+interface IStatsPageState {
   activeTab?: string;
 }
 
-export default class StatsPage extends React.Component<any, StatsPageState> {
-  constructor(props: any, state: StatsPageState) {
+export default class StatsPage extends React.Component<any, IStatsPageState> {
+  constructor(props: any, state: IStatsPageState) {
     super(props, state);
 
     this.state = {
@@ -52,7 +52,16 @@ export default class StatsPage extends React.Component<any, StatsPageState> {
     this.renderTabsContent.bind(this);
   }
 
-  toggleTab(tab: string) {
+  public render() {
+    return (
+      <Container>
+        {this.renderTabs()}
+        {this.renderTabsContent()}
+      </Container>
+    );
+  }
+
+  private toggleTab(tab: string) {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab
@@ -60,19 +69,18 @@ export default class StatsPage extends React.Component<any, StatsPageState> {
     }
   }
 
-  renderTabs() {
-    let self = this;
-    let state = self.state;
-
+  private renderTabs() {
     return (
       <Nav className="stats-nav" tabs>
         {TABS.map(tab => {
           return (
             <NavLink
               key={tab.id}
-              className={classnames({ active: state.activeTab === tab.id })}
+              className={classnames({
+                active: this.state.activeTab === tab.id
+              })}
               onClick={() => {
-                self.toggleTab(tab.id);
+                this.toggleTab(tab.id);
               }}
             >
               {tab.label.toUpperCase()}
@@ -83,12 +91,9 @@ export default class StatsPage extends React.Component<any, StatsPageState> {
     );
   }
 
-  renderTabsContent() {
-    let self = this;
-    let state = self.state;
-
+  private renderTabsContent() {
     return (
-      <TabContent activeTab={state.activeTab}>
+      <TabContent activeTab={this.state.activeTab}>
         {TABS.map(tab => {
           return (
             <TabPane key={tab.id} tabId={tab.id}>
@@ -97,15 +102,6 @@ export default class StatsPage extends React.Component<any, StatsPageState> {
           );
         })}
       </TabContent>
-    );
-  }
-
-  render() {
-    return (
-      <Container>
-        {this.renderTabs()}
-        {this.renderTabsContent()}
-      </Container>
     );
   }
 }

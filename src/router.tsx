@@ -1,39 +1,49 @@
-import * as React from 'react';
 import * as classNames from 'classnames';
+import * as React from 'react';
 import { LoadingComponentProps } from 'react-loadable';
 import { Container } from 'reactstrap';
 
 import Spinner from './common/spinner';
 
-export default class RouteLoader extends React.Component<LoadingComponentProps> {
+export default class RouteLoader extends React.Component<
+  LoadingComponentProps
+> {
+  public render() {
+    return (
+      <Container className="clearfix" fluid>
+        {this.renderLoader()}
+      </Container>
+    );
+  }
 
-  renderLoader() {
-    let classes = classNames('alert', {
-      'alert-info': this.props.isLoading && !this.props.timedOut && this.props.pastDelay,
+  private renderLoader(): JSX.Element | null {
+    const classes = classNames('alert', {
       'alert-danger': !this.props.isLoading && this.props.error,
+      'alert-info':
+        this.props.isLoading && !this.props.timedOut && this.props.pastDelay,
       'alert-warning': this.props.isLoading && this.props.timedOut
     });
 
     if (this.props.isLoading) {
       if (this.props.timedOut) {
-        return <div className={classes} role="alert">Loader timed out!</div>;
+        return (
+          <div className={classes} role="alert">
+            Loader timed out!
+          </div>
+        );
       } else if (this.props.pastDelay) {
-        return <Spinner className="mx-auto"/>;
+        return <Spinner className="mx-auto" />;
       } else {
         return null;
       }
     } else if (this.props.error) {
-      return <div className={classes} role="alert">Error! Component failed to load</div>;
+      return (
+        <div className={classes} role="alert">
+          Error! Component failed to load
+        </div>
+      );
     } else {
       return null;
     }
-  }
-
-  render() {
-    return (
-      <Container className="clearfix" fluid>
-        {this.renderLoader()}
-      </Container>
-    )
   }
 }
