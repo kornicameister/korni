@@ -12,19 +12,17 @@ export interface IContainerState {
   stage: DataLoadingStage;
 }
 
-export interface IContainerProps {
-  visible: boolean;
-}
-
 export interface IViewProps {
   data: any;
   stage: DataLoadingStage;
 }
 
-export abstract class WakaTimeContainer extends React.Component<
-  IContainerProps,
-  IContainerState
-> {
+export interface IChartColumn {
+  label: string;
+  type: 'string' | 'number';
+}
+
+export abstract class WakaTimeContainer extends React.Component<any, IContainerState> {
   protected dataUrl: string;
 
   constructor(dataUrl: string) {
@@ -37,20 +35,9 @@ export abstract class WakaTimeContainer extends React.Component<
     this.dataUrl = dataUrl;
   }
 
-  public render() {
-    if (this.props.visible) {
-      return this.renderContent();
-    }
-    return null;
+  public componentDidMount() {
+    this.fetchData();
   }
-
-  public componentWillReceiveProps(props: IContainerProps) {
-    if (props.visible && this.state.stage !== DataLoadingStage.DONE) {
-      this.fetchData();
-    }
-  }
-
-  protected abstract renderContent(): any;
 
   private fetchData(): void {
     this.setState({
