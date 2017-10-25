@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/enzyme": "^2.8.11",
-    "@types/jest": "^21.1.4",
+    "@types/jest": "^21.1.5",
     "@types/jsonp": "^0.2.0",
     "@types/react-dom": "^16.0.1",
     "@types/react-loadable": "^4.0.4",
