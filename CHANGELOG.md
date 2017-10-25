@@ -1,3 +1,16 @@
+### Version 0.2.1
+- Update tslint from 5.7.0 to 5.8.0 (#62) (HEAD -> master, origin/master, origin/HEAD)
+- Update typeface-roboto from 0.0.41 to 0.0.43 (#60)
+- Update @types/jest from 21.1.4 to 21.1.5 (#61)
+- Replace tables with charts in Wakatime (#59)
+- Disable no-var-requires, member-ordering (#58)
+- Choosing charting library (#56)
+- Linters (#57)
+- Spinner is now React.SFC
+- Reworked button to be SFC
+- Reworked button to be React.Component
+- Some play with TS types
+
 ### Version 0.2.0
 - Enable stats page #17 (#30) (HEAD -> master, tag: 0.2.0, origin/master, origin/HEAD)
 - Update react-loadable from 5.3.0 to 5.3.1 (#53)
