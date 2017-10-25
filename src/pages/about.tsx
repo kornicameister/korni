@@ -1,26 +1,38 @@
 import * as React from 'react';
 
-import {
-  Container,
-  Jumbotron,
-  Media
-} from 'reactstrap';
+import { Container, Jumbotron, Media } from 'reactstrap';
 
 export default class AboutPage extends React.Component {
-
-  renderAvatar() {
-    let alt: string = 'kornicameister gravatar';
-    let srcSize: number = 120;
-    let src: string = `https://s.gravatar.com/avatar/140db4c0a9767838be5a5289ad78eca6?s=${srcSize}`;
+  public render() {
+    return (
+      <div>
+        <Jumbotron fluid>
+          <Container fluid>
+            <Media>
+              {this.renderAvatar()}
+              <Media body>{this.renderContent()}</Media>
+            </Media>
+          </Container>
+        </Jumbotron>
+      </div>
+    );
+  }
+  private renderAvatar() {
+    const alt: string = 'kornicameister gravatar';
+    const srcSize: number = 120;
+    const src: string = `https://s.gravatar.com/avatar/140db4c0a9767838be5a5289ad78eca6?s=${srcSize}`;
 
     return (
-      <img className="d-flex align-self-center rounded mr-3 img-fluid" alt={alt} src={src} />
-    )
+      <img
+        className='d-flex align-self-center rounded mr-3 img-fluid'
+        alt={alt}
+        src={src}
+      />
+    );
   }
 
-  renderContent() {
-
-    let paragraphs: Array<string> = [
+  private renderContent() {
+    const paragraphs: string[] = [
       'What to tell...I am a guy whose work is his pride',
       `I am always trying to push myself and others to try and see all
       variables of the equation as for me there's no ideal solution.
@@ -32,35 +44,21 @@ export default class AboutPage extends React.Component {
       `There are few things that I consider most important in my life,
       yet my wife and daughter happiness is one of those things.
       Everything I ever accomplished and will accomplish is dedicated to them.`
-    ]
+    ];
 
     return (
       <div>
-        <h5 className="mt-0">About me</h5>
-        <div className="lead">
+        <h5 className='mt-0'>About me</h5>
+        <div className='lead'>
           {paragraphs.map((text, index) => {
-            return <p className="text-justify" key={index} >{text}</p>
+            return (
+              <p className='text-justify' key={index}>
+                {text}
+              </p>
+            );
           })}
         </div>
       </div>
-    )
+    );
   }
-
-  render() {
-    return (
-      <div>
-        <Jumbotron fluid>
-          <Container fluid>
-            <Media>
-              {this.renderAvatar()}
-              <Media body>
-                {this.renderContent()}
-              </Media>
-            </Media>
-          </Container>
-        </Jumbotron>
-      </div>
-    )
-  }
-
 }

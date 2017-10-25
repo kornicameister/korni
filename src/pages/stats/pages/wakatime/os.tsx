@@ -3,14 +3,14 @@ import { Table } from 'reactstrap';
 
 import Spinner from '../../../../common/spinner';
 
-import { ViewProps, DataLoadingStage, WakaTimeContainer } from './common';
+import { DataLoadingStage, IViewProps, WakaTimeContainer } from './common';
 
-class WakaTimeOSStatsView extends React.Component<ViewProps, any> {
-  render() {
-    let { data, stage } = this.props;
-    if (stage == DataLoadingStage.ERROR) {
-      return <div>Error</div>;
-    } else if (stage == DataLoadingStage.DONE) {
+class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
+  public render() {
+    const { data, stage } = this.props;
+    if (stage === DataLoadingStage.ERROR) {
+      return <div>{data}</div>;
+    } else if (stage === DataLoadingStage.DONE) {
       return (
         <Table responsive striped reflow hover>
           <thead>
@@ -26,7 +26,7 @@ class WakaTimeOSStatsView extends React.Component<ViewProps, any> {
               .map((item: any, index: number) => {
                 return (
                   <tr key={index}>
-                    <th scope="row">{index}</th>
+                    <th scope='row'>{index}</th>
                     <td>{item.name}</td>
                     <td>{item.percent}</td>
                   </tr>
@@ -47,7 +47,7 @@ export default class WakaTimeOS extends WakaTimeContainer {
     super(WakaTimeOS.langUrl);
   }
 
-  renderContent() {
+  protected renderContent() {
     return (
       <WakaTimeOSStatsView data={this.state.data} stage={this.state.stage} />
     );

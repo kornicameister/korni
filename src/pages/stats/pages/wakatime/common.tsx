@@ -7,23 +7,23 @@ export enum DataLoadingStage {
   NONE
 }
 
-export interface ContainerState {
+export interface IContainerState {
   data: any;
   stage: DataLoadingStage;
 }
 
-export interface ContainerProps {
+export interface IContainerProps {
   visible: boolean;
 }
 
-export interface ViewProps {
+export interface IViewProps {
   data: any;
   stage: DataLoadingStage;
 }
 
 export abstract class WakaTimeContainer extends React.Component<
-  ContainerProps,
-  ContainerState
+  IContainerProps,
+  IContainerState
 > {
   protected dataUrl: string;
 
@@ -37,15 +37,15 @@ export abstract class WakaTimeContainer extends React.Component<
     this.dataUrl = dataUrl;
   }
 
-  render() {
+  public render() {
     if (this.props.visible) {
       return this.renderContent();
     }
     return null;
   }
 
-  componentWillReceiveProps(props: ContainerProps) {
-    if (props.visible && this.state.stage != DataLoadingStage.DONE) {
+  public componentWillReceiveProps(props: IContainerProps) {
+    if (props.visible && this.state.stage !== DataLoadingStage.DONE) {
       this.fetchData();
     }
   }
@@ -56,16 +56,18 @@ export abstract class WakaTimeContainer extends React.Component<
     this.setState({
       stage: DataLoadingStage.LOADING
     });
+
     require('jsonp')(this.dataUrl, null, (err: any, data: any) => {
-      if (err) {
+      if (err || data.error) {
         this.setState({
-          stage: DataLoadingStage.ERROR,
-          data: err
+          data: err || data.error,
+          stage: DataLoadingStage.ERROR
         });
+        return;
       }
       this.setState({
-        stage: DataLoadingStage.DONE,
-        data: data.data
+        data: data.data,
+        stage: DataLoadingStage.DONE
       });
     });
   }

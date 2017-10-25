@@ -1,58 +1,57 @@
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 
-import RouteLoader from './router';
 import Spinner from './common/spinner';
-
+import RouteLoader from './router';
 
 describe('RouteLoader', () => {
   it('renders without crashing', () => {
-    let props: any = {
+    const props: any = {
+      error: false,
       isLoading: false,
-      timedOut: false,
-      error: false
-    }
+      timedOut: false
+    };
     shallow(<RouteLoader {...props} />);
   });
 
   it('renders timed_out', () => {
-    let props: any = {
-      isLoading: true,
-      timedOut: true,
+    const props: any = {
       error: false,
-      pastDelay: false
-    }
+      isLoading: true,
+      pastDelay: false,
+      timedOut: true
+    };
 
     const wrapper = shallow(<RouteLoader {...props} />);
     const div = wrapper.find('div');
 
     expect(div).toHaveLength(1);
-    expect(div.get(0).props.className).toEqual('alert alert-warning')
+    expect(div.get(0).props.className).toEqual('alert alert-warning');
   });
 
   it('renders error', () => {
-    let props: any = {
-      isLoading: false,
-      timedOut: false,
+    const props: any = {
       error: true,
-      pastDelay: false
-    }
+      isLoading: false,
+      pastDelay: false,
+      timedOut: false
+    };
 
     const wrapper = shallow(<RouteLoader {...props} />);
     const div = wrapper.find('div');
 
     expect(div).toHaveLength(1);
-    expect(div.get(0).props.className).toEqual('alert alert-danger')
+    expect(div.get(0).props.className).toEqual('alert alert-danger');
   });
 
   it('renders loading if delay exceeded', () => {
     // component still loading but before timed_out
-    let props: any = {
-      isLoading: true,
-      timedOut: false,
+    const props: any = {
       error: false,
-      pastDelay: true
-    }
+      isLoading: true,
+      pastDelay: true,
+      timedOut: false
+    };
 
     const wrapper = shallow(<RouteLoader {...props} />);
     expect(wrapper.find(Spinner)).toHaveLength(1);
@@ -60,12 +59,12 @@ describe('RouteLoader', () => {
 
   it('renders nothing if component loaded', () => {
     // loading but before delay
-    let props: any = {
-      isLoading: true,
-      timedOut: false,
+    const props: any = {
       error: false,
-      pastDelay: false
-    }
+      isLoading: true,
+      pastDelay: false,
+      timedOut: false
+    };
 
     const wrapper = shallow(<RouteLoader {...props} />);
     const div = wrapper.find('div');

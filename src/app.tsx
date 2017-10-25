@@ -1,52 +1,73 @@
 import * as React from 'react';
-
-import { Container, Row, Col } from 'reactstrap';
-import { Route, Switch,  NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink, Route, Switch } from 'react-router-dom';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand,
-  Nav, NavItem, Fade
+  Col,
+  Collapse,
+  Container,
+  Fade,
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
+  NavItem,
+  Row
 } from 'reactstrap';
 
-import {
-  AsyncHome,
-  AsyncAbout,
-  AsyncNotFound,
-  AsyncStats
-} from './routes';
 import TravisBadge from './common/travis_badge';
+import { AsyncAbout, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
-export default class App extends React.Component {
+interface IAppState {
+  is_open: boolean;
+}
 
-  state: any = {
-    is_open: false
+export default class App extends React.Component<any, IAppState> {
+  constructor() {
+    super();
+    this.state = {
+      is_open: false
+    };
   }
 
-  toggleNavBar() {
-    let is_open: boolean = this.state.is_open
-    this.setState({ is_open: !is_open })
-  }
-
-  renderNav() {
+  public render() {
     return (
-      <Nav className="ml-auto" navbar>
+      <Container>
+        {this.renderBar()}
+        {this.renderContent()}
+      </Container>
+    );
+  }
+  private toggleNavBar() {
+    const is_open: boolean = this.state.is_open;
+    this.setState({ is_open: !is_open });
+  }
+
+  private renderNav() {
+    return (
+      <Nav className='ml-auto' navbar>
         <NavItem>
-          <RouterNavLink to="/" className="nav-link">Home</RouterNavLink>
+          <RouterNavLink to='/' className='nav-link'>
+            Home
+          </RouterNavLink>
         </NavItem>
         <NavItem>
-          <RouterNavLink to="/about" className="nav-link">About</RouterNavLink>
+          <RouterNavLink to='/about' className='nav-link'>
+            About
+          </RouterNavLink>
         </NavItem>
         <NavItem>
-          <RouterNavLink to="/stats" className="nav-link">Stats</RouterNavLink>
+          <RouterNavLink to='/stats' className='nav-link'>
+            Stats
+          </RouterNavLink>
         </NavItem>
       </Nav>
-    )
+    );
   }
 
-  renderBar() {
+  private renderBar() {
     return (
       <header>
-        <Navbar color="dark" expand="md" className="rounded" dark>
-          <NavbarBrand href="/">kornicameister</NavbarBrand>
+        <Navbar color='dark' expand='md' className='rounded' dark>
+          <NavbarBrand href='/'>kornicameister</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavBar} />
           <Collapse isOpen={this.state.is_open} navbar>
             {this.renderNav()}
@@ -54,10 +75,10 @@ export default class App extends React.Component {
           </Collapse>
         </Navbar>
       </header>
-    )
+    );
   }
 
-  renderContent() {
+  private renderContent() {
     return (
       <main>
         <Container>
@@ -75,15 +96,6 @@ export default class App extends React.Component {
           </Row>
         </Container>
       </main>
-    )
-  }
-
-  render() {
-    return (
-      <Container>
-        {this.renderBar()}
-        {this.renderContent()}
-      </Container>
     );
   }
-};
+}

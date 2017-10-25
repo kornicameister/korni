@@ -3,18 +3,15 @@ import RouteLoader from './router';
 
 export const AsyncHome = Loadable({
   loader: () => import('./pages/home'),
-  loading: RouteLoader,
-  delay: 600
+  loading: RouteLoader
 });
 export const AsyncNotFound = Loadable({
   loader: () => import('./pages/not_found'),
-  loading: RouteLoader,
-  delay: 600
+  loading: RouteLoader
 });
 export const AsyncAbout = Loadable({
   loader: () => import('./pages/about'),
-  loading: RouteLoader,
-  delay: 600
+  loading: RouteLoader
 });
 export const AsyncStats = Loadable({
   loader: () => import('./pages/stats/stats_page'),
