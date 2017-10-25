@@ -1,39 +1,53 @@
 import * as React from 'react';
-import { Table } from 'reactstrap';
+const Chart = require('react-google-charts').Chart;
 
 import Spinner from '../../../../common/spinner';
-
-import { DataLoadingStage, IViewProps, WakaTimeContainer } from './common';
-
+import { DataLoadingStage, IChartColumn, IViewProps, WakaTimeContainer } from './common';
 class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
+  private chartOptions: any;
+  private chartColumns: IChartColumn[];
+
+  constructor(props: IViewProps, state: any) {
+    super(props, state);
+
+    this.chartOptions = {
+      hAxis: { title: 'OS' },
+      legend: 'none',
+      title: 'OS usage',
+      vAxis: { title: '%' }
+    };
+    this.chartColumns = [
+      {
+        label: 'OS',
+        type: 'string'
+      },
+      {
+        label: 'Usage',
+        type: 'number'
+      }
+    ];
+  }
+
   public render() {
     const { data, stage } = this.props;
     if (stage === DataLoadingStage.ERROR) {
       return <div>{data}</div>;
     } else if (stage === DataLoadingStage.DONE) {
+      const rows: any[][] = data
+        .map((item: any) => {
+          return [item.name as string, item.percent as number];
+        });
       return (
-        <Table responsive striped reflow hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>OS</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data
-              .sort((a: any, b: any) => b.percent - a.percent)
-              .map((item: any, index: number) => {
-                return (
-                  <tr key={index}>
-                    <th scope='row'>{index}</th>
-                    <td>{item.name}</td>
-                    <td>{item.percent}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </Table>
+        <Chart
+          chartType='PieChart'
+          rows={rows}
+          columns={this.chartColumns}
+          options={this.chartOptions}
+          graph_id='OSUsage'
+          width={'100%'}
+          height={'400px'}
+          legend_toggle
+        />
       );
     }
     return <Spinner />;
@@ -47,7 +61,7 @@ export default class WakaTimeOS extends WakaTimeContainer {
     super(WakaTimeOS.langUrl);
   }
 
-  protected renderContent() {
+  public render() {
     return (
       <WakaTimeOSStatsView data={this.state.data} stage={this.state.stage} />
     );
