@@ -13,7 +13,7 @@ describe('WakaTimeStats', () => {
   });
 
   [WakaTimeEditor, WakaTimeLang, WakaTimeOS].forEach((cmp) => {
-    let el;
+    let el: any;
 
     beforeEach(() => { el = shallow(<WakaTimeStats />); });
 
