@@ -17,11 +17,6 @@ export interface IViewProps {
   stage: DataLoadingStage;
 }
 
-export interface IChartColumn {
-  label: string;
-  type: 'string' | 'number';
-}
-
 export abstract class WakaTimeContainer extends React.Component<any, IContainerState> {
   protected dataUrl: string;
 
