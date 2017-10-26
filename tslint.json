@@ -36,6 +36,7 @@
     "no-var-requires": false,
     "member-ordering": false,
     "interface-name": false,
-    "no-implicit-dependencies": [true, "dev"]
+    "no-implicit-dependencies": [true, "dev"],
+    "object-literal-sort-keys": false
   }
 }
