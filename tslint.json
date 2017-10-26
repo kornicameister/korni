@@ -34,6 +34,8 @@
     "no-submodule-imports": false,
     "max-line-length": 80,
     "no-var-requires": false,
-    "member-ordering": false
+    "member-ordering": false,
+    "interface-name": false,
+    "no-implicit-dependencies": [true, "dev"]
   }
 }

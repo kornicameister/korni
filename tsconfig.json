@@ -20,7 +20,11 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "diagnostics": true
+    "diagnostics": true,
+    "typeRoots": [
+      "src/types/",
+      "node_modules/@types/"
+    ]
   },
   "exclude": [
     "node_modules",

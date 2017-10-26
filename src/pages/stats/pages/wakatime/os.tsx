@@ -1,20 +1,18 @@
 import * as React from 'react';
-const Chart = require('react-google-charts').Chart;
+import { Chart, ChartColumn, PieChartOptions } from 'react-google-charts';
 
 import Spinner from '../../../../common/spinner';
-import { DataLoadingStage, IChartColumn, IViewProps, WakaTimeContainer } from './common';
+import { DataLoadingStage, IViewProps, WakaTimeContainer } from './common';
 class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
-  private chartOptions: any;
-  private chartColumns: IChartColumn[];
+  private chartOptions: PieChartOptions;
+  private chartColumns: ChartColumn[];
 
   constructor(props: IViewProps, state: any) {
     super(props, state);
 
     this.chartOptions = {
-      hAxis: { title: 'OS' },
       legend: 'none',
-      title: 'OS usage',
-      vAxis: { title: '%' }
+      title: 'OS usage'
     };
     this.chartColumns = [
       {
