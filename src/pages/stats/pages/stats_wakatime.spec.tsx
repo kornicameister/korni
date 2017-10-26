@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import WakaTimeStats from './stats_wakatime';
+import WakaTimeActivity from './wakatime/activity';
 import WakaTimeEditor from './wakatime/editor';
 import WakaTimeLang from './wakatime/lang';
 import WakaTimeOS from './wakatime/os';
@@ -12,7 +13,7 @@ describe('WakaTimeStats', () => {
     shallow(<WakaTimeStats />);
   });
 
-  [WakaTimeEditor, WakaTimeLang, WakaTimeOS].forEach((cmp) => {
+  [WakaTimeEditor, WakaTimeLang, WakaTimeOS, WakaTimeActivity].forEach((cmp) => {
     let el: any;
 
     beforeEach(() => { el = shallow(<WakaTimeStats />); });
