@@ -1,3 +1,4 @@
+import * as classname from 'classnames';
 import * as React from 'react';
 
 import Spinner from '../../../common/spinner';
@@ -6,6 +7,7 @@ import { DataLoadingStage } from '../../../core';
 interface Data {
   keys?: number;
   clicks?: number;
+  uptime?: number;
 }
 
 interface LoaderState {
@@ -22,9 +24,28 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
     return <div>{error}</div>;
   } else if (stage === DataLoadingStage.DONE && data) {
     return (
-      <div>
-        <div>{data.keys}</div>
-        <div>{data.clicks}</div>
+      <div className='d-flex flow-row'>
+        {
+          [
+            ['fa-keyboard-o', data.keys, 'Rank: Keys'],
+            ['fa-mouse-pointer', data.keys, 'Rank: Clicks'],
+            ['fa-clock-o', data.uptime, 'Rank: Uptime']
+          ].map((item: any[], key: number) => {
+
+            const classes: string = classname('fa fa-lg fa-fw', item[0]);
+            const value: number = item[1];
+            const tooltip: string = item[2];
+
+            return (
+              <div key={key} className='p-5 mx-auto' data-toggle='tooltip' data-placement='bottom' title={tooltip}>
+                <span className='d-flex align-middle'>
+                  <i className={classes} aria-hidden={true}></i>
+                  <div>{value}</div>
+                </span>
+              </div>
+            );
+          })
+        }
       </div>
     );
   }
@@ -68,7 +89,8 @@ export default class WhatPulseStats extends React.Component<any, LoaderState> {
       .then((wp: any) => {
         return {
           keys: Number(wp.Ranks[0].Keys[0]),
-          clicks: Number(wp.Ranks[0].Clicks[0])
+          clicks: Number(wp.Ranks[0].Clicks[0]),
+          uptime: Number(wp.Ranks[0].Uptime[0])
         };
       })
       .then((data) => {

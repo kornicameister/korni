@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta",
     "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
