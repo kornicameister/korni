@@ -71,7 +71,7 @@ export default class WhatPulseStats extends React.Component<any, LoaderState> {
 
   private fetchData() {
     this.setState({ stage: DataLoadingStage.LOADING });
-    fetch('http://api.whatpulse.org/user.php?user=kornicameister')
+    fetch('https://api.whatpulse.org/user.php?user=kornicameister')
       .then((resp: any) => {
         return resp.text();
       })
