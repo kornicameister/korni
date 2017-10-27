@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta",
     "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -33,7 +34,8 @@
     "react-scripts-ts": "^2.8.0",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3",
-    "typeface-roboto": "^0.0.43"
+    "typeface-roboto": "^0.0.43",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
