@@ -1,3 +1,6 @@
+### Version 0.2.3
+- Fix WhatPulse after deployment (HEAD -> master, origin/fix_whatpulse)
+
 ### Version 0.2.2
 - Render WhatPulse ranks (#67) (HEAD -> master, origin/master, origin/HEAD)
 - Display page version inside bar (#65)
