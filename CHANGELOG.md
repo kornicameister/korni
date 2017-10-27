@@ -1,3 +1,9 @@
+### Version 0.2.2
+- Render WhatPulse ranks (#67) (HEAD -> master, origin/master, origin/HEAD)
+- Display page version inside bar (#65)
+- Add WakaTime activity chart (#64)
+- Add d.ts for react-google-charts (#63)
+
 ### Version 0.2.1
 - Update tslint from 5.7.0 to 5.8.0 (#62) (HEAD -> master, origin/master, origin/HEAD)
 - Update typeface-roboto from 0.0.41 to 0.0.43 (#60)
