@@ -1,11 +1,6 @@
 import * as React from 'react';
 
-export enum DataLoadingStage {
-  LOADING,
-  DONE,
-  ERROR,
-  NONE
-}
+import { DataLoadingStage } from '../../../../core';
 
 export interface IContainerState {
   data: any;

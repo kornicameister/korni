@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Chart, ChartColumn, LineChartOptions } from 'react-google-charts';
 
 import Spinner from '../../../../common/spinner';
-import { DataLoadingStage, IViewProps, WakaTimeContainer } from './common';
+import { DataLoadingStage } from '../../../../core';
+import { IViewProps, WakaTimeContainer } from './common';
 
 class WakaTimeActivityView extends React.Component<IViewProps, any> {
   public render() {
