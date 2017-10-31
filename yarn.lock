@@ -77,9 +77,9 @@
   version "15.6.4"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-15.6.4.tgz#3bb57bd43183a05919ceb025a264287348f47e9d"
 
-"@types/reactstrap@^4.6.4":
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-4.6.4.tgz#ed8dcd805b1d4b2427baf37f1a825109436ece2d"
+"@types/reactstrap@^4.6.5":
+  version "4.6.5"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-4.6.5.tgz#8d8a6eac2881b531149d5ac78ab2fd5f7072fadd"
   dependencies:
     "@types/tether" "*"
 
