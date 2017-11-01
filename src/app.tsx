@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 
 import TravisBadge from './common/travis_badge';
-import { AsyncAbout, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
+import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
 interface IAppState {
   is_open: boolean;
@@ -47,6 +47,11 @@ export default class App extends React.Component<any, IAppState> {
         <NavItem>
           <RouterNavLink to='/' className='nav-link'>
             Home
+          </RouterNavLink>
+        </NavItem>
+        <NavItem>
+          <RouterNavLink to='/cv' className='nav-link'>
+            CV
           </RouterNavLink>
         </NavItem>
         <NavItem>
@@ -89,8 +94,9 @@ export default class App extends React.Component<any, IAppState> {
               <Fade>
                 <Switch>
                   <Route path='/' component={AsyncHome} exact />
-                  <Route path='/about' component={AsyncAbout} exact />
-                  <Route path='/stats' component={AsyncStats} exact />
+                  <Route path='/cv' component={AsyncCV} />
+                  <Route path='/about' component={AsyncAbout} />
+                  <Route path='/stats' component={AsyncStats} />
                   <Route component={AsyncNotFound} />
                 </Switch>
               </Fade>
