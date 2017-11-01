@@ -44,7 +44,7 @@ describe('CVPage', () => {
     });
 
     it('should not have error and raw input at start', () => {
-      const error: booleam = el.state().model.error;
+      const error: boolean = el.state().model.error;
       const input: string = el.state().model.raw;
 
       expect(error).toBeFalsy();
@@ -59,7 +59,7 @@ describe('CVPage', () => {
       it('should set raw but have an error in cmd incomplete', () => {
         el.find('[aria-label="Command"]').simulate('change', { target: { value: 'hel' } });
 
-        const error: booleam = el.state().model.error;
+        const error: boolean = el.state().model.error;
         const input: string = el.state().model.raw;
 
         expect(error).toBeTruthy();
@@ -68,7 +68,7 @@ describe('CVPage', () => {
       it('should set raw and have no error if cmd complete', () => {
         el.find('[aria-label="Command"]').simulate('change', { target: { value: 'skills' } });
 
-        const error: booleam = el.state().model.error;
+        const error: boolean = el.state().model.error;
         const input: string = el.state().model.raw;
 
         expect(error).toBeFalsy();
