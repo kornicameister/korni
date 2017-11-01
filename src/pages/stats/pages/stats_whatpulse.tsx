@@ -27,20 +27,22 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
       <div className='d-flex flow-row'>
         {
           [
-            ['fa-keyboard-o', data.keys, 'Rank: Keys'],
-            ['fa-mouse-pointer', data.clicks, 'Rank: Clicks'],
-            ['fa-clock-o', data.uptime, 'Rank: Uptime']
+            ['fa-keyboard-o', data.keys, 'Rank: Keys', 'strokes'],
+            ['fa-mouse-pointer', data.clicks, 'Rank: Clicks', 'clicks'],
+            ['fa-clock-o', data.uptime, 'Rank: Uptime', 'hours']
           ].map((item: any[], key: number) => {
 
             const classes: string = classname('fa fa-lg fa-fw', item[0]);
             const value: number = item[1];
             const tooltip: string = item[2];
+            const srOnly: string = item[3];
 
             return (
               <div key={key} className='p-5 mx-auto' data-toggle='tooltip' data-placement='bottom' title={tooltip}>
                 <span className='d-flex align-middle'>
                   <i className={classes} aria-hidden={true}></i>
-                  <div>{value}</div>
+                  <span className='badge badge-dark badge-pill'>{value}</span>
+                  <span className='sr-only'>{srOnly}</span>
                 </span>
               </div>
             );
