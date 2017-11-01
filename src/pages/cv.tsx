@@ -1,45 +1,17 @@
 import * as classnames from 'classnames';
 import * as React from 'react';
-import Loadable from 'react-loadable';
 
-import RouteLoader from '../router';
-
-const CVAwards = Loadable({
-  loader: () => import('./cv/awards'),
-  loading: RouteLoader
-});
-const CVBasics = Loadable({
-  loader: () => import('./cv/basics'),
-  loading: RouteLoader
-});
-const CVSchool = Loadable({
-  loader: () => import('./cv/school'),
-  loading: RouteLoader
-});
-const CVWork = Loadable({
-  loader: () => import('./cv/work'),
-  loading: RouteLoader
-});
-const CVLanguages = Loadable({
-  loader: () => import('./cv/languages'),
-  loading: RouteLoader
-});
-const CVSkills = Loadable({
-  loader: () => import('./cv/skills'),
-  loading: RouteLoader
-});
-const CVInterests = Loadable({
-  loader: () => import('./cv/interests'),
-  loading: RouteLoader
-});
-const CVReferences = Loadable({
-  loader: () => import('./cv/references'),
-  loading: RouteLoader
-});
-const CVHelp = Loadable({
-  loader: () => import('./cv/help'),
-  loading: RouteLoader
-});
+import {
+  CVAwards,
+  CVBasics,
+  CVHelp,
+  CVInterests,
+  CVLanguages,
+  CVReferences,
+  CVSchool,
+  CVSkills,
+  CVWork
+} from './cv-routes';
 
 interface Props {
   resume: any;
@@ -56,9 +28,8 @@ interface Model {
   error: boolean;
 }
 
-enum Command {
+export enum Command {
   HELP = 'help',
-  LIST = 'list',
   WORK = 'work',
   EDUCATION = 'education',
   SKILLS = 'skills',
@@ -69,13 +40,15 @@ enum Command {
   INTERESTS = 'interests',
   REFERENCES = 'references'
 }
-const Commands: string[] = [
-  Command.LIST, Command.HELP, Command.WORK,
-  Command.SKILLS, Command.LANGUAGES, Command.BASIC, Command.EDUCATION,
-  Command.AWARDS, Command.PUBLICATIONS, Command.INTERESTS, Command.REFERENCES
+export const Commands: string[] = [
+  Command.HELP, Command.WORK,
+  Command.SKILLS, Command.LANGUAGES,
+  Command.BASIC, Command.EDUCATION,
+  Command.AWARDS, Command.PUBLICATIONS,
+  Command.INTERESTS, Command.REFERENCES
 ];
 
-export default class CVPage extends React.Component<Props, State> {
+export class CVPage extends React.Component<Props, State> {
 
   constructor(props: Props, state: State) {
     super(props, state);
@@ -159,3 +132,5 @@ export default class CVPage extends React.Component<Props, State> {
   }
 
 }
+
+export default CVPage;
