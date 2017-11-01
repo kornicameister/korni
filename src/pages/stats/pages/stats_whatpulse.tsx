@@ -28,7 +28,7 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
         {
           [
             ['fa-keyboard-o', data.keys, 'Rank: Keys'],
-            ['fa-mouse-pointer', data.keys, 'Rank: Clicks'],
+            ['fa-mouse-pointer', data.clicks, 'Rank: Clicks'],
             ['fa-clock-o', data.uptime, 'Rank: Uptime']
           ].map((item: any[], key: number) => {
 
