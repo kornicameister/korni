@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "private": true,
   "lint-staged": {
-    "src/**/*.{js,jsx,css,ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "yarn lint",
       "git add"
     ]

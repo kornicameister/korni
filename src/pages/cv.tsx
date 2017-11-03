@@ -12,6 +12,7 @@ import {
   CVSkills,
   CVWork
 } from './cv-routes';
+import './cv.css';
 
 interface Props {
   resume: any;
@@ -64,39 +65,46 @@ export class CVPage extends React.Component<Props, State> {
 
   public render() {
     return (
-      <div className='d-flex' key='command'>
-        <div className='p-5 flex-row'>
-          <div className='input-group'>
-            <span className='input-group-addon' id='cv-prompt'>$</span>
-            <input type='text'
-              className={classnames('form-control', {
-                'is-invalid': this.state.model.error && !!this.state.model.raw,
-                'is-valid': !this.state.model.error && !!this.state.model.raw
-              })}
-              placeholder='command' aria-label='Command' aria-describedby='cv-prompt'
-              value={this.state.model.raw}
-              onChange={(e) => this.handleCommandInput(e)}
-              onKeyDown={(e) => this.handleKey(e)}
-              required={true} />
-          </div>
-        </div>
+      <div className='container' key='command'>
+        {this.renderPrompt()}
         {this.renderCV()}
+      </div>
+    );
+  }
+  private renderPrompt() {
+    return (
+      <div className='p-2 row'>
+        <div className='input-group'>
+          <span className='input-group-addon' id='cv-prompt'>$</span>
+          <input type='text'
+            className={classnames('form-control', {
+              'is-invalid': this.state.model.error && !!this.state.model.raw,
+              'is-valid': !this.state.model.error && !!this.state.model.raw
+            })}
+            placeholder='command' aria-label='Command' aria-describedby='cv-prompt'
+            value={this.state.model.raw}
+            onChange={(e) => this.handleCommandInput(e)}
+            onKeyDown={(e) => this.handleKey(e)}
+            required={true} />
+        </div>
       </div>
     );
   }
 
   private renderCV() {
     return (
-      <div className='p-2 flex-row mx-auto' key='result'>
-        {(this.state.command === Command.HELP) && <CVHelp />}
-        {(this.state.command === Command.WORK) && <CVWork work={this.props.resume.work} />}
-        {(this.state.command === Command.SKILLS) && <CVSkills skills={this.props.resume.skills} />}
-        {(this.state.command === Command.LANGUAGES) && <CVLanguages languages={this.props.resume.languages} />}
-        {(this.state.command === Command.EDUCATION) && <CVSchool school={this.props.resume.education} />}
-        {(this.state.command === Command.BASIC) && <CVBasics basics={this.props.resume.basics} />}
-        {(this.state.command === Command.INTERESTS) && <CVInterests interests={this.props.resume.interests} />}
-        {(this.state.command === Command.REFERENCES) && <CVReferences references={this.props.resume.references} />}
-        {(this.state.command === Command.AWARDS) && <CVAwards awards={this.props.resume.awards} />}
+      <div className='p-4 row' key='result'>
+        <div className='cv'>
+          {(this.state.command === Command.HELP) && <CVHelp />}
+          {(this.state.command === Command.WORK) && <CVWork work={this.props.resume.work} />}
+          {(this.state.command === Command.SKILLS) && <CVSkills skills={this.props.resume.skills} />}
+          {(this.state.command === Command.LANGUAGES) && <CVLanguages languages={this.props.resume.languages} />}
+          {(this.state.command === Command.EDUCATION) && <CVSchool school={this.props.resume.education} />}
+          {(this.state.command === Command.BASIC) && <CVBasics basics={this.props.resume.basics} />}
+          {(this.state.command === Command.INTERESTS) && <CVInterests interests={this.props.resume.interests} />}
+          {(this.state.command === Command.REFERENCES) && <CVReferences references={this.props.resume.references} />}
+          {(this.state.command === Command.AWARDS) && <CVAwards awards={this.props.resume.awards} />}
+        </div>
       </div>
     );
   }
