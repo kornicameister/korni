@@ -8,6 +8,12 @@ const CVHelp: React.SFC<{}> = (props) => {
           <div className='card-header'>
             <p>Command list</p>
           </div>
+          <div className='card-body'>
+            <ul>
+              <li><code>help</code> - display this page</li>
+              <li><code>basic</code> - display basic details</li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>
