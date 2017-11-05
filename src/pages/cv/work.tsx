@@ -14,7 +14,7 @@ const CVWork: React.SFC<{ work: object }> = (props) => {
     w.endDate = eDate ? moment(eDate) : 'now';
   });
   work.sort((a, b): number => {
-    return moment(a.startDate).diff(b.startDate);
+    return moment(b.startDate).diff(a.startDate);
   });
 
   return (
@@ -32,7 +32,9 @@ const CVWork: React.SFC<{ work: object }> = (props) => {
                     href={'#cv-work-collapse' + row}
                     data-toggle='collapse'
                     aria-expanded={row === 0}
-                    aria-controls={'collapse' + row}>!</a>
+                    aria-controls={'collapse' + row}>
+                    <i className='fa fa-fw fa-circle-o' aria-hidden='true'></i>
+                  </a>
                 </div>
                 <span id={'cv-work-collapse' + row}
                   className={classnames('collapse', { show: row === 0 })}
