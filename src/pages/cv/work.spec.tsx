@@ -6,7 +6,7 @@ import CVWork from './work';
 describe('CVWork', () => {
 
   it('renders without crashing', () => {
-    shallow(<CVWork work={{}} />);
+    shallow(<CVWork work={[]} />);
   });
 
 });
