@@ -46,7 +46,7 @@ const CVBasics: React.SFC<{ basics: any }> = (props: any) => {
               basics.profiles.map((profile: any, key: number) => {
                 const network: Profile = profile.network as Profile;
                 return (
-                  <div className='card text-center border-dark mb-3'>
+                  <div key={key} className='card text-center border-dark mb-3'>
                     <div className='card-body'>
                       <a href={profile.url} aria-label={network} >
                         <i className={classnames('fa fa-lg fa-fw fa-4x', {

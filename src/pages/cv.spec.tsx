@@ -13,7 +13,8 @@ jest.mock('./cv-routes', () => ({
   CVReferences: () => ''
 }));
 
-import { Command, Commands, CVPage } from './cv';
+import { CVPage } from './cv';
+import { Command, Commands } from './cv-common';
 import {
   CVAwards,
   CVBasics,
