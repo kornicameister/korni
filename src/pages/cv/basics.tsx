@@ -13,7 +13,7 @@ const CVBasics: React.SFC<{ basics: any }> = (props: any) => {
   const basics = props.basics;
   return (
     <div className='container-fluid'>
-      <section className='column'>
+      <section className='col'>
         <header>
           <div className='card border-dark mb-3'>
             {basics.image && (
@@ -28,7 +28,7 @@ const CVBasics: React.SFC<{ basics: any }> = (props: any) => {
           </div>
         </header>
       </section>
-      <section className='column'>
+      <section className='col'>
         {basics.summary && (
           <div className='card border-dark mb-3 text-justify'>
             <div className='card-body'>
@@ -39,7 +39,7 @@ const CVBasics: React.SFC<{ basics: any }> = (props: any) => {
           </div>
         )}
       </section>
-      <section className='column'>
+      <section className='col'>
         {basics.profiles && (
           <div className='card-group'>
             {
