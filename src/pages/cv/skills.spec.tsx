@@ -6,7 +6,7 @@ import CVSkills from './skills';
 describe('CVSkills', () => {
 
   it('renders without crashing', () => {
-    shallow(<CVSkills skills={{}} />);
+    shallow(<CVSkills skills={[]} />);
   });
 
 });
