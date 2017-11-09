@@ -41,7 +41,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/enzyme": "^2.8.11",
-    "@types/google.visualization": "^0.0.40",
+    "@types/google.visualization": "^0.0.41",
     "@types/jest": "^21.1.5",
     "@types/jsonp": "^0.2.0",
     "@types/moment": "^2.13.0",

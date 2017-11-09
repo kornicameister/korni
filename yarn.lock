@@ -17,9 +17,9 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/google.visualization@^0.0.40":
-  version "0.0.40"
-  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.40.tgz#c82648b13b17fb55837da80a514f2348973c4b94"
+"@types/google.visualization@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.41.tgz#cd4858a66fd039e31586ef3989c59ab0e42d0392"
 
 "@types/history@*":
   version "4.6.0"
