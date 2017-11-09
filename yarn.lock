@@ -17,9 +17,9 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/google.visualization@^0.0.40":
-  version "0.0.40"
-  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.40.tgz#c82648b13b17fb55837da80a514f2348973c4b94"
+"@types/google.visualization@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.41.tgz#cd4858a66fd039e31586ef3989c59ab0e42d0392"
 
 "@types/history@*":
   version "4.6.0"
@@ -83,9 +83,9 @@
   version "15.6.4"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-15.6.4.tgz#3bb57bd43183a05919ceb025a264287348f47e9d"
 
-"@types/reactstrap@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.0.tgz#68ea56bd461553c91ebad8205ac992d0099370b8"
+"@types/reactstrap@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.1.tgz#b802fe51336e7894f8f17002bfee17a97e91c406"
   dependencies:
     "@types/tether" "*"
 
@@ -4990,7 +4990,7 @@ react-dev-utils@^4.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-"react-dom@^15 || ^16", react-dom@^16.0.0:
+"react-dom@^15 || ^16":
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
   dependencies:
@@ -5007,6 +5007,15 @@ react-dom@^15.3.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react-dom@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.0.tgz#ab6fd2a285096f388aeba51919a573d06c9bdde4"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react-error-overlay@^2.0.2:
   version "2.0.2"
