@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { ClickableCard } from '../../common/card';
+
 import './skills.css';
 
 interface State {
@@ -50,13 +52,8 @@ export default class CVSkills extends React.Component<Props, State> {
         <div className='card-columns'>
           {
             skills.map((skill: any) => {
-              return (
-                <div className='card border-dark clickable mb-2' onClick={() => this.setState({ selectedCardName: skill.name })}>
-                  <div className='card-body'>
-                    <div className='card-title'>{skill.name}</div>
-                  </div>
-                </div>
-              );
+              return <ClickableCard label={skill.name} padding={2}
+                onClick={() => this.setState({ selectedCardName: skill.name })} />;
             })
           }
         </div>
