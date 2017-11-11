@@ -16,13 +16,13 @@ import {
 import TravisBadge from './common/travis_badge';
 import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
-interface IAppState {
+interface State {
   is_open: boolean;
 }
 
-export default class App extends React.Component<any, IAppState> {
-  constructor() {
-    super();
+export default class App extends React.Component<{}, State> {
+  constructor(props: {}, state: State) {
+    super(props, state);
     this.state = {
       is_open: false
     };
@@ -87,7 +87,7 @@ export default class App extends React.Component<any, IAppState> {
 
   private renderContent() {
     return (
-      <main>
+      <main role='main'>
         <Container>
           <Row>
             <Col>
