@@ -3,7 +3,7 @@ import * as React from 'react';
 import { KORNI_VERSION } from '../../../../core/index';
 
 const ChangeLogView: React.SFC<{ changelog: string }> = (props) => {
-  return <code>{props.changelog}</code>;
+  return <pre><code>{props.changelog}</code></pre>;
 };
 
 export default class ChangeLog extends React.Component<{}, { changelog: string | null }> {
