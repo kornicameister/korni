@@ -22,13 +22,7 @@ export const AsyncCV = Loadable.Map({
   loader: {
     CV: () => import('./pages/cv'),
     resume: () => fetch(
-      `${process.env.PUBLIC_URL}/resume.json`,
-      {
-        headers: [
-          ['Content-Type', 'application/json'],
-          ['Cache-Control', 'must-revalidate']
-        ]
-      }
+      `https://raw.githubusercontent.com/kornicameister/CV/${process.env.REACT_RESUME_VERSION || 'master'}/resume.json`
     ).then((res) => res.json())
   },
   loading: RouteLoader,
