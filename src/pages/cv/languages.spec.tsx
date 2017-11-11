@@ -5,8 +5,13 @@ import CVLanguages from './languages';
 
 describe('CVLanguages', () => {
 
+  const language: any = {
+    fluency: '',
+    language: ''
+  };
+
   it('renders without crashing', () => {
-    shallow(<CVLanguages languages={{}} />);
+    shallow(<CVLanguages languages={[language]} />);
   });
 
 });
