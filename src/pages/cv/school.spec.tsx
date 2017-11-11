@@ -6,7 +6,7 @@ import CVSchool from './school';
 describe('CVSchool', () => {
 
   it('renders without crashing', () => {
-    shallow(<CVSchool school={{}} />);
+    shallow(<CVSchool school={[]} />);
   });
 
 });
