@@ -5,8 +5,15 @@ import CVSchool from './school';
 
 describe('CVSchool', () => {
 
+  const school = {
+    studyType: '',
+    gpa: '',
+    startDate: '',
+    endDate: ''
+  };
+
   it('renders without crashing', () => {
-    shallow(<CVSchool school={{}} />);
+    shallow(<CVSchool school={[school]} />);
   });
 
 });
