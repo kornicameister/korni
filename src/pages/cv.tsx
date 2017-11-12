@@ -82,15 +82,18 @@ export class CVPage extends React.Component<Props, State> {
     };
     return (
       <div className='p-2 row'>
-        <AutoSuggest
-          theme={theme}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={(request) => this.onSuggestionsFetchRequested(request.value)}
-          onSuggestionsClearRequested={() => this.onSuggestionsClearRequested()}
-          getSuggestionValue={this.getSuggestionValue}
-          renderSuggestion={this.renderSuggestion}
-          inputProps={inputProps}
-        />
+        <div className='mx-auto'>
+          <AutoSuggest
+            theme={theme}
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={(request) => this.onSuggestionsFetchRequested(request.value)}
+            onSuggestionsClearRequested={() => this.onSuggestionsClearRequested()}
+            getSuggestionValue={this.getSuggestionValue}
+            renderSuggestion={this.renderSuggestion}
+            inputProps={inputProps}
+            highlightFirstSuggestion
+          />
+        </div>
       </div>
     );
   }
