@@ -11,7 +11,6 @@ import {
   CVHelp,
   CVInterests,
   CVLanguages,
-  CVReferences,
   CVSchool,
   CVSkills,
   CVWork
@@ -109,7 +108,6 @@ export class CVPage extends React.Component<Props, State> {
           {(this.state.command === Command.EDUCATION) && <CVSchool school={this.props.resume.education} />}
           {(this.state.command === Command.BASIC) && <CVBasics basics={this.props.resume.basics} />}
           {(this.state.command === Command.INTERESTS) && <CVInterests interests={this.props.resume.interests} />}
-          {(this.state.command === Command.REFERENCES) && <CVReferences references={this.props.resume.references} />}
           {(this.state.command === Command.AWARDS) && <CVAwards awards={this.props.resume.awards} />}
         </div>
       </div>
