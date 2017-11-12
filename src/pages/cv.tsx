@@ -32,14 +32,17 @@ export class CVPage extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
     this.state = {
-      command: '', // render basic information about me first
+      command: Command.BASIC, // render basic information about me first
       suggestions: []
     };
   }
 
   private onSuggestionsFetchRequested(raw: string) {
+    const escapeRegexCharacters = (value: string) => {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    };
     const getSuggestions = (value: string) => {
-      const inputValue = value.trim().toLowerCase();
+      const inputValue = escapeRegexCharacters(value.trim()).toLowerCase();
       const regex = new RegExp('^' + inputValue, 'i');
       return Commands.filter((cmd: string) => regex.test(cmd));
     };
