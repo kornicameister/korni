@@ -27,7 +27,7 @@ const CVWork: React.SFC<{ work: object }> = (props) => {
                 <div id={'cv-work-heading-' + row}
                   className='card-header'
                   aria-label='company'>
-                  <h4 className='mb-0 pull-left'>{w.position} [<a href={w.website}>{w.company}</a>]</h4>
+                  <h4 className='mb-0 pull-left'>{w.position} [<a href={w.website} aria-label={w.company} target='_blank'>{w.company}</a>]</h4>
                   <a className='pull-right'
                     href={'#cv-work-collapse' + row}
                     data-toggle='collapse'
