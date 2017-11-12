@@ -69,14 +69,15 @@ export default class App extends React.Component<{}, State> {
   }
 
   private renderBar() {
+    const { is_open } = this.state;
     return (
       <header>
         <Navbar color='dark' expand='md' className='rounded' dark>
           <NavbarBrand href='/'>
             <b>kornicameister [{process.env.REACT_APP_VERSION as string}]</b>
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavBar} />
-          <Collapse isOpen={this.state.is_open} navbar>
+          <NavbarToggler onClick={() => this.toggleNavBar()} />
+          <Collapse isOpen={is_open} navbar>
             {this.renderNav()}
             <TravisBadge />
           </Collapse>
