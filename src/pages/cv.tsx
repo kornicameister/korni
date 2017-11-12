@@ -1,5 +1,5 @@
-import * as classnames from 'classnames';
 import * as React from 'react';
+import * as AutoSuggest from 'react-autosuggest';
 
 import {
   Command,
@@ -23,14 +23,8 @@ interface Props {
 }
 
 interface State {
-  model: Model;
-  command: Command;
-  history: Command[];
-}
-
-interface Model {
-  raw: string;
-  error: boolean;
+  command: string;
+  suggestions: string[];
 }
 
 export class CVPage extends React.Component<Props, State> {
@@ -38,39 +32,62 @@ export class CVPage extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
     this.state = {
-      command: Command.BASIC, // render basic information about me first
-      history: [],
-      model: {
-        raw: '',
-        error: false
-      }
+      command: '', // render basic information about me first
+      suggestions: []
     };
   }
 
-  public render() {
-    return (
-      <div className='container' key='command'>
-        {this.renderPrompt()}
-        {this.renderCV()}
-      </div>
-    );
+  private onSuggestionsFetchRequested(raw: string) {
+    const getSuggestions = (value: string) => {
+      const inputValue = value.trim().toLowerCase();
+      const regex = new RegExp('^' + inputValue, 'i');
+      return Commands.filter((cmd: string) => regex.test(cmd));
+    };
+    this.setState({
+      suggestions: getSuggestions(raw)
+    });
   }
+
+  // Autosuggest will call this function every time you need to clear suggestions.
+  private onSuggestionsClearRequested() {
+    this.setState({
+      suggestions: []
+    });
+  }
+
+  private getSuggestionValue(cmd: string) {
+    return cmd;
+  }
+
+  private renderSuggestion(cmd: any) {
+    return <button className='dropdown-item' type='button'>{cmd as string}</button>;
+  }
+
   private renderPrompt() {
+    const { command, suggestions } = this.state;
+    const inputProps: AutoSuggest.InputProps = {
+      placeholder: 'Type a command',
+      value: command,
+      onChange: (event: React.ChangeEvent<any>, params: AutoSuggest.ChangeEvent) => this.setState({ command: params.newValue })
+    };
+    const theme = {
+      container: 'autosuggest',
+      input: 'form-control',
+      suggestionsContainer: 'dropdown',
+      suggestionsList: `dropdown-menu ${suggestions.length ? 'show' : ''}`,
+      suggestionHighlighted: 'text-dark'
+    };
     return (
       <div className='p-2 row'>
-        <div className='input-group'>
-          <span className='input-group-addon' id='cv-prompt'>$</span>
-          <input type='text'
-            className={classnames('form-control', {
-              'is-invalid': this.state.model.error && !!this.state.model.raw,
-              'is-valid': !this.state.model.error && !!this.state.model.raw
-            })}
-            placeholder='command' aria-label='Command' aria-describedby='cv-prompt'
-            value={this.state.model.raw}
-            onChange={(e) => this.handleCommandInput(e)}
-            onKeyDown={(e) => this.handleKey(e)}
-            required={true} />
-        </div>
+        <AutoSuggest
+          theme={theme}
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={(request) => this.onSuggestionsFetchRequested(request.value)}
+          onSuggestionsClearRequested={() => this.onSuggestionsClearRequested()}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          inputProps={inputProps}
+        />
       </div>
     );
   }
@@ -93,34 +110,13 @@ export class CVPage extends React.Component<Props, State> {
     );
   }
 
-  private handleKey(event: React.KeyboardEvent<any>): void {
-    switch (event.key) {
-      case 'Enter': this.handleEnter(); break;
-      default:
-      // do nothing
-    }
-  }
-
-  private handleEnter(): void {
-    const nextCmd: Command = Command[this.state.model.raw.toUpperCase()];
-    const prevCmd: Command = this.state.command;
-    const history: Command[] = this.state.history;
-
-    history.push(prevCmd);
-
-    this.setState({
-      command: nextCmd,
-      history
-    });
-  }
-
-  private handleCommandInput(event: React.ChangeEvent<any>): void {
-    const model = this.state.model;
-
-    model.raw = event.target.value;
-    model.error = Commands.indexOf(model.raw) < 0;
-
-    this.setState({ model });
+  public render() {
+    return (
+      <div className='container' key='command'>
+        {this.renderPrompt()}
+        {this.renderCV()}
+      </div>
+    );
   }
 
 }
