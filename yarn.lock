@@ -6312,6 +6312,10 @@ typeface-roboto@^0.0.43:
   version "0.0.43"
   resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.43.tgz#204b8b18f052f14c09862b6f5b7f1fd24d4f1b3a"
 
+typescript@^2.7.0-dev.20171112:
+  version "2.7.0-dev.20171112"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.0-dev.20171112.tgz#546557c10d2feaac7b94323685f0af38f7aa0832"
+
 typescript@~2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.3.tgz#df3dcdc38f3beb800d4bc322646b04a3f6ca7f0d"

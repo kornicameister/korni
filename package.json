@@ -37,7 +37,8 @@
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3",
     "typeface-roboto": "^0.0.43",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "typescript": "^2.7.0-dev.20171112"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -66,6 +67,6 @@
     "jest": "^21.2.1",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.6",
-    "typescript": "^2.6.1"
+    "react-popper": "^0.7.3"
   }
 }
