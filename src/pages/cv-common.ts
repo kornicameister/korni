@@ -7,13 +7,12 @@ export enum Command {
   BASIC = 'basic',
   AWARDS = 'awards',
   PUBLICATIONS = 'publications',
-  INTERESTS = 'interests',
-  REFERENCES = 'references'
+  INTERESTS = 'interests'
 }
 export const Commands: string[] = [
   Command.HELP, Command.WORK,
   Command.SKILLS, Command.LANGUAGES,
   Command.BASIC, Command.EDUCATION,
   Command.AWARDS, Command.PUBLICATIONS,
-  Command.INTERESTS, Command.REFERENCES
+  Command.INTERESTS
 ];
