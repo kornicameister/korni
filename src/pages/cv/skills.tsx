@@ -1,3 +1,4 @@
+import * as classnames from 'classnames';
 import * as React from 'react';
 
 import { ClickableCard } from '../../common/card';
@@ -26,7 +27,7 @@ export default class CVSkills extends React.Component<Props, State> {
     if (!!selectedCardName) {
       const skill = skills.filter((s: any) => s.name === selectedCardName)[0];
       return (
-        <div className='container'>
+        <div className='container fade show'>
           <h3>
             <span>{skill.name}</span>
             <a className='pull-right' onClick={() => this.setState({ selectedCardName: undefined })}>
@@ -37,9 +38,13 @@ export default class CVSkills extends React.Component<Props, State> {
           <div className='card border-dark mb-2'>
             <ul className='list-group list-group-flush'>
               {
-                skill.keywords.map((kw: string) => {
+                skill.keywords.map((kw: string, index: number) => {
                   return (
-                    <li key={kw + skill.name} className='list-group-item'>{kw}</li>
+                    <li key={kw + skill.name}
+                      className={classnames('list-group-item', {
+                        'list-group-item-light': index % 2 !== 0,
+                        'list-group-item-dark': index % 2 === 0
+                      })}>{kw}</li>
                   );
                 })
               }
