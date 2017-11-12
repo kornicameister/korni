@@ -48,7 +48,7 @@ const CVBasics: React.SFC<{ basics: any }> = (props: any) => {
                 return (
                   <div key={key} className='card text-center border-dark mb-3'>
                     <div className='card-body'>
-                      <a href={profile.url} aria-label={network} >
+                      <a href={profile.url} aria-label={network} target='_blank'>
                         <i className={classnames('fa fa-lg fa-fw fa-4x', {
                           'fa-linkedin': network === Profiles.LinkedIn,
                           'fa-github': network === Profiles.Github,
