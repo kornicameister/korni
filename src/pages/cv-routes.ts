@@ -37,11 +37,6 @@ export const CVInterests = Loadable({
   loading: RouteLoader
 });
 
-export const CVReferences = Loadable({
-  loader: () => import('./cv/references'),
-  loading: RouteLoader
-});
-
 export const CVHelp = Loadable({
   loader: () => import('./cv/help'),
   loading: RouteLoader

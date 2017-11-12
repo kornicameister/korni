@@ -9,8 +9,7 @@ jest.mock('./cv-routes', () => ({
   CVLanguages: () => '',
   CVSchool: () => '',
   CVSkills: () => '',
-  CVWork: () => '',
-  CVReferences: () => ''
+  CVWork: () => ''
 }));
 
 import { CVPage } from './cv';
@@ -21,7 +20,6 @@ import {
   CVHelp,
   CVInterests,
   CVLanguages,
-  CVReferences,
   CVSchool,
   CVSkills,
   CVWork
@@ -63,8 +61,8 @@ describe('CVPage', () => {
     [
       [CVAwards, Command.AWARDS], [CVBasics, Command.BASIC],
       [CVInterests, Command.INTERESTS], [CVLanguages, Command.LANGUAGES],
-      [CVReferences, Command.REFERENCES], [CVSchool, Command.EDUCATION],
-      [CVSkills, Command.SKILLS], [CVWork, Command.WORK]
+      [CVSchool, Command.EDUCATION], [CVSkills, Command.SKILLS],
+      [CVWork, Command.WORK]
     ].forEach((item: any[]) => {
       const cmp: FunctionConstructor = item[0];
       const cmd: Command = item[1];
