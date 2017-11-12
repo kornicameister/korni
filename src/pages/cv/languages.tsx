@@ -15,7 +15,7 @@ const CVLanguages: React.SFC<{ languages: Language[] }> = (props) => {
             return (
               <div key={lang.language} className='card mb-0 dark-border text-dark text-center'>
                 <div className='card-header'>
-                  <h3>{lang.language}</h3>
+                  <h3 className='card-title'>{lang.language}</h3>
                 </div>
                 <div className='card-body'>
                   <p className='card-text'>{lang.fluency}</p>
