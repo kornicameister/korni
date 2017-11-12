@@ -1,3 +1,6 @@
+### Version 0.2.5
+- Open all links in CV in new tab (#130) (HEAD -> master, origin/master, origin/HEAD)
+
 ### Version 0.2.4
 - Couple styling tweaks and done (#128) (HEAD -> master, origin/master, origin/HEAD)
 - Resume references (#127)
