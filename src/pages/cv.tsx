@@ -1,5 +1,7 @@
+// import * as H from 'history';
 import * as React from 'react';
 import * as AutoSuggest from 'react-autosuggest';
+import { Link, match as RouteMatch, Redirect, Route } from 'react-router-dom';
 
 import {
   Command,
@@ -19,6 +21,9 @@ import './cv.css';
 
 interface Props {
   resume: any;
+  match?: RouteMatch<any>;
+  history?: H.History;
+  location?: H.Location;
 }
 
 interface State {
@@ -26,14 +31,31 @@ interface State {
   suggestions: string[];
 }
 
+function getInitialCommand(location?: H.Location): string {
+  const cmd = location ? location.pathname.replace('/cv/', '') : '';
+  if (cmd === '/cv') {
+    return '';
+  }
+  return cmd;
+}
+
 export class CVPage extends React.Component<Props, State> {
 
   constructor(props: Props, state: State) {
     super(props, state);
     this.state = {
-      command: Command.BASIC, // render basic information about me first
+      command: getInitialCommand(this.props.location), // render basic information about me first
       suggestions: []
     };
+  }
+
+  private onNewCommand(raw: string) {
+    const { history } = this.props;
+    this.setState({ command: raw }, () => {
+      if (history && Commands.indexOf(raw) >= 0) {
+        history.push(`/cv/${raw}`);
+      }
+    });
   }
 
   private onSuggestionsFetchRequested(raw: string) {
@@ -69,8 +91,8 @@ export class CVPage extends React.Component<Props, State> {
     const { command, suggestions } = this.state;
     const inputProps: AutoSuggest.InputProps = {
       placeholder: 'Type a command',
-      value: command,
-      onChange: (event: React.ChangeEvent<any>, params: AutoSuggest.ChangeEvent) => this.setState({ command: params.newValue })
+      value: command as string || '',
+      onChange: (event: React.ChangeEvent<any>, params: AutoSuggest.ChangeEvent) => this.onNewCommand(params.newValue)
     };
     const theme = {
       container: 'autosuggest',
@@ -98,20 +120,63 @@ export class CVPage extends React.Component<Props, State> {
   }
 
   private renderCV() {
-    return (
-      <div className='p-4 row' key='result'>
-        <div className='cv'>
-          {(this.state.command === Command.HELP) && <CVHelp />}
-          {(this.state.command === Command.WORK) && <CVWork work={this.props.resume.work} />}
-          {(this.state.command === Command.SKILLS) && <CVSkills skills={this.props.resume.skills} />}
-          {(this.state.command === Command.LANGUAGES) && <CVLanguages languages={this.props.resume.languages} />}
-          {(this.state.command === Command.EDUCATION) && <CVSchool school={this.props.resume.education} />}
-          {(this.state.command === Command.BASIC) && <CVBasics basics={this.props.resume.basics} />}
-          {(this.state.command === Command.INTERESTS) && <CVInterests interests={this.props.resume.interests} />}
-          {(this.state.command === Command.AWARDS) && <CVAwards awards={this.props.resume.awards} />}
+    const { match } = this.props;
+    if (!match) {
+      return null;
+    } else {
+      return (
+        <div className='p-4 row' key='result'>
+          <div className='cv'>
+            {
+              Commands.map((cmd: Command) => {
+                return (
+                  <Route key={cmd} path={`${match.url}/${cmd}`} exact={true} render={() => {
+                    switch (cmd) {
+                      case Command.HELP:
+                        return <CVHelp />;
+                      case Command.WORK:
+                        return <CVWork work={this.props.resume.work} />;
+                      case Command.SKILLS:
+                        return <CVSkills skills={this.props.resume.skills} />;
+                      case Command.LANGUAGES:
+                        return <CVLanguages languages={this.props.resume.languages} />;
+                      case Command.EDUCATION:
+                        return <CVSchool school={this.props.resume.education} />;
+                      case Command.BASIC:
+                        return <CVBasics basics={this.props.resume.basics} />;
+                      case Command.INTERESTS:
+                        return <CVInterests interests={this.props.resume.interests} />;
+                      case Command.AWARDS:
+                        return <CVAwards awards={this.props.resume.awards} />;
+                      default:
+                        return <Redirect to='/cv' />;
+                    }
+                  }} />
+                );
+              })
+            }
+            <Route exact path={match.url} render={() => (
+              <div className='mx-auto'>
+                <div className='card text-center text-light bg-dark'>
+                  <div className='card-header'>
+                    <h3 className='header'>CV</h3>
+                  </div>
+                  <div className='card-body'>
+                    <p className='card-text'>
+                      You must select one of the CV sections using the prompt
+                      above.
+                    </p>
+                    <p className='card-text'>
+                      If you need help please go <Link to='/cv/help' aria-label='CV Help'>here</Link>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   public render() {
