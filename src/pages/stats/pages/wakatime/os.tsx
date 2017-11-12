@@ -55,7 +55,7 @@ class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeOS extends WakaTimeContainer {
-  private static langUrl: string = 'https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/0a071cb8-c48f-468a-b7ef-b15188acca75.json';
+  private static langUrl: string = 'https://wakatime.com/share/@kornicameister/e1cf8cbb-220d-42a9-b636-a2e12d3a6850.json';
 
   constructor() {
     super(WakaTimeOS.langUrl);

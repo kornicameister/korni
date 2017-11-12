@@ -58,7 +58,7 @@ class WakaTimeLangStatsView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeLang extends WakaTimeContainer {
-  private static langUrl: string = 'https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/5f6db7e0-c492-4309-8b00-4f22d36a031f.json';
+  private static langUrl: string = 'https://wakatime.com/share/@kornicameister/ee15ca55-8369-428f-bf34-50271ec3b022.json';
 
   constructor() {
     super(WakaTimeLang.langUrl);

@@ -58,7 +58,7 @@ class WakaTimeEditorView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeEditor extends WakaTimeContainer {
-  private static langUrl: string = 'https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/9aa6e2cb-1b51-4087-bf14-0d7526d9c908.json';
+  private static langUrl: string = 'https://wakatime.com/share/@kornicameister/084a7fed-951e-4c62-9871-208b7b55e4ab.json';
 
   constructor() {
     super(WakaTimeEditor.langUrl);
