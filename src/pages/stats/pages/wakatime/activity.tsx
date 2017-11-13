@@ -52,7 +52,7 @@ class WakaTimeActivityView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeActivity extends WakaTimeContainer {
-  private static langUrl: string = 'https://wakatime.com/share/@8bae79b2-e7a7-4349-8a06-994ca85dc2c9/9fcc993f-9048-4b16-a3ef-8151b532d9ba.json';
+  private static langUrl: string = 'https://wakatime.com/share/@kornicameister/8e8cf819-5351-4b04-a8f1-e44da271d477.json';
 
   constructor() {
     super(WakaTimeActivity.langUrl);
