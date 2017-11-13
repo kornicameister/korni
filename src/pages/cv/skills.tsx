@@ -56,8 +56,8 @@ export default class CVSkills extends React.Component<Props, State> {
       return (
         <div className='card-columns'>
           {
-            skills.map((skill: any) => {
-              return <ClickableCard label={skill.name} padding={2}
+            skills.map((skill: any, index: number) => {
+              return <ClickableCard key={'click-skill-' + index} label={skill.name} padding={2}
                 onClick={() => this.setState({ selectedCardName: skill.name })} />;
             })
           }
