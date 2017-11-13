@@ -1,7 +1,7 @@
-// import * as H from 'history';
+import * as H from 'history';
 import * as React from 'react';
 import * as AutoSuggest from 'react-autosuggest';
-import { Link, match as RouteMatch, Redirect, Route } from 'react-router-dom';
+import { Link, Redirect, Route, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import {
   Command,
@@ -21,17 +21,15 @@ import './cv.css';
 
 interface Props {
   resume: any;
-  match?: RouteMatch<any>;
-  history?: H.History;
-  location?: H.Location;
 }
 
 interface State {
   command: string;
   suggestions: string[];
+  historyListener: H.UnregisterCallback;
 }
 
-function getInitialCommand(location?: H.Location): string {
+function getCommandFromLocation(location: H.Location): string {
   const cmd = location ? location.pathname.replace('/cv/', '') : '';
   if (cmd === '/cv') {
     return '';
@@ -39,14 +37,22 @@ function getInitialCommand(location?: H.Location): string {
   return cmd;
 }
 
-export class CVPage extends React.Component<Props, State> {
+export class CVPage extends React.Component<Props & RouteComponentProps<Props>, State> {
 
-  constructor(props: Props, state: State) {
+  constructor(props: Props & RouteComponentProps<Props>, state: State) {
     super(props, state);
     this.state = {
-      command: getInitialCommand(this.props.location), // render basic information about me first
-      suggestions: []
+      command: getCommandFromLocation(this.props.location), // render basic information about me first
+      suggestions: [],
+      historyListener: this.props.history.listen((location: H.Location) => this.onLocationChange(location))
     };
+  }
+
+  private onLocationChange(location: H.Location) {
+    const command: string = getCommandFromLocation(location);
+    if (command !== '') {
+      this.setState({ command });
+    }
   }
 
   private onNewCommand(raw: string) {
@@ -120,7 +126,7 @@ export class CVPage extends React.Component<Props, State> {
   }
 
   private renderCV() {
-    const { match } = this.props;
+    const { match, resume } = this.props;
     if (!match) {
       return null;
     } else {
@@ -132,22 +138,14 @@ export class CVPage extends React.Component<Props, State> {
                 return (
                   <Route key={cmd} path={`${match.url}/${cmd}`} exact={true} render={() => {
                     switch (cmd) {
-                      case Command.HELP:
-                        return <CVHelp />;
-                      case Command.WORK:
-                        return <CVWork work={this.props.resume.work} />;
-                      case Command.SKILLS:
-                        return <CVSkills skills={this.props.resume.skills} />;
-                      case Command.LANGUAGES:
-                        return <CVLanguages languages={this.props.resume.languages} />;
-                      case Command.EDUCATION:
-                        return <CVSchool school={this.props.resume.education} />;
-                      case Command.BASIC:
-                        return <CVBasics basics={this.props.resume.basics} />;
-                      case Command.INTERESTS:
-                        return <CVInterests interests={this.props.resume.interests} />;
-                      case Command.AWARDS:
-                        return <CVAwards awards={this.props.resume.awards} />;
+                      case Command.HELP: return <CVHelp />;
+                      case Command.WORK: return <CVWork work={resume.work} />;
+                      case Command.SKILLS: return <CVSkills skills={resume.skills} />;
+                      case Command.LANGUAGES: return <CVLanguages languages={resume.languages} />;
+                      case Command.EDUCATION: return <CVSchool school={resume.education} />;
+                      case Command.BASIC: return <CVBasics basics={resume.basics} />;
+                      case Command.INTERESTS: return <CVInterests interests={resume.interests} />;
+                      case Command.AWARDS: return <CVAwards awards={resume.awards} />;
                       default:
                         return <Redirect to='/cv' />;
                     }
@@ -190,4 +188,4 @@ export class CVPage extends React.Component<Props, State> {
 
 }
 
-export default CVPage;
+export default withRouter(CVPage) as React.ComponentClass<Props>;

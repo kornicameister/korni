@@ -12,7 +12,7 @@ jest.mock('./cv-routes', () => ({
   CVWork: () => ''
 }));
 
-import { CVPage } from './cv';
+import CVPage from './cv';
 import { Command } from './cv-common';
 import {
   CVAwards,
