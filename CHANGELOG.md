@@ -1,3 +1,10 @@
+### Version 0.2.6
+- Render CV parts as history routes (#133) (HEAD -> master, origin/master, origin/HEAD)
+- Missing jest-ts dependency (#135)
+- Fix no key error (#134)
+- Update wakaTime stats URLs (#129)
+- Fix invalid on-click in top-menu-button (#132)
+
 ### Version 0.2.5
 - Open all links in CV in new tab (#130) (HEAD -> master, origin/master, origin/HEAD)
 
