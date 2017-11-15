@@ -36,7 +36,7 @@
     "react-scripts-ts": "^2.8.0",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3",
-    "typeface-roboto": "^0.0.43",
+    "typeface-roboto": "^0.0.45",
     "typescript": "^2.7.0-dev.20171112",
     "xml2js": "^0.4.19"
   },
@@ -53,7 +53,7 @@
     "@types/react-router-dom": "^4.2.1",
     "@types/reactstrap": "^5.0.2",
     "enzyme": "^3.1.1",
-    "enzyme-adapter-react-16": "^1.0.4",
+    "enzyme-adapter-react-16": "^1.1.0",
     "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
     "jest-enzyme": "^4.0.1",
