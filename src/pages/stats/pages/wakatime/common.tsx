@@ -12,17 +12,15 @@ export interface IViewProps {
   stage: DataLoadingStage;
 }
 
-export abstract class WakaTimeContainer extends React.Component<any, IContainerState> {
+export abstract class WakaTimeContainer extends React.Component<{}, IContainerState> {
   protected dataUrl: string;
 
-  constructor(dataUrl: string) {
-    super();
-
+  constructor(props: {}, state: IContainerState) {
+    super(props, state);
     this.state = {
       data: null,
       stage: DataLoadingStage.NONE
     };
-    this.dataUrl = dataUrl;
   }
 
   public componentDidMount() {

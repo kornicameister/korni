@@ -6,11 +6,15 @@ const ChangeLogView: React.SFC<{ changelog: string }> = (props) => {
   return <pre><code>{props.changelog}</code></pre>;
 };
 
-export default class ChangeLog extends React.Component<{}, { changelog: string | null }> {
+interface State {
+  changelog: string | null;
+}
+
+export default class ChangeLog extends React.Component<{}, State> {
   private static URI = `https://raw.githubusercontent.com/kornicameister/korni/${KORNI_VERSION}/CHANGELOG.md`;
 
-  constructor() {
-    super();
+  constructor(props: {}, state: State) {
+    super(props, state);
     this.state = { changelog: null };
   }
 
