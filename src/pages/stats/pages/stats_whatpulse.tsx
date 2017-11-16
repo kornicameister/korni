@@ -54,10 +54,10 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
   return <Spinner />;
 };
 
-export default class WhatPulseStats extends React.Component<any, LoaderState> {
+export default class WhatPulseStats extends React.Component<{}, LoaderState> {
 
-  constructor() {
-    super();
+  constructor(props: {}, state: LoaderState) {
+    super(props, state);
     this.state = {
       stage: DataLoadingStage.NONE
     };
