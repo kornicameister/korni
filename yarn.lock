@@ -43,7 +43,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@^16.0.1":
+"@types/react-dom@^16.0.3":
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.3.tgz#8accad7eabdab4cca3e1a56f5ccb57de2da0ff64"
   dependencies:
@@ -842,12 +842,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000764"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000764.tgz#d73ab11ae62f6a9e2f69867d6d9c23ae3f2e5d8d"
+  version "1.0.30000765"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000765.tgz#15555432420baacbb169bc51e5b6de804c9994b4"
 
 caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000760:
-  version "1.0.30000764"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000764.tgz#97ea7472f9d3e691eede34f21983cfc219ac7842"
+  version "1.0.30000765"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000765.tgz#aa1a75019276b48463c0fca2a5257fb9f26a7c9d"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -5324,8 +5324,8 @@ react@^16.1.1:
     prop-types "^15.6.0"
 
 reactstrap@^5.0.0-alpha.3:
-  version "5.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-5.0.0-alpha.3.tgz#d2b46821efdf8c0511d59c1020fa4cfda174afc9"
+  version "5.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-5.0.0-alpha.4.tgz#1de9cf3b16344ca99120c2a20e0efd4aaaebc1d8"
   dependencies:
     classnames "^2.2.3"
     lodash.isfunction "^3.0.8"
@@ -6404,8 +6404,8 @@ typeface-roboto@^0.0.45:
   resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.45.tgz#4686bdd505b2db3b7ba0a980d216eb3d5aec4788"
 
 typescript@^2.7.0-dev.20171112:
-  version "2.7.0-dev.20171115"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.0-dev.20171115.tgz#2fe9e2d2dd381d6485a6572c9f13cd4ab67a5261"
+  version "2.7.0-dev.20171116"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.0-dev.20171116.tgz#bf692cb7929aa83305c0a42937e2bd871d09fc86"
 
 typescript@~2.5.3:
   version "2.5.3"
@@ -6791,8 +6791,8 @@ wordwrap@~1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
 
 worker-farm@^1.3.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/worker-farm/-/worker-farm-1.5.1.tgz#8e9f4a7da4f3c595aa600903051b969390423fa1"
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/worker-farm/-/worker-farm-1.5.2.tgz#32b312e5dc3d5d45d79ef44acc2587491cd729ae"
   dependencies:
     errno "^0.1.4"
     xtend "^4.0.1"
