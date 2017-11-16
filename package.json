@@ -35,9 +35,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts-ts": "^2.8.0",
     "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-alpha.3",
+    "reactstrap": "^5.0.0-alpha.4",
     "typeface-roboto": "^0.0.45",
-    "typescript": "^2.7.0-dev.20171112",
+    "typescript": "^2.7.0-dev.20171116",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {

@@ -72,8 +72,8 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "16.0.23"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.23.tgz#f0f713b07912c6fd8e10c9ccc539443ceb06dbca"
+  version "16.0.24"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.24.tgz#a6fd8015892fe8ae3c17453615f7ebdd2301d818"
 
 "@types/reactstrap@^5.0.3":
   version "5.0.3"
@@ -5323,7 +5323,7 @@ react@^16.1.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-reactstrap@^5.0.0-alpha.3:
+reactstrap@^5.0.0-alpha.4:
   version "5.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-5.0.0-alpha.4.tgz#1de9cf3b16344ca99120c2a20e0efd4aaaebc1d8"
   dependencies:
@@ -6403,7 +6403,7 @@ typeface-roboto@^0.0.45:
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.45.tgz#4686bdd505b2db3b7ba0a980d216eb3d5aec4788"
 
-typescript@^2.7.0-dev.20171112:
+typescript@^2.7.0-dev.20171116:
   version "2.7.0-dev.20171116"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.0-dev.20171116.tgz#bf692cb7929aa83305c0a42937e2bd871d09fc86"
 
