@@ -13,6 +13,7 @@ import 'typeface-roboto';
 
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
+import registerGA from './ga';
 
 ReactDOM.render(
   <Router basename="/" hashType="hashbang">
@@ -21,5 +22,6 @@ ReactDOM.render(
   document.getElementById('root'),
   () => {
     registerServiceWorker();
+    registerGA();
   },
 );

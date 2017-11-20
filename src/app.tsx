@@ -1,5 +1,12 @@
+import * as H from 'history';
 import * as React from 'react';
-import { NavLink as RouterNavLink, Route, Switch } from 'react-router-dom';
+import {
+  NavLink as RouterNavLink,
+  Route,
+  RouteComponentProps,
+  Switch,
+  withRouter,
+} from 'react-router-dom';
 import {
   Col,
   Collapse,
@@ -16,16 +23,35 @@ import {
 import TravisBadge from './common/travis_badge';
 import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
+import { onChangeGA } from './ga';
+
 interface State {
   is_open: boolean;
+  historyListener?: H.UnregisterCallback;
 }
 
-export default class App extends React.Component<{}, State> {
-  constructor(props: {}, state: State) {
+export class App extends React.Component<RouteComponentProps<{}>, State> {
+  constructor(props: RouteComponentProps<{}>, state: State) {
     super(props, state);
     this.state = {
       is_open: false,
     };
+  }
+
+  componentDidMount() {
+    const { history } = this.props;
+    this.setState({
+      historyListener: history.listen((location: H.Location) =>
+        onChangeGA(location.pathname),
+      ),
+    });
+  }
+
+  componentWillUnmount() {
+    const { historyListener } = this.state;
+    if (historyListener) {
+      historyListener();
+    }
   }
 
   public render() {
@@ -108,3 +134,5 @@ export default class App extends React.Component<{}, State> {
     );
   }
 }
+
+export default withRouter(App) as React.ComponentClass<{}>;

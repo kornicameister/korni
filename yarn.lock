@@ -5237,6 +5237,12 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-ga@2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.3.5.tgz#7c3d0c530b2bbe64ceb1faa79be340685aa84a9a"
+  dependencies:
+    object-assign "^4.1.1"
+
 react-google-charts@^1.5.5:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-1.5.5.tgz#ffeaeca752a820a05029bd6a23516be2432d7df5"
