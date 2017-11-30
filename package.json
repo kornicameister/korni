@@ -26,7 +26,7 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
-    "moment": "^2.19.2",
+    "moment": "^2.19.3",
     "react": "^16.1.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.1.1",
