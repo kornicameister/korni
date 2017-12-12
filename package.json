@@ -27,7 +27,7 @@
     "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
     "moment": "^2.19.4",
-    "react": "^16.1.1",
+    "react": "^16.2.0",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.1.1",
     "react-google-charts": "^1.5.5",
