@@ -75,10 +75,11 @@
   version "16.0.24"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.24.tgz#a6fd8015892fe8ae3c17453615f7ebdd2301d818"
 
-"@types/reactstrap@^5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.5.tgz#7d7385207135aef74b31ddfd92ddfdbd9f2c432f"
+"@types/reactstrap@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.6.tgz#bf1381419eb06758d43ee85986e63e79f4c98311"
   dependencies:
+    "@types/react" "*"
     "@types/tether" "*"
 
 "@types/tether@*":
