@@ -15,11 +15,11 @@ import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Router basename='/' hashType='hashbang'>
+  <Router basename="/" hashType="hashbang">
     <App />
   </Router>,
   document.getElementById('root'),
   () => {
     registerServiceWorker();
-  }
+  },
 );

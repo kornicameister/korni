@@ -14,17 +14,17 @@ class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
 
     this.chartOptions = {
       legend: 'none',
-      title: 'OS usage'
+      title: 'OS usage',
     };
     this.chartColumns = [
       {
         label: 'OS',
-        type: 'string'
+        type: 'string',
       },
       {
         label: 'Usage',
-        type: 'number'
-      }
+        type: 'number',
+      },
     ];
   }
 
@@ -33,17 +33,16 @@ class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
     if (stage === DataLoadingStage.ERROR) {
       return <div>{data}</div>;
     } else if (stage === DataLoadingStage.DONE) {
-      const rows: any[][] = data
-        .map((item: any) => {
-          return [item.name as string, item.percent as number];
-        });
+      const rows: any[][] = data.map((item: any) => {
+        return [item.name as string, item.percent as number];
+      });
       return (
         <Chart
-          chartType='PieChart'
+          chartType="PieChart"
           rows={rows}
           columns={this.chartColumns}
           options={this.chartOptions}
-          graph_id='OSUsage'
+          graph_id="OSUsage"
           width={'100%'}
           height={'400px'}
           legend_toggle
@@ -55,11 +54,9 @@ class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeOS extends WakaTimeContainer {
-  protected dataUrl: string =  'https://wakatime.com/share/@kornicameister/e1cf8cbb-220d-42a9-b636-a2e12d3a6850.json';
+  protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/e1cf8cbb-220d-42a9-b636-a2e12d3a6850.json';
 
   public render() {
-    return (
-      <WakaTimeOSStatsView data={this.state.data} stage={this.state.stage} />
-    );
+    return <WakaTimeOSStatsView data={this.state.data} stage={this.state.stage} />;
   }
 }

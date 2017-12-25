@@ -10,25 +10,20 @@ function getBarStyle(i: number): object {
     WebkitAnimationDelay: animationDelay,
     WebkitTransform: transform,
     animationDelay,
-    transform
+    transform,
   };
 }
 
-const Spinner: React.SFC<any> = (props) => {
+const Spinner: React.SFC<any> = props => {
   const bars = [];
   const its: number = 12;
 
   for (let i: number = 0; i < its; i++) {
-    bars.push(
-      <div style={getBarStyle(i)} className='react-spinner-bar' key={i} />
-    );
+    bars.push(<div style={getBarStyle(i)} className="react-spinner-bar" key={i} />);
   }
 
   return (
-    <div
-      {...props}
-      className={classnames(props.className || '', 'react-spinner')}
-    >
+    <div {...props} className={classnames(props.className || '', 'react-spinner')}>
       {bars}
     </div>
   );

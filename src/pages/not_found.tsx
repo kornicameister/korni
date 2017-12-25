@@ -9,8 +9,7 @@ const NotFoundPage = (location: any) => {
           Requested page <b>{location.pathname}</b> not found
         </h3>
         <p>
-          Seems like <b>{location.pathname}</b> is not part of this page. Sorry
-          ;-((((
+          Seems like <b>{location.pathname}</b> is not part of this page. Sorry ;-((((
         </p>
       </Jumbotron>
     </div>

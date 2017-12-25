@@ -9,18 +9,14 @@ import {
   LoadableGitlab,
   LoadableKorni,
   LoadableWakaTime,
-  LoadableWhatPulse
+  LoadableWhatPulse,
 } from './stats_routes';
 
 class StatTab {
   public readonly id: string;
   public readonly cmp: React.ComponentType & LoadableComponent;
   public readonly label: string;
-  constructor(
-    id: string,
-    label: string,
-    cmp: React.ComponentType & LoadableComponent
-  ) {
+  constructor(id: string, label: string, cmp: React.ComponentType & LoadableComponent) {
     this.id = id;
     this.cmp = cmp;
     this.label = label;
@@ -32,7 +28,7 @@ const TABS: StatTab[] = [
   new StatTab('wakatime', 'WakaTime', LoadableWakaTime),
   new StatTab('whatpulse', 'WhatPulse', LoadableWhatPulse),
   new StatTab('gitlab', 'Gitlab', LoadableGitlab),
-  new StatTab('github', 'Github', LoadableGithub)
+  new StatTab('github', 'Github', LoadableGithub),
 ];
 
 interface IStatsPageState {
@@ -44,7 +40,7 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
     super(props, state);
 
     this.state = {
-      activeTab: TABS[0].id // use first tab as active one
+      activeTab: TABS[0].id, // use first tab as active one
     };
 
     this.toggleTab.bind(this);
@@ -64,25 +60,24 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
   private toggleTab(tab: string) {
     if (this.state.activeTab !== tab) {
       this.setState({
-        activeTab: tab
+        activeTab: tab,
       });
     }
   }
 
   private renderTabs() {
     return (
-      <Nav className='stats-nav' tabs>
-        {TABS.map((tab) => {
+      <Nav className="stats-nav" tabs>
+        {TABS.map(tab => {
           return (
             <NavLink
               key={tab.id}
               className={classnames({
-                active: this.state.activeTab === tab.id
+                active: this.state.activeTab === tab.id,
               })}
               onClick={() => {
                 this.toggleTab(tab.id);
-              }}
-            >
+              }}>
               {tab.label.toUpperCase()}
             </NavLink>
           );
@@ -94,7 +89,7 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
   private renderTabsContent() {
     return (
       <TabContent activeTab={this.state.activeTab}>
-        {TABS.map((tab) => {
+        {TABS.map(tab => {
           return (
             <TabPane key={tab.id} tabId={tab.id}>
               {React.createElement(tab.cmp, {})}

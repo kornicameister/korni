@@ -2,8 +2,12 @@ import * as React from 'react';
 
 import { KORNI_VERSION } from '../../../../core/index';
 
-const ChangeLogView: React.SFC<{ changelog: string }> = (props) => {
-  return <pre><code>{props.changelog}</code></pre>;
+const ChangeLogView: React.SFC<{ changelog: string }> = props => {
+  return (
+    <pre>
+      <code>{props.changelog}</code>
+    </pre>
+  );
 };
 
 interface State {
@@ -32,5 +36,4 @@ export default class ChangeLog extends React.Component<{}, State> {
     const { changelog } = this.state;
     return changelog == null ? null : <ChangeLogView changelog={changelog} />;
   }
-
 }

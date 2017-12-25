@@ -2,7 +2,6 @@
 /// <reference types="google.visualization"/>
 
 declare module 'react-google-charts' {
-
   export interface ChartEvent {
     eventName: 'select';
     callback: FunctionConstructor;
@@ -28,12 +27,33 @@ declare module 'react-google-charts' {
   export type TimelineChartOptions = google.visualization.TimelineOptions;
   // options for different types of charts
 
-  type ChartType = 'PieChart' | 'BarChart' | 'Timeline' | 'ScatterChart' |
-    'LineChart' | 'AreaChart' | 'AnnotationChart' | 'SteppedChart' | 'BubbleChart' | 'Timeline';
-  type ChartOptionsType = BarChartOptions | PieChartOptions | AreaChartOptions | AnnotationChartOptions |
-    SteppedAreaChartOptions | BubbleChartOptions | CandlestickChartOptions | ComboChartOptions |
-    OrgChartOptions | GeoChartOptions | ScatterChartOptions | ColumnChartOptions |
-    LineChartOptions | HistogramChartOptions | TimelineChartOptions;
+  type ChartType =
+    | 'PieChart'
+    | 'BarChart'
+    | 'Timeline'
+    | 'ScatterChart'
+    | 'LineChart'
+    | 'AreaChart'
+    | 'AnnotationChart'
+    | 'SteppedChart'
+    | 'BubbleChart'
+    | 'Timeline';
+  type ChartOptionsType =
+    | BarChartOptions
+    | PieChartOptions
+    | AreaChartOptions
+    | AnnotationChartOptions
+    | SteppedAreaChartOptions
+    | BubbleChartOptions
+    | CandlestickChartOptions
+    | ComboChartOptions
+    | OrgChartOptions
+    | GeoChartOptions
+    | ScatterChartOptions
+    | ColumnChartOptions
+    | LineChartOptions
+    | HistogramChartOptions
+    | TimelineChartOptions;
 
   export interface ChartProps {
     chartType: ChartType;
@@ -50,8 +70,5 @@ declare module 'react-google-charts' {
     colors?: string[];
     chartPackages?: string[];
   }
-  export class Chart extends React.Component<ChartProps> {
-
-  }
-
+  export class Chart extends React.Component<ChartProps> {}
 }

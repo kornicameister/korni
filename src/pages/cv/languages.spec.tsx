@@ -4,14 +4,12 @@ import * as React from 'react';
 import CVLanguages from './languages';
 
 describe('CVLanguages', () => {
-
   const language: any = {
     fluency: '',
-    language: ''
+    language: '',
   };
 
   it('renders without crashing', () => {
     shallow(<CVLanguages languages={[language]} />);
   });
-
 });

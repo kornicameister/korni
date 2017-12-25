@@ -13,34 +13,37 @@ class WakaTimeActivityView extends React.Component<IViewProps, any> {
     } else if (stage === DataLoadingStage.DONE) {
       const columns: ChartColumn[] = [
         { id: 'Date', label: 'Date', type: 'date' },
-        { id: 'Coding for...', label: 'Coding for...', type: 'number' }
+        { id: 'Coding for...', label: 'Coding for...', type: 'number' },
       ];
       const rows: any[][] = data.map((item: any, it: number) => {
-        return [new Date(item.range.date), (item.grand_total.total_seconds as number) / 3600];
+        return [
+          new Date(item.range.date),
+          (item.grand_total.total_seconds as number) / 3600,
+        ];
       });
       const chartOptions: LineChartOptions = {
         title: 'Coding activity',
         curveType: 'function',
         legend: { position: 'bottom' },
         hAxis: {
-          format: 'dd.MM.yyyy'
+          format: 'dd.MM.yyyy',
         },
         vAxis: {
           format: '# h',
           minValue: 0,
           maxValue: rows
             .map((item: any[]) => item[1])
-            .sort((a: number, b: number) => b - a)[0]
-        }
+            .sort((a: number, b: number) => b - a)[0],
+        },
       };
 
       return (
         <Chart
-          chartType='LineChart'
+          chartType="LineChart"
           rows={rows}
           columns={columns}
           options={chartOptions}
-          graph_id='coding_activity'
+          graph_id="coding_activity"
           width={'100%'}
           height={'400px'}
           legend_toggle
@@ -55,8 +58,6 @@ export default class WakaTimeActivity extends WakaTimeContainer {
   protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/8e8cf819-5351-4b04-a8f1-e44da271d477.json';
 
   public render() {
-    return (
-      <WakaTimeActivityView data={this.state.data} stage={this.state.stage} />
-    );
+    return <WakaTimeActivityView data={this.state.data} stage={this.state.stage} />;
   }
 }

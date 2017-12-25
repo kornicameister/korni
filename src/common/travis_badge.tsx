@@ -8,8 +8,8 @@ export default class TravisBadge extends React.Component {
     const alt: string = 'Travis Status';
 
     return (
-      <a id='travis_badge' href={TRAVIS_ID}>
-        <img alt={alt} src={url} className='img-fluid' />
+      <a id="travis_badge" href={TRAVIS_ID}>
+        <img alt={alt} src={url} className="img-fluid" />
       </a>
     );
   }

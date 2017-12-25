@@ -24,7 +24,7 @@ export default class AboutPage extends React.Component {
 
     return (
       <img
-        className='d-flex align-self-center rounded mr-3 img-fluid'
+        className="d-flex align-self-center rounded mr-3 img-fluid"
         alt={alt}
         src={src}
       />
@@ -43,16 +43,16 @@ export default class AboutPage extends React.Component {
       Never to back down, because nobody will give me what I desire.`,
       `There are few things that I consider most important in my life,
       yet my wife and daughter happiness is one of those things.
-      Everything I ever accomplished and will accomplish is dedicated to them.`
+      Everything I ever accomplished and will accomplish is dedicated to them.`,
     ];
 
     return (
       <div>
-        <h5 className='mt-0'>About me</h5>
-        <div className='lead'>
+        <h5 className="mt-0">About me</h5>
+        <div className="lead">
           {paragraphs.map((text, index) => {
             return (
-              <p className='text-justify' key={index}>
+              <p className="text-justify" key={index}>
                 {text}
               </p>
             );

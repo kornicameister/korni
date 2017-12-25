@@ -19,7 +19,7 @@ export abstract class WakaTimeContainer extends React.Component<{}, IContainerSt
     super(props, state);
     this.state = {
       data: null,
-      stage: DataLoadingStage.NONE
+      stage: DataLoadingStage.NONE,
     };
   }
 
@@ -29,20 +29,20 @@ export abstract class WakaTimeContainer extends React.Component<{}, IContainerSt
 
   private fetchData(): void {
     this.setState({
-      stage: DataLoadingStage.LOADING
+      stage: DataLoadingStage.LOADING,
     });
 
     require('jsonp')(this.dataUrl, null, (err: any, data: any) => {
       if (err || data.error) {
         this.setState({
           data: err || data.error,
-          stage: DataLoadingStage.ERROR
+          stage: DataLoadingStage.ERROR,
         });
         return;
       }
       this.setState({
         data: data.data,
-        stage: DataLoadingStage.DONE
+        stage: DataLoadingStage.DONE,
       });
     });
   }

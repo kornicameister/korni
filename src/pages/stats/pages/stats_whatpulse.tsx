@@ -24,30 +24,32 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
     return <div>{error}</div>;
   } else if (stage === DataLoadingStage.DONE && data) {
     return (
-      <div className='d-flex flow-row'>
-        {
-          [
-            ['fa-keyboard-o', data.keys, 'Rank: Keys', 'strokes'],
-            ['fa-mouse-pointer', data.clicks, 'Rank: Clicks', 'clicks'],
-            ['fa-clock-o', data.uptime, 'Rank: Uptime', 'hours']
-          ].map((item: any[], key: number) => {
+      <div className="d-flex flow-row">
+        {[
+          ['fa-keyboard-o', data.keys, 'Rank: Keys', 'strokes'],
+          ['fa-mouse-pointer', data.clicks, 'Rank: Clicks', 'clicks'],
+          ['fa-clock-o', data.uptime, 'Rank: Uptime', 'hours'],
+        ].map((item: any[], key: number) => {
+          const classes: string = classname('fa fa-lg fa-fw', item[0]);
+          const value: number = item[1];
+          const tooltip: string = item[2];
+          const srOnly: string = item[3];
 
-            const classes: string = classname('fa fa-lg fa-fw', item[0]);
-            const value: number = item[1];
-            const tooltip: string = item[2];
-            const srOnly: string = item[3];
-
-            return (
-              <div key={key} className='p-5 mx-auto' data-toggle='tooltip' data-placement='bottom' title={tooltip}>
-                <span className='d-flex align-middle'>
-                  <i className={classes} aria-hidden={true}></i>
-                  <span className='badge badge-dark badge-pill'>{value}</span>
-                  <span className='sr-only'>{srOnly}</span>
-                </span>
-              </div>
-            );
-          })
-        }
+          return (
+            <div
+              key={key}
+              className="p-5 mx-auto"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title={tooltip}>
+              <span className="d-flex align-middle">
+                <i className={classes} aria-hidden={true} />
+                <span className="badge badge-dark badge-pill">{value}</span>
+                <span className="sr-only">{srOnly}</span>
+              </span>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -55,11 +57,10 @@ const WhatPulseView: React.SFC<ViewProps> = (props: ViewProps) => {
 };
 
 export default class WhatPulseStats extends React.Component<{}, LoaderState> {
-
   constructor(props: {}, state: LoaderState) {
     super(props, state);
     this.state = {
-      stage: DataLoadingStage.NONE
+      stage: DataLoadingStage.NONE,
     };
   }
 
@@ -92,18 +93,17 @@ export default class WhatPulseStats extends React.Component<{}, LoaderState> {
         return {
           keys: Number(wp.Ranks[0].Keys[0]),
           clicks: Number(wp.Ranks[0].Clicks[0]),
-          uptime: Number(wp.Ranks[0].Uptime[0])
+          uptime: Number(wp.Ranks[0].Uptime[0]),
         };
       })
-      .then((data) => {
+      .then(data => {
         this.setState({
           data,
-          stage: DataLoadingStage.DONE
+          stage: DataLoadingStage.DONE,
         });
       })
       .catch((err: Error) => {
         this.setState({ stage: DataLoadingStage.ERROR, error: err });
       });
   }
-
 }

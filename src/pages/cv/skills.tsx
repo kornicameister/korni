@@ -14,7 +14,6 @@ interface Props {
 }
 
 export default class CVSkills extends React.Component<Props, State> {
-
   constructor(props: Props, state: State) {
     super(props, state);
     this.state = {};
@@ -27,40 +26,47 @@ export default class CVSkills extends React.Component<Props, State> {
     if (!!selectedCardName) {
       const skill = skills.filter((s: any) => s.name === selectedCardName)[0];
       return (
-        <div className='container fade show'>
+        <div className="container fade show">
           <h3>
             <span>{skill.name}</span>
-            <a className='pull-right' onClick={() => this.setState({ selectedCardName: undefined })}>
-              <i className='fa fa-fw fa-remove' aria-hidden='true'></i>
+            <a
+              className="pull-right"
+              onClick={() => this.setState({ selectedCardName: undefined })}>
+              <i className="fa fa-fw fa-remove" aria-hidden="true" />
             </a>
           </h3>
           <hr />
-          <div className='card border-dark mb-2'>
-            <ul className='list-group list-group-flush'>
-              {
-                skill.keywords.map((kw: string, index: number) => {
-                  return (
-                    <li key={kw + skill.name}
-                      className={classnames('list-group-item', {
-                        'list-group-item-light': index % 2 !== 0,
-                        'list-group-item-dark': index % 2 === 0
-                      })}>{kw}</li>
-                  );
-                })
-              }
+          <div className="card border-dark mb-2">
+            <ul className="list-group list-group-flush">
+              {skill.keywords.map((kw: string, index: number) => {
+                return (
+                  <li
+                    key={kw + skill.name}
+                    className={classnames('list-group-item', {
+                      'list-group-item-light': index % 2 !== 0,
+                      'list-group-item-dark': index % 2 === 0,
+                    })}>
+                    {kw}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
       );
     } else {
       return (
-        <div className='card-columns'>
-          {
-            skills.map((skill: any, index: number) => {
-              return <ClickableCard key={'click-skill-' + index} label={skill.name} padding={2}
-                onClick={() => this.setState({ selectedCardName: skill.name })} />;
-            })
-          }
+        <div className="card-columns">
+          {skills.map((skill: any, index: number) => {
+            return (
+              <ClickableCard
+                key={'click-skill-' + index}
+                label={skill.name}
+                padding={2}
+                onClick={() => this.setState({ selectedCardName: skill.name })}
+              />
+            );
+          })}
         </div>
       );
     }

@@ -4,40 +4,40 @@ import RouteLoader from '../router';
 
 export const CVAwards = Loadable({
   loader: () => import('./cv/awards'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVBasics = Loadable({
   loader: () => import('./cv/basics'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVSchool = Loadable({
   loader: () => import('./cv/school'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVWork = Loadable({
   loader: () => import('./cv/work'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVLanguages = Loadable({
   loader: () => import('./cv/languages'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVSkills = Loadable({
   loader: () => import('./cv/skills'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVInterests = Loadable({
   loader: () => import('./cv/interests'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
 
 export const CVHelp = Loadable({
   loader: () => import('./cv/help'),
-  loading: RouteLoader
+  loading: RouteLoader,
 });
