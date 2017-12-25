@@ -97,10 +97,10 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
 
   private renderPrompt() {
     const { command, suggestions } = this.state;
-    const inputProps: AutoSuggest.InputProps = {
+    const inputProps: AutoSuggest.InputProps<string> = {
       placeholder: 'Type a command',
-      value: (command as string) || '',
-      onChange: (event: React.ChangeEvent<any>, params: AutoSuggest.ChangeEvent) =>
+      value: command || '',
+      onChange: (event: React.ChangeEvent<string>, params: AutoSuggest.ChangeEvent) =>
         this.onNewCommand(params.newValue),
     };
     const theme = {
