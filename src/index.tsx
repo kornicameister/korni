@@ -1,7 +1,7 @@
 // Copyright 2017 @ kornicameister
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
@@ -15,12 +15,28 @@ import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 import { GoogleAnalytics } from './ga';
 
+const ScrollToTop = ReactRouterDOM.withRouter<ReactRouterDOM.RouteComponentProps<{}>>(
+  class ScrollToTop extends React.Component<ReactRouterDOM.RouteComponentProps<{}>> {
+    componentDidUpdate(prevProps: ReactRouterDOM.RouteComponentProps<{}>) {
+      if (this.props.location !== prevProps.location) {
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+      }
+    }
+
+    render() {
+      return this.props.children;
+    }
+  },
+);
+
 ReactDOM.render(
-  <Router basename="/" hashType="hashbang">
+  <ReactRouterDOM.HashRouter basename="/" hashType="hashbang">
     <GoogleAnalytics>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
     </GoogleAnalytics>
-  </Router>,
+  </ReactRouterDOM.HashRouter>,
   document.getElementById('root'),
   () => {
     registerServiceWorker();
