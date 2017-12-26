@@ -13,15 +13,16 @@ import 'typeface-roboto';
 
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
-import registerGA from './ga';
+import { GoogleAnalytics } from './ga';
 
 ReactDOM.render(
   <Router basename="/" hashType="hashbang">
-    <App />
+    <GoogleAnalytics>
+      <App />
+    </GoogleAnalytics>
   </Router>,
   document.getElementById('root'),
   () => {
     registerServiceWorker();
-    registerGA();
   },
 );

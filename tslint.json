@@ -4,10 +4,6 @@
       true,
       "log"
     ],
-    "semicolon": [
-      true,
-      "always"
-    ],
     "no-trailing-whitespace": true,
     "no-reference-import": false,
     "no-submodule-imports": false,
