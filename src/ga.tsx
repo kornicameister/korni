@@ -23,7 +23,7 @@ export const GoogleAnalytics = isProd
           if (!key) {
             return false;
           } else {
-            ReactGA.initialize(key, { debug: true });
+            ReactGA.initialize(key, { debug: false });
             ReactGA.pageview(window.location.pathname + window.location.search);
             return true;
           }
