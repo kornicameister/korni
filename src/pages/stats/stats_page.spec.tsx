@@ -7,14 +7,14 @@ jest.mock('./stats_routes', () => ({
   LoadableGitlab: () => '',
   LoadableKorni: () => '',
   LoadableWakaTime: () => '',
-  LoadableWhatPulse: () => ''
+  LoadableWhatPulse: () => '',
 }));
 import {
   LoadableGithub,
   LoadableGitlab,
   LoadableKorni,
   LoadableWakaTime,
-  LoadableWhatPulse
+  LoadableWhatPulse,
 } from './stats_routes';
 
 import StatsPage from './stats_page';
@@ -49,9 +49,7 @@ describe('StatsPage', () => {
 
       // ensure that wakatime, as non-first tab is not active
       let c = el.find(TabPane).findWhere((n: any) => {
-        return (
-          n.key() === label && n.parent(TabContent).props().activeTab === label
-        );
+        return n.key() === label && n.parent(TabContent).props().activeTab === label;
       });
       expect(c).toHaveLength(0);
 
@@ -65,9 +63,7 @@ describe('StatsPage', () => {
 
       // ensure it is there and parent TabContent knows about it
       c = el.find(TabPane).findWhere((n: any) => {
-        return (
-          n.key() === label && n.parent(TabContent).props().activeTab === label
-        );
+        return n.key() === label && n.parent(TabContent).props().activeTab === label;
       });
       expect(c).toHaveLength(1);
     });
@@ -90,13 +86,7 @@ describe('StatsPage', () => {
       expect(el.find(NavLink)).toHaveLength(5);
     });
 
-    [
-      'wakatime',
-      'github',
-      'gitlab',
-      'korni',
-      'whatpulse'
-    ].forEach((label: string) => {
+    ['wakatime', 'github', 'gitlab', 'korni', 'whatpulse'].forEach((label: string) => {
       it(`contains ${label}`, () => {
         const foundPane = el.find(TabPane).findWhere((n: any) => {
           return n.props().tabId === label;

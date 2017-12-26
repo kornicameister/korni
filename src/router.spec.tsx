@@ -9,7 +9,7 @@ describe('RouteLoader', () => {
     const props: any = {
       error: false,
       isLoading: false,
-      timedOut: false
+      timedOut: false,
     };
     shallow(<RouteLoader {...props} />);
   });
@@ -19,7 +19,7 @@ describe('RouteLoader', () => {
       error: false,
       isLoading: true,
       pastDelay: false,
-      timedOut: true
+      timedOut: true,
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
@@ -34,7 +34,7 @@ describe('RouteLoader', () => {
       error: true,
       isLoading: false,
       pastDelay: false,
-      timedOut: false
+      timedOut: false,
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
@@ -50,7 +50,7 @@ describe('RouteLoader', () => {
       error: false,
       isLoading: true,
       pastDelay: true,
-      timedOut: false
+      timedOut: false,
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
@@ -63,7 +63,7 @@ describe('RouteLoader', () => {
       error: false,
       isLoading: true,
       pastDelay: false,
-      timedOut: false
+      timedOut: false,
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);

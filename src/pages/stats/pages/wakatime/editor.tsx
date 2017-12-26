@@ -14,17 +14,17 @@ class WakaTimeEditorView extends React.Component<IViewProps, any> {
 
     this.chartOptions = {
       legend: 'none',
-      title: 'Editor/IDE usage'
+      title: 'Editor/IDE usage',
     };
     this.chartColumns = [
       {
         label: 'Editor',
-        type: 'string'
+        type: 'string',
       },
       {
         label: 'Usage',
-        type: 'number'
-      }
+        type: 'number',
+      },
     ];
   }
 
@@ -42,11 +42,11 @@ class WakaTimeEditorView extends React.Component<IViewProps, any> {
         });
       return (
         <Chart
-          chartType='PieChart'
+          chartType="PieChart"
           rows={rows}
           columns={this.chartColumns}
           options={this.chartOptions}
-          graph_id='EditorUsage'
+          graph_id="EditorUsage"
           width={'100%'}
           height={'400px'}
           legend_toggle
@@ -61,8 +61,6 @@ export default class WakaTimeEditor extends WakaTimeContainer {
   protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/084a7fed-951e-4c62-9871-208b7b55e4ab.json';
 
   public render() {
-    return (
-      <WakaTimeEditorView data={this.state.data} stage={this.state.stage} />
-    );
+    return <WakaTimeEditorView data={this.state.data} stage={this.state.stage} />;
   }
 }

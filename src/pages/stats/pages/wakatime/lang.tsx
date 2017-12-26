@@ -14,17 +14,17 @@ class WakaTimeLangStatsView extends React.Component<IViewProps, any> {
 
     this.chartOptions = {
       legend: 'none',
-      title: 'Language usage'
+      title: 'Language usage',
     };
     this.chartColumns = [
       {
         label: 'Language',
-        type: 'string'
+        type: 'string',
       },
       {
         label: 'Usage',
-        type: 'number'
-      }
+        type: 'number',
+      },
     ];
   }
 
@@ -42,11 +42,11 @@ class WakaTimeLangStatsView extends React.Component<IViewProps, any> {
         });
       return (
         <Chart
-          chartType='PieChart'
+          chartType="PieChart"
           rows={rows}
           columns={this.chartColumns}
           options={this.chartOptions}
-          graph_id='LanguageUsage'
+          graph_id="LanguageUsage"
           width={'100%'}
           height={'400px'}
           legend_toggle
@@ -61,8 +61,6 @@ export default class WakaTimeLang extends WakaTimeContainer {
   protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/ee15ca55-8369-428f-bf34-50271ec3b022.json';
 
   public render() {
-    return (
-      <WakaTimeLangStatsView data={this.state.data} stage={this.state.stage} />
-    );
+    return <WakaTimeLangStatsView data={this.state.data} stage={this.state.stage} />;
   }
 }

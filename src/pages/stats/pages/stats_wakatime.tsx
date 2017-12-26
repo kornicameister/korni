@@ -7,16 +7,24 @@ import WakaTimeOS from './wakatime/os';
 
 const WakaTimeStats: React.SFC<any> = () => {
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col'><WakaTimeActivity /></div>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col">
+          <WakaTimeActivity />
+        </div>
       </div>
-      <div className='row'>
-        <div className='col'><WakaTimeLang /></div>
-        <div className='col'><WakaTimeEditor /></div>
-        <div className='col'><WakaTimeOS /></div>
+      <div className="row">
+        <div className="col">
+          <WakaTimeLang />
+        </div>
+        <div className="col">
+          <WakaTimeEditor />
+        </div>
+        <div className="col">
+          <WakaTimeOS />
+        </div>
       </div>
-    </div >
+    </div>
   );
 };
 

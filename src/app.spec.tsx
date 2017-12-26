@@ -4,7 +4,7 @@ import * as React from 'react';
 jest.mock('./routes', () => ({
   AsyncAbout: () => '',
   AsyncHome: () => '',
-  AsyncNotFound: () => ''
+  AsyncNotFound: () => '',
 }));
 
 import App from './app';
