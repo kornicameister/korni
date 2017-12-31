@@ -2,9 +2,11 @@
 
 # constants
 DOT_ENV=${PWD}/.env.production
+PACKAGE_JSON=${PWD}/package.json
 
 # variables injected from travis environmental variables
 REACT_APP_GA_KEY=${KORNI_GA_ID}
+KORNI_VERSION=$(node -p -e "require('${PWD}/package.json').version")
 
 # helper functions
 update_dot_env() {
@@ -12,6 +14,7 @@ update_dot_env() {
 
   cat >"${DOT_ENV}" <<EOL
 REACT_APP_GA_KEY=${REACT_APP_GA_KEY}
+REACT_APP_VERSION=${KORNI_VERSION}
 EOL
 
 }
