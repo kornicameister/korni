@@ -16,7 +16,7 @@
     "precommit": "lint-staged",
     "start": "react-scripts-ts start",
     "analyze": "source-map-explorer build/static/js/main.*",
-    "build": "react-scripts-ts build",
+    "build": "./scripts/build.sh",
     "test": "react-scripts-ts test --env=jsdom --verbose",
     "coverage": "react-scripts-ts test --env=jsdom --silent --coverage",
     "lint": "tslint -c tslint.json './src/**/*.{ts,tsx}'",
