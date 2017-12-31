@@ -22,11 +22,7 @@ before_install:
 jobs:
   include:
     - stage: verify
-      script: yarn test
-    - stage: verify
-      script: yarn lint
-    - stage: verify
-      script: yarn coverage
+      script: yarn lint && yarn test && yarn coverage
     - stage: build
       script: yarn build
     - stage: deploy
