@@ -6,6 +6,9 @@ PACKAGE_JSON=${PWD}/package.json
 
 # variables injected from travis environmental variables
 REACT_APP_GA_KEY=${KORNI_GA_ID}
+REACT_APP_FIRESTORE_API_KEY=${KORNI_FIRESTORE_API_KEY}
+REACT_APP_FIRESTORE_SENDER_ID=${KORNI_FIRESTORE_SENDER_ID}
+REACT_APP_FIRESTORE_PROJECT_ID=${KORNI_FIRESTORE_PROJECT_ID}
 KORNI_VERSION=$(node -p -e "require('${PACKAGE_JSON}').version")
 
 # helper functions
@@ -15,6 +18,10 @@ update_dot_env() {
   cat >"${DOT_ENV}" <<EOL
 REACT_APP_GA_KEY=${REACT_APP_GA_KEY}
 REACT_APP_VERSION=${KORNI_VERSION}
+
+REACT_APP_FIRESTORE_API_KEY=${REACT_APP_FIRESTORE_API_KEY}
+REACT_APP_FIRESTORE_SENDER_ID=${REACT_APP_FIRESTORE_SENDER_ID}
+REACT_APP_FIRESTORE_PROJECT_ID=${REACT_APP_FIRESTORE_PROJECT_ID}
 EOL
 
 }
@@ -24,6 +31,18 @@ check_env() {
 
   if [ -z "$KORNI_GA_ID" ]; then
     die ">>> - \"KORNI_GA_ID\" is empty"
+  fi
+
+  if [ -z "$KORNI_FIRESTORE_SENDER_ID" ]; then
+    die ">>> - \"KORNI_FIRESTORE_SENDER_ID\" is empty"
+  fi
+
+  if [ -z "$KORNI_FIRESTORE_API_KEY" ]; then
+    die ">>> - \"KORNI_FIRESTORE_API_KEY\" is empty"
+  fi
+
+  if [ -z "$KORNI_FIRESTORE_PROJECT_ID" ]; then
+    die ">>> - \"KORNI_FIRESTORE_PROJECT_ID\" is empty"
   fi
 }
 

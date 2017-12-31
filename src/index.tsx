@@ -14,6 +14,7 @@ import 'typeface-roboto';
 import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 import { GoogleAnalytics } from './ga';
+import { firestore } from './data/firebase';
 
 const ScrollToTop = ReactRouterDOM.withRouter<ReactRouterDOM.RouteComponentProps<{}>>(
   class ScrollToTop extends React.Component<ReactRouterDOM.RouteComponentProps<{}>> {
@@ -40,5 +41,9 @@ ReactDOM.render(
   document.getElementById('root'),
   () => {
     registerServiceWorker();
+    firestore()
+      .collection('meta')
+      .get()
+      .then(d => d.docs.forEach(dd => console.dir(dd)));
   },
 );
