@@ -6,7 +6,7 @@ PACKAGE_JSON=${PWD}/package.json
 
 # variables injected from travis environmental variables
 REACT_APP_GA_KEY=${KORNI_GA_ID}
-KORNI_VERSION=$(node -p -e "require('${PWD}/package.json').version")
+KORNI_VERSION=$(node -p -e "require('${PACKAGE_JSON}').version")
 
 # helper functions
 update_dot_env() {
