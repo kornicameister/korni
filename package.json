@@ -17,6 +17,7 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
+      "!src/**/*.spec.{ts,tsx}",
       "!src/types/*.ts"
     ]
   },

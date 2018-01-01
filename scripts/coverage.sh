@@ -11,8 +11,8 @@ die() {
 }
 
 run() {
-  react-scripts-ts test --env=jsdom --silent --coverage
-  cat ./coverage/lcov.info | codacy-coverage
+  echo ">>> Running coverage calculation" && react-scripts-ts test --env=jsdom --silent --coverage
+  echo ">>> Running codacy==$(codacy-coverage --version)" && codacy-coverage --language typescript --verbose < ./coverage/lcov.info
   rm -rf ./coverage
 }
 
