@@ -1,14 +1,26 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
+import * as firestoreTypes from '@firebase/firestore-types';
+
 import { withFirestore, FirestoreComponentProps } from './firebase';
 
 const mockedFirestore = {
-  kind: 'OK',
-  ref: () => {},
+  kind: 1,
+  ref: {
+    collection: () => {
+      return {
+        onSnapshot: () => {},
+      };
+    },
+  },
 };
 
 jest.mock('./store', () => ({
+  Status: {
+    OK: 1,
+    Err: 2,
+  },
   ref: () => {
     return mockedFirestore;
   },
@@ -22,6 +34,8 @@ describe('firebase', () => {
           return null;
         }
       },
+      '',
+      () => new Promise<firestoreTypes.QuerySnapshot>(() => {}),
     );
   });
 
@@ -38,6 +52,8 @@ describe('firebase', () => {
           return null;
         }
       },
+      '',
+      () => new Promise<firestoreTypes.QuerySnapshot>(() => {}),
     );
 
     shallow(<MockedFirestoreWithFirestore foo={'test'} />);
