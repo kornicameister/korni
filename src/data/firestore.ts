@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app';
 import * as firebaseTypes from '@firebase/app-types';
 import * as firebaseStoreTypes from '@firebase/firestore-types';
+
+import 'firebase/auth';
 import 'firebase/firestore';
 
 const app: firebaseTypes.FirebaseApp | undefined = firebase.initializeApp(
@@ -15,9 +17,32 @@ const app: firebaseTypes.FirebaseApp | undefined = firebase.initializeApp(
   process.env.REACT_APP_FIRESTORE_PROJECT_ID,
 );
 
-export const firestore = (): firebaseStoreTypes.FirebaseFirestore => {
+export const enum FirestoreState {
+  OK,
+  Err,
+}
+
+interface OKFirestore {
+  kind: FirestoreState.OK;
+  ref: firebaseStoreTypes.FirebaseFirestore;
+}
+
+interface ErrFirestore {
+  kind: FirestoreState.Err;
+  message: string;
+}
+
+export type Firestore = OKFirestore | ErrFirestore;
+
+export const firestore = (): Firestore => {
   if (app && app.firestore) {
-    return app.firestore();
+    return {
+      kind: FirestoreState.OK,
+      ref: app.firestore(),
+    };
   }
-  throw Error('Failed to initialize firestore');
+  return {
+    kind: FirestoreState.Err,
+    message: 'Failed to initialize Firestore',
+  };
 };
