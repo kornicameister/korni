@@ -16,18 +16,18 @@ const app: firebaseTypes.FirebaseApp | undefined = firebase.initializeApp(
   process.env.REACT_APP_FIRESTORE_PROJECT_ID,
 );
 
-export const enum FirestoreKind {
+export const enum Status {
   OK,
   Err,
 }
 
 interface OKFirestore {
-  kind: FirestoreKind.OK;
+  kind: Status.OK;
   ref: firebaseStoreTypes.FirebaseFirestore;
 }
 
 interface ErrFirestore {
-  kind: FirestoreKind.Err;
+  kind: Status.Err;
   message: string;
 }
 
@@ -36,12 +36,12 @@ export type Firestore = OKFirestore | ErrFirestore;
 export const ref = (): Firestore => {
   if (app && app.firestore) {
     return {
-      kind: FirestoreKind.OK,
+      kind: Status.OK,
       ref: app.firestore(),
     };
   }
   return {
-    kind: FirestoreKind.Err,
+    kind: Status.Err,
     message: 'Failed to initialize Firestore',
   };
 };
