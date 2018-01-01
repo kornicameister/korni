@@ -37,7 +37,7 @@ export function withFirestore<P extends FirestoreComponentProps>(
     data: FirestoreData;
   }
 
-  class WrappedComponent extends React.Component<
+  class WithFirestoreComponent extends React.Component<
     Omit<P, keyof FirestoreComponentProps>,
     LocalState
   > {
@@ -84,5 +84,5 @@ export function withFirestore<P extends FirestoreComponentProps>(
     }
   }
 
-  return WrappedComponent;
+  return WithFirestoreComponent;
 }
