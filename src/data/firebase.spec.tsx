@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import * as firestoreTypes from '@firebase/firestore-types';
-
 import { withFirestore, FirestoreComponentProps } from './firebase';
 
 const mockedFirestore = {

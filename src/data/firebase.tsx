@@ -48,77 +48,16 @@ export function withFirestore<P extends FirestoreComponentProps>(
         data: {},
       };
     }
-    componentWillMount() {
-      const { db } = this.state;
-      switch (db.kind) {
-        case firestore.Status.OK:
-          query(db.ref)
-            .get()
-            .then(snapshot => {
-              const newData = {};
-              snapshot.forEach(doc => {
-                newData[doc.id] = doc.data();
-              });
-              this.setState({
-                data: newData,
-              });
-            });
-        case firestore.Status.Err:
-          return;
-      }
-    }
 
-    componentDidMount() {
+    componentWillMount() {
       const { db } = this.state;
       switch (db.kind) {
         case firestore.Status.OK:
           this.setState({
             updateListener: query(db.ref).onSnapshot(snapshot => {
-              if (snapshot.size < 1) {
-                return;
-              }
-
-              const newDocs: {
-                [docId: string]: firestoreTypes.DocumentSnapshot;
-              } = {};
-              const modifiedDocs: {
-                [docId: string]: firestoreTypes.DocumentSnapshot;
-              } = {};
-              const removedDocs: string[] = [];
-
-              snapshot.docChanges.forEach(change => {
-                if (change.type === 'added') {
-                  newDocs[change.doc.id] = change.doc;
-                }
-                if (change.type === 'modified') {
-                  modifiedDocs[change.doc.id] = change.doc;
-                }
-                if (change.type === 'removed') {
-                  removedDocs.push(change.doc.id);
-                }
+              this.setState({
+                data: this.snapshotToData(snapshot),
               });
-
-              const modifiedDocsKeys: string[] = Object.keys(modifiedDocs);
-              const newDocsKeys: string[] = Object.keys(newDocs);
-              this.setState(prevState => ({
-                ...prevState,
-                data: Object.keys(prevState.data)
-                  .filter((docId: string) => !(docId in removedDocs))
-                  .concat(newDocsKeys)
-                  .reduce(
-                    (data: FirestoreData, docId: string) => {
-                      if (docId in modifiedDocsKeys) {
-                        data[docId] = modifiedDocs[docId];
-                      } else if (docId in newDocsKeys) {
-                        data[docId] = newDocs[docId];
-                      } else {
-                        data[docId] = prevState.data[docId];
-                      }
-                      return data;
-                    },
-                    {} as FirestoreData,
-                  ),
-              }));
             }),
           });
         case firestore.Status.Err:
@@ -130,6 +69,14 @@ export function withFirestore<P extends FirestoreComponentProps>(
       const { updateListener } = this.state;
       updateListener && updateListener();
     }
+
+    snapshotToData = (snapshot: firestoreTypes.QuerySnapshot) => {
+      const newData = {};
+      snapshot.forEach(doc => {
+        newData[doc.id] = doc.data();
+      });
+      return newData;
+    };
 
     render() {
       const { data } = this.state;
