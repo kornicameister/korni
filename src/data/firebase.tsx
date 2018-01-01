@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import * as firestore from './store';
 import * as firestoreTypes from '@firebase/firestore-types';
-import * as firebaseStoreTypes from '@firebase/firestore-types';
 
 /**
  * Remove the variants of the second union of string literals from
@@ -30,11 +29,7 @@ interface FirestoreData {
 
 export function withFirestore<P extends FirestoreComponentProps>(
   Comp: React.ComponentClass<P> | React.StatelessComponent<P>,
-  collectionPath: string,
-  dataSelect: (
-    db: firebaseStoreTypes.FirebaseFirestore,
-    collectionPath: string,
-  ) => Promise<firestoreTypes.QuerySnapshot>,
+  query: (db: firestoreTypes.FirebaseFirestore) => firestoreTypes.Query,
 ): React.ComponentClass<Omit<P, keyof FirestoreComponentProps>> {
   interface LocalState {
     db: firestore.Firestore;
@@ -57,39 +52,73 @@ export function withFirestore<P extends FirestoreComponentProps>(
       const { db } = this.state;
       switch (db.kind) {
         case firestore.Status.OK:
-          dataSelect(db.ref, collectionPath).then(snapshot => {
-            const newData = {};
-            snapshot.docs.forEach(doc => {
-              const data = doc.data;
-              const id = doc.id;
-              newData[id] = data;
+          query(db.ref)
+            .get()
+            .then(snapshot => {
+              const newData = {};
+              snapshot.forEach(doc => {
+                newData[doc.id] = doc.data();
+              });
+              this.setState({
+                data: newData,
+              });
             });
-            this.setState({
-              data: newData,
-            });
-          });
         case firestore.Status.Err:
           return;
       }
     }
 
     componentDidMount() {
-      const { db, data } = this.state;
+      const { db } = this.state;
       switch (db.kind) {
         case firestore.Status.OK:
           this.setState({
-            updateListener: db.ref.collection(collectionPath).onSnapshot(snapshot => {
+            updateListener: query(db.ref).onSnapshot(snapshot => {
               if (snapshot.size < 1) {
                 return;
               }
+
+              const newDocs: {
+                [docId: string]: firestoreTypes.DocumentSnapshot;
+              } = {};
+              const modifiedDocs: {
+                [docId: string]: firestoreTypes.DocumentSnapshot;
+              } = {};
+              const removedDocs: string[] = [];
+
               snapshot.docChanges.forEach(change => {
                 if (change.type === 'added') {
+                  newDocs[change.doc.id] = change.doc;
                 }
                 if (change.type === 'modified') {
+                  modifiedDocs[change.doc.id] = change.doc;
                 }
                 if (change.type === 'removed') {
+                  removedDocs.push(change.doc.id);
                 }
               });
+
+              const modifiedDocsKeys: string[] = Object.keys(modifiedDocs);
+              const newDocsKeys: string[] = Object.keys(newDocs);
+              this.setState(prevState => ({
+                ...prevState,
+                data: Object.keys(prevState.data)
+                  .filter((docId: string) => !(docId in removedDocs))
+                  .concat(newDocsKeys)
+                  .reduce(
+                    (data: FirestoreData, docId: string) => {
+                      if (docId in modifiedDocsKeys) {
+                        data[docId] = modifiedDocs[docId];
+                      } else if (docId in newDocsKeys) {
+                        data[docId] = newDocs[docId];
+                      } else {
+                        data[docId] = prevState.data[docId];
+                      }
+                      return data;
+                    },
+                    {} as FirestoreData,
+                  ),
+              }));
             }),
           });
         case firestore.Status.Err:

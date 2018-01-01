@@ -25,6 +25,14 @@ jest.mock('./store', () => ({
     return mockedFirestore;
   },
 }));
+const Query = jest.fn(() => {
+  return {
+    get: jest.fn(() => {
+      return new Promise(jest.fn());
+    }),
+    onSnapshot: jest.fn(),
+  };
+});
 
 describe('firebase', () => {
   it('should allow to use withFirestore', () => {
@@ -34,8 +42,7 @@ describe('firebase', () => {
           return null;
         }
       },
-      '',
-      () => new Promise<firestoreTypes.QuerySnapshot>(() => {}),
+      () => Query(),
     );
   });
 
@@ -52,8 +59,7 @@ describe('firebase', () => {
           return null;
         }
       },
-      '',
-      () => new Promise<firestoreTypes.QuerySnapshot>(() => {}),
+      () => Query(),
     );
 
     shallow(<MockedFirestoreWithFirestore foo={'test'} />);
