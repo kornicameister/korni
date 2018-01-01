@@ -8,15 +8,15 @@ const mockedFirestore = {
   ref: () => {},
 };
 
-jest.mock('./firestore', () => ({
-  firestore: () => {
+jest.mock('./store', () => ({
+  ref: () => {
     return mockedFirestore;
   },
 }));
 
 describe('firebase', () => {
   it('should allow to use withFirestore', () => {
-    const MockedFirestoreWithFirestore = withFirestore(
+    withFirestore(
       class MockedFirestore extends React.Component<{} & FirestoreComponentProps> {
         render() {
           return null;

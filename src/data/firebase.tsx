@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import * as firestore from './firestore';
-
-export interface FirestoreComponentProps {
-  firestore: firestore.Firestore;
-}
+import * as firestore from './store';
 
 /**
  * Remove the variants of the second union of string literals from
@@ -22,6 +18,10 @@ type Diff<T extends string, U extends string> = ({ [P in T]: P } &
  */
 type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
+export interface FirestoreComponentProps {
+  firestore: firestore.Firestore;
+}
+
 export function withFirestore<P extends FirestoreComponentProps>(
   Comp: React.ComponentClass<P> | React.StatelessComponent<P>,
 ): React.ComponentClass<Omit<P, keyof FirestoreComponentProps>> {
@@ -36,7 +36,7 @@ export function withFirestore<P extends FirestoreComponentProps>(
     constructor(props: Omit<P, keyof FirestoreComponentProps>) {
       super(props);
       this.state = {
-        ref: firestore.firestore(),
+        ref: firestore.ref(),
       };
     }
     componentWillMount() {}
