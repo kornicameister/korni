@@ -10,6 +10,17 @@
       "git add"
     ]
   },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.spec.{ts,tsx}",
+      "!src/types/*.ts"
+    ]
+  },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -18,7 +29,7 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "build": "./scripts/build.sh",
     "test": "react-scripts-ts test --env=jsdom --verbose",
-    "coverage": "react-scripts-ts test --env=jsdom --silent --coverage",
+    "coverage": "./scripts/coverage.sh",
     "lint": "tslint -c tslint.json './src/**/*.{ts,tsx}'",
     "prettier": "prettier --write --config .prettierrc './src/**/*.{ts,tsx}'",
     "eject": "react-scripts-ts eject"
@@ -55,6 +66,7 @@
     "@types/react-loadable": "^5.3.0",
     "@types/react-router-dom": "^4.2.3",
     "@types/reactstrap": "^5.0.6",
+    "codacy-coverage": "^2.0.3",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.1.0",
