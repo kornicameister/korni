@@ -6793,9 +6793,9 @@ type-is@~1.6.15:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-typeface-roboto@^0.0.45:
-  version "0.0.45"
-  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.45.tgz#4686bdd505b2db3b7ba0a980d216eb3d5aec4788"
+typeface-roboto@^0.0.47:
+  version "0.0.47"
+  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.47.tgz#e9e60903ac3e2553954fc890074ed98ce88d21bd"
 
 typescript@^2.6.2:
   version "2.6.2"

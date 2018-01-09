@@ -51,7 +51,7 @@
     "react-scripts-ts": "^2.8.0",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.4",
-    "typeface-roboto": "^0.0.45",
+    "typeface-roboto": "^0.0.47",
     "typescript": "^2.6.2",
     "xml2js": "^0.4.19"
   },
