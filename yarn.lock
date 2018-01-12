@@ -6738,9 +6738,15 @@ tslint-loader@^3.5.3:
     rimraf "^2.4.4"
     semver "^5.3.0"
 
-tslint-react@^3.2.0, tslint-react@^3.3.3:
+tslint-react@^3.2.0:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.3.3.tgz#06a6beb826645ab21d85339663a1295e107bc405"
+  dependencies:
+    tsutils "^2.13.1"
+
+tslint-react@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.4.0.tgz#12ed3fc7063f3df988370206736b50acbce07e59"
   dependencies:
     tsutils "^2.13.1"
 
