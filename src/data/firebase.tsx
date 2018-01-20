@@ -1,7 +1,7 @@
 import * as React from 'react';
 
+import * as firebase from 'firebase/app';
 import * as firestore from './store';
-import * as firestoreTypes from '@firebase/firestore-types';
 
 /**
  * Remove the variants of the second union of string literals from
@@ -29,7 +29,7 @@ interface FirestoreData {
 
 export function withFirestore<P extends FirestoreComponentProps>(
   Comp: React.ComponentClass<P> | React.StatelessComponent<P>,
-  query: (db: firestoreTypes.FirebaseFirestore) => firestoreTypes.Query,
+  query: (db: firebase.firestore.Firestore) => firebase.firestore.Query,
 ): React.ComponentClass<Omit<P, keyof FirestoreComponentProps>> {
   interface LocalState {
     db: firestore.Firestore;
@@ -70,7 +70,7 @@ export function withFirestore<P extends FirestoreComponentProps>(
       updateListener && updateListener();
     }
 
-    snapshotToData = (snapshot: firestoreTypes.QuerySnapshot) => {
+    snapshotToData = (snapshot: firebase.firestore.QuerySnapshot) => {
       const newData = {};
       snapshot.forEach(doc => {
         newData[doc.id] = doc.data();
