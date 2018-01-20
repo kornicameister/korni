@@ -1,10 +1,7 @@
 import * as firebase from 'firebase/app';
-import * as firebaseTypes from '@firebase/app-types';
-import * as firebaseStoreTypes from '@firebase/firestore-types';
-
 import 'firebase/firestore';
 
-const app: firebaseTypes.FirebaseApp | undefined = firebase.initializeApp(
+const app = firebase.initializeApp(
   {
     apiKey: process.env.REACT_APP_FIRESTORE_API_KEY,
     messagingSenderId: process.env.REACT_APP_FIRESTORE_SENDER_ID,
@@ -23,7 +20,7 @@ export const enum Status {
 
 interface OKFirestore {
   kind: Status.OK;
-  ref: firebaseStoreTypes.FirebaseFirestore;
+  ref: firebase.firestore.Firestore;
 }
 
 interface ErrFirestore {
