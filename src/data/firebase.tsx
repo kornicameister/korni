@@ -19,33 +19,29 @@ type Diff<T extends string, U extends string> = ({ [P in T]: P } &
  */
 type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
-export interface FirestoreComponentProps {
-  data: FirestoreData;
+export interface FirestoreComponentProps<T> {
+  data?: T;
 }
 
-interface FirestoreData {
-  [id: string]: {};
-}
-
-export function withDocument<P extends FirestoreComponentProps>(
+export function withDocument<T, P extends FirestoreComponentProps<T>>(
   Comp: React.ComponentClass<P> | React.StatelessComponent<P>,
   query: (db: firebase.firestore.Firestore) => firebase.firestore.DocumentReference,
-): React.ComponentClass<Omit<P, keyof FirestoreComponentProps>> {
+  transform: (data: firebase.firestore.DocumentSnapshot) => T,
+): React.ComponentClass<Omit<P, keyof FirestoreComponentProps<T>>> {
   interface LocalState {
     db: firestore.Firestore;
     updateListener?: () => void;
-    data: FirestoreData;
+    data?: T;
   }
 
   class WithFirestoreComponent extends React.Component<
-    Omit<P, keyof FirestoreComponentProps>,
+    Omit<P, keyof FirestoreComponentProps<T>>,
     LocalState
   > {
-    constructor(props: Omit<P, keyof FirestoreComponentProps>) {
+    constructor(props: Omit<P, keyof FirestoreComponentProps<T>>) {
       super(props);
       this.state = {
         db: firestore.ref(),
-        data: {},
       };
     }
 
@@ -56,7 +52,7 @@ export function withDocument<P extends FirestoreComponentProps>(
           this.setState({
             updateListener: query(db.ref).onSnapshot(snapshot => {
               this.setState({
-                data: this.snapshotToData(snapshot),
+                data: transform(snapshot),
               });
             }),
           });
@@ -69,10 +65,6 @@ export function withDocument<P extends FirestoreComponentProps>(
       const { updateListener } = this.state;
       updateListener && updateListener();
     }
-
-    snapshotToData = (snapshot: firebase.firestore.DocumentSnapshot) => {
-      return snapshot.data();
-    };
 
     render() {
       const { data } = this.state;
@@ -83,25 +75,25 @@ export function withDocument<P extends FirestoreComponentProps>(
   return WithFirestoreComponent;
 }
 
-export function withCollection<P extends FirestoreComponentProps>(
+export function withCollection<T, P extends FirestoreComponentProps<T[]>>(
   Comp: React.ComponentClass<P> | React.StatelessComponent<P>,
   query: (db: firebase.firestore.Firestore) => firebase.firestore.Query,
-): React.ComponentClass<Omit<P, keyof FirestoreComponentProps>> {
+  transform: (data: firebase.firestore.DocumentData) => T,
+): React.ComponentClass<Omit<P, keyof FirestoreComponentProps<T[]>>> {
   interface LocalState {
     db: firestore.Firestore;
     updateListener?: () => void;
-    data: FirestoreData;
+    data?: T[];
   }
 
   class WithFirestoreComponent extends React.Component<
-    Omit<P, keyof FirestoreComponentProps>,
+    Omit<P, keyof FirestoreComponentProps<T>>,
     LocalState
   > {
-    constructor(props: Omit<P, keyof FirestoreComponentProps>) {
+    constructor(props: Omit<P, keyof FirestoreComponentProps<T>>) {
       super(props);
       this.state = {
         db: firestore.ref(),
-        data: {},
       };
     }
 
@@ -112,7 +104,7 @@ export function withCollection<P extends FirestoreComponentProps>(
           this.setState({
             updateListener: query(db.ref).onSnapshot(snapshot => {
               this.setState({
-                data: this.snapshotToData(snapshot),
+                data: snapshot.docs.map(doc => transform(doc)),
               });
             }),
           });
@@ -125,14 +117,6 @@ export function withCollection<P extends FirestoreComponentProps>(
       const { updateListener } = this.state;
       updateListener && updateListener();
     }
-
-    snapshotToData = (snapshot: firebase.firestore.QuerySnapshot) => {
-      const newData = {};
-      snapshot.forEach(doc => {
-        newData[doc.id] = doc.data();
-      });
-      return newData;
-    };
 
     render() {
       const { data } = this.state;
