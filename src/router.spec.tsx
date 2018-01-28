@@ -1,21 +1,23 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { LoadingComponentProps } from 'react-loadable';
 
 import Spinner from './common/spinner';
 import RouteLoader from './router';
 
 describe('RouteLoader', () => {
   it('renders without crashing', () => {
-    const props: any = {
+    const props: LoadingComponentProps = {
       error: false,
       isLoading: false,
       timedOut: false,
+      pastDelay: false,
     };
     shallow(<RouteLoader {...props} />);
   });
 
   it('renders timed_out', () => {
-    const props: any = {
+    const props: LoadingComponentProps = {
       error: false,
       isLoading: true,
       pastDelay: false,
@@ -30,7 +32,7 @@ describe('RouteLoader', () => {
   });
 
   it('renders error', () => {
-    const props: any = {
+    const props: LoadingComponentProps = {
       error: true,
       isLoading: false,
       pastDelay: false,
@@ -46,7 +48,7 @@ describe('RouteLoader', () => {
 
   it('renders loading if delay exceeded', () => {
     // component still loading but before timed_out
-    const props: any = {
+    const props: LoadingComponentProps = {
       error: false,
       isLoading: true,
       pastDelay: true,
@@ -59,7 +61,7 @@ describe('RouteLoader', () => {
 
   it('renders nothing if component loaded', () => {
     // loading but before delay
-    const props: any = {
+    const props: LoadingComponentProps = {
       error: false,
       isLoading: true,
       pastDelay: false,

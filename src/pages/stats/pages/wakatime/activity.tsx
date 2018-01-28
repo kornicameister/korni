@@ -5,7 +5,7 @@ import Spinner from '../../../../common/spinner';
 import { DataLoadingStage } from '../../../../core';
 import { IViewProps, WakaTimeContainer } from './common';
 
-class WakaTimeActivityView extends React.Component<IViewProps, any> {
+class WakaTimeActivityView extends React.Component<IViewProps> {
   public render() {
     const { data, stage } = this.props;
     if (stage === DataLoadingStage.ERROR) {

@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { NavLink, TabContent, TabPane } from 'reactstrap';
 
@@ -25,20 +25,17 @@ describe('StatsPage', () => {
   });
 
   describe('logic', () => {
-    let el: any;
+    let el: ShallowWrapper<{}, { activeTab?: string }>;
 
     beforeEach(() => {
       el = shallow(<StatsPage />);
-    });
-    afterEach(() => {
-      el = null;
     });
 
     it('toggling tab changes state', () => {
       const label: string = 'wakatime';
       el
         .find(NavLink)
-        .findWhere((n: any) => {
+        .findWhere(n => {
           return n.key() === label;
         })
         .simulate('click');
@@ -48,35 +45,32 @@ describe('StatsPage', () => {
       const label: string = 'wakatime';
 
       // ensure that wakatime, as non-first tab is not active
-      let c = el.find(TabPane).findWhere((n: any) => {
-        return n.key() === label && n.parent(TabContent).props().activeTab === label;
+      let c = el.find(TabPane).findWhere(n => {
+        return n.key() === label && n.parent().props().activeTab === label;
       });
       expect(c).toHaveLength(0);
 
       // simulate clicking on it
       el
         .find(NavLink)
-        .findWhere((n: any) => {
+        .findWhere(n => {
           return n.key() === label;
         })
         .simulate('click');
 
       // ensure it is there and parent TabContent knows about it
-      c = el.find(TabPane).findWhere((n: any) => {
-        return n.key() === label && n.parent(TabContent).props().activeTab === label;
+      c = el.find(TabPane).findWhere(n => {
+        return n.key() === label && n.parent().props().activeTab === label;
       });
       expect(c).toHaveLength(1);
     });
   });
 
   describe('view', () => {
-    let el: any;
+    let el: ShallowWrapper;
 
     beforeEach(() => {
       el = shallow(<StatsPage />);
-    });
-    afterEach(() => {
-      el = null;
     });
 
     it('contains valid numbers of tabs', () => {
@@ -88,17 +82,17 @@ describe('StatsPage', () => {
 
     ['wakatime', 'github', 'gitlab', 'korni', 'whatpulse'].forEach((label: string) => {
       it(`contains ${label}`, () => {
-        const foundPane = el.find(TabPane).findWhere((n: any) => {
+        const foundPane = el.find(TabPane).findWhere(n => {
           return n.props().tabId === label;
         });
-        const foundLink = el.find(NavLink).findWhere((n: any) => {
+        const foundLink = el.find(NavLink).findWhere(n => {
           return n.key() === label;
         });
         expect(foundPane).toHaveLength(1);
         expect(foundLink).toHaveLength(1);
       });
       it(`each pane contains appropriate loadable for ${label}`, () => {
-        const foundCmp = el.find(TabPane).findWhere((n: any) => {
+        const foundCmp = el.find(TabPane).findWhere(n => {
           switch (label) {
             case 'wakatime':
               return (

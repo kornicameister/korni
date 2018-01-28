@@ -5,12 +5,12 @@ import Spinner from '../../../../common/spinner';
 import { DataLoadingStage } from '../../../../core';
 import { IViewProps, WakaTimeContainer } from './common';
 
-class WakaTimeEditorView extends React.Component<IViewProps, any> {
+class WakaTimeEditorView extends React.Component<IViewProps> {
   private chartOptions: PieChartOptions;
   private chartColumns: ChartColumn[];
 
-  constructor(props: IViewProps, state: any) {
-    super(props, state);
+  constructor(props: IViewProps) {
+    super(props);
 
     this.chartOptions = {
       legend: 'none',

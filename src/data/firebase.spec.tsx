@@ -8,7 +8,9 @@ const mockedFirestore = {
   ref: {
     collection: () => {
       return {
-        onSnapshot: () => {},
+        onSnapshot: () => {
+          return;
+        },
       };
     },
   },

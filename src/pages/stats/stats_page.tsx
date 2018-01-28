@@ -31,13 +31,13 @@ const TABS: StatTab[] = [
   new StatTab('github', 'Github', LoadableGithub),
 ];
 
-interface IStatsPageState {
+interface StatsPageState {
   activeTab?: string;
 }
 
-export default class StatsPage extends React.Component<any, IStatsPageState> {
-  constructor(props: any, state: IStatsPageState) {
-    super(props, state);
+export default class StatsPage extends React.Component<{}, StatsPageState> {
+  constructor(props: {}) {
+    super(props);
 
     this.state = {
       activeTab: TABS[0].id, // use first tab as active one

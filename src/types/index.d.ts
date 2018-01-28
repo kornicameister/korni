@@ -60,9 +60,9 @@ declare module 'react-google-charts' {
     graph_id: string;
     width: string;
     height: string;
-    rows?: any[][];
+    rows?: any[][]; // tslint:disable-line
     columns?: ChartColumn[];
-    data?: any[][];
+    data?: any[][]; // tslint:disable-line
     options?: ChartOptionsType;
     legend_toggle?: boolean;
     allowEmptyRows?: boolean;
