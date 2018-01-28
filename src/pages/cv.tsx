@@ -46,23 +46,23 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
     };
   }
 
-  private onLocationChange(location: H.Location) {
+  onLocationChange = (location: H.Location) => {
     const command: string = getCommandFromLocation(location);
     if (command !== '') {
       this.setState({ command });
     }
-  }
+  };
 
-  private onNewCommand(raw: string) {
+  onNewCommand = (raw: string) => {
     const { history } = this.props;
     this.setState({ command: raw }, () => {
       if (history && Commands.indexOf(raw) >= 0) {
         history.push(`/cv/${raw}`);
       }
     });
-  }
+  };
 
-  private onSuggestionsFetchRequested(raw: string) {
+  onSuggestionsFetchRequested = (raw: string) => {
     const escapeRegexCharacters = (value: string) => {
       return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     };
@@ -74,28 +74,23 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
     this.setState({
       suggestions: getSuggestions(raw),
     });
-  }
+  };
 
   // Autosuggest will call this function every time you need to clear suggestions.
-  private onSuggestionsClearRequested() {
+  onSuggestionsClearRequested = () => {
     this.setState({
       suggestions: [],
     });
-  }
+  };
 
-  private getSuggestionValue(cmd: string) {
-    return cmd;
-  }
-
-  private renderSuggestion(cmd: any) {
+  renderSuggestion = (cmd: string) => {
     return (
       <button className="dropdown-item" type="button">
-        {cmd as string}
+        {cmd}
       </button>
     );
-  }
-
-  private renderPrompt() {
+  };
+  renderPrompt = () => {
     const { command, suggestions } = this.state;
     const inputProps: AutoSuggest.InputProps<string> = {
       placeholder: 'Type a command',
@@ -120,7 +115,7 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
               this.onSuggestionsFetchRequested(request.value)
             }
             onSuggestionsClearRequested={() => this.onSuggestionsClearRequested()}
-            getSuggestionValue={this.getSuggestionValue}
+            getSuggestionValue={(cmd: string) => cmd}
             renderSuggestion={this.renderSuggestion}
             inputProps={inputProps}
             highlightFirstSuggestion
@@ -128,9 +123,9 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
         </div>
       </div>
     );
-  }
+  };
 
-  private renderCV() {
+  renderCV = () => {
     const { match, resume } = this.props;
     if (!match) {
       return null;
@@ -197,9 +192,9 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
         </div>
       );
     }
-  }
+  };
 
-  public render() {
+  render() {
     return (
       <div className="container" key="command">
         {this.renderPrompt()}

@@ -2,7 +2,7 @@ import * as classnames from 'classnames';
 import * as React from 'react';
 
 interface ClickableCardProps {
-  onClick: React.MouseEventHandler<any>;
+  onClick: () => void;
   label: string;
   padding?: number;
 }
@@ -11,8 +11,8 @@ export class ClickableCard extends React.Component<
   ClickableCardProps,
   { hover: boolean }
 > {
-  constructor(props: ClickableCardProps, state: any) {
-    super(props, state);
+  constructor(props: ClickableCardProps) {
+    super(props);
     this.state = { hover: false };
   }
 

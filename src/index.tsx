@@ -16,7 +16,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { GoogleAnalytics } from './ga';
 
 const ScrollToTop = ReactRouterDOM.withRouter<ReactRouterDOM.RouteComponentProps<{}>>(
-  class ScrollToTop extends React.Component<ReactRouterDOM.RouteComponentProps<{}>> {
+  class ScrollToTopInner extends React.Component<ReactRouterDOM.RouteComponentProps<{}>> {
     componentDidUpdate(prevProps: ReactRouterDOM.RouteComponentProps<{}>) {
       if (this.props.location !== prevProps.location) {
         requestAnimationFrame(() => window.scrollTo(0, 0));
