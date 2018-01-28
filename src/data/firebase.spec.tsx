@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { withFirestore, FirestoreComponentProps } from './firebase';
+import { withCollection, FirestoreComponentProps } from './firebase';
 
 const mockedFirestore = {
   kind: 1,
@@ -34,32 +34,33 @@ const Query = jest.fn(() => {
 
 describe('firebase', () => {
   it('should allow to use withFirestore', () => {
-    withFirestore(
-      class MockedFirestore extends React.Component<{} & FirestoreComponentProps> {
-        render() {
-          return null;
-        }
-      },
-      () => Query(),
-    );
-  });
-
-  it('should allow to render component without firebase prop', () => {
-    interface MockedFirestoreProps {
-      foo: string;
-    }
-
-    const MockedFirestoreWithFirestore = withFirestore(
-      class MockedFirestoreA extends React.Component<
-        MockedFirestoreProps & FirestoreComponentProps
+    withCollection(
+      class MockedFirestore extends React.Component<
+        {} & FirestoreComponentProps<string[]>
       > {
         render() {
           return null;
         }
       },
       () => Query(),
+      db => [],
     );
-
+  });
+  it('should allow to render component without firebase prop', () => {
+    interface MockedFirestoreProps {
+      foo: string;
+    }
+    const MockedFirestoreWithFirestore = withCollection(
+      class MockedFirestoreA extends React.Component<
+        MockedFirestoreProps & FirestoreComponentProps<string[]>
+      > {
+        render() {
+          return null;
+        }
+      },
+      () => Query(),
+      db => [],
+    );
     shallow(<MockedFirestoreWithFirestore foo={'test'} />);
   });
 });
