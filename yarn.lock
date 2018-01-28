@@ -98,9 +98,9 @@
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
 
-"@types/enzyme@^3.1.7":
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.7.tgz#358a28dda8df6841db665659278437d04571a094"
+"@types/enzyme@^3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.8.tgz#e0a4492994fafb2fccc1726f8b4d9960097a4a8c"
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
@@ -113,9 +113,9 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
-"@types/jest@^22.0.1":
-  version "22.0.1"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.0.1.tgz#6370a6d60cce3845e4cd5d00bf65f654264685bc"
+"@types/jest@^22.1.0":
+  version "22.1.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.1.0.tgz#c1de03bbac66fac4cc741f7a69cb73bc01a1707c"
 
 "@types/jsonp@^0.2.0":
   version "0.2.0"
@@ -163,9 +163,9 @@
   version "16.0.34"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.34.tgz#7a8f795afd8a404a9c4af9539b24c75d3996914e"
 
-"@types/reactstrap@^5.0.11":
-  version "5.0.11"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.11.tgz#20905c8ddae64f33f92b67823e9cf68b44b88dd8"
+"@types/reactstrap@^5.0.12":
+  version "5.0.12"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.12.tgz#6c8f011dc160be8454fe7504bd14fd76b2d16998"
   dependencies:
     "@types/react" "*"
 
@@ -6883,9 +6883,9 @@ type-is@~1.6.15:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-typeface-roboto@^0.0.50:
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.50.tgz#cc8e2ad00a24a4d0efce60731ccf722c29185fa4"
+typeface-roboto@^0.0.54:
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.54.tgz#8f02c9a18d1cfa7f49381a6ff0d21ff061f38ad2"
 
 typescript@^2.6.2:
   version "2.6.2"
