@@ -138,9 +138,9 @@
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react-loadable@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@types/react-loadable/-/react-loadable-5.3.0.tgz#1f69b24d0b4569eb45e90dafa568972b07b36d16"
+"@types/react-loadable@^5.3.3":
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-loadable/-/react-loadable-5.3.3.tgz#ca0625ab41fb222083adcf767de36f0be329acec"
   dependencies:
     "@types/react" "*"
 
