@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
-    "@types/enzyme": "^3.1.8",
+    "@types/enzyme": "^3.1.9",
     "@types/google.visualization": "^0.0.41",
     "@types/jest": "^22.1.1",
     "@types/jsonp": "^0.2.0",
@@ -75,7 +75,7 @@
     "prettier": "^1.10.2",
     "react-test-renderer": "^16.2.0",
     "source-map-explorer": "^1.5.0",
-    "ts-jest": "^22.0.3",
+    "ts-jest": "^22.0.4",
     "tslint": "^5.9.1",
     "tslint-react": "^3.4.0"
   }
