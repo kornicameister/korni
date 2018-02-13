@@ -77,6 +77,6 @@
     "source-map-explorer": "^1.5.0",
     "ts-jest": "^22.0.4",
     "tslint": "^5.9.1",
-    "tslint-react": "^3.4.0"
+    "tslint-react": "^3.5.0"
   }
 }
