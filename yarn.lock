@@ -126,9 +126,9 @@
   version "8.5.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.7.tgz#9c498c35af354dcfbca3790fb2e81129e93cf0e2"
 
-"@types/react-autosuggest@^9.3.2":
-  version "9.3.2"
-  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.2.tgz#c9aa3e5cae76c335754edd7dfd57d49ceff60fd5"
+"@types/react-autosuggest@^9.3.3":
+  version "9.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.3.tgz#a6bc7a6f5076629372fafe2e7a48e15f5b76ff90"
   dependencies:
     "@types/react" "*"
 
