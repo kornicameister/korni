@@ -40,7 +40,7 @@
     "firebase": "4.10.1",
     "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
-    "moment": "^2.20.1",
+    "moment": "^2.21.0",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",
@@ -75,7 +75,7 @@
     "prettier": "^1.11.1",
     "react-test-renderer": "^16.2.0",
     "source-map-explorer": "^1.5.0",
-    "ts-jest": "^22.4.0",
+    "ts-jest": "^22.4.1",
     "tslint": "^5.9.1",
     "tslint-react": "^3.5.1"
   }
