@@ -1,17 +1,13 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
-import { LoadingComponentProps } from 'react-loadable';
-import { Container } from 'reactstrap';
+import * as RC from 'react-loadable';
+import * as MUI from 'material-ui';
 
 import Spinner from './common/spinner';
 
-export default class RouteLoader extends React.Component<LoadingComponentProps> {
+export default class RouteLoader extends React.Component<RC.LoadingComponentProps> {
   public render() {
-    return (
-      <Container className="clearfix" fluid>
-        {this.renderLoader()}
-      </Container>
-    );
+    return <MUI.Grid container>{this.renderLoader()}</MUI.Grid>;
   }
 
   private renderLoader(): JSX.Element | null {
