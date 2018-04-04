@@ -1,7 +1,7 @@
-import * as classnames from 'classnames';
 import * as React from 'react';
-import { LoadableComponent } from 'react-loadable';
-import { Container, Nav, NavLink, TabContent, TabPane } from 'reactstrap';
+import * as LC from 'react-loadable';
+import * as MUI from 'material-ui';
+import SwipeableViews from 'react-swipeable-views';
 
 import './stats_page.css';
 import {
@@ -13,10 +13,11 @@ import {
 } from './stats_routes';
 
 class StatTab {
-  public readonly id: string;
-  public readonly cmp: React.ComponentType & LoadableComponent;
-  public readonly label: string;
-  constructor(id: string, label: string, cmp: React.ComponentType & LoadableComponent) {
+  constructor(
+    public id: number,
+    public label: string,
+    public cmp: React.ComponentType & LC.LoadableComponent,
+  ) {
     this.id = id;
     this.cmp = cmp;
     this.label = label;
@@ -24,15 +25,15 @@ class StatTab {
 }
 
 const TABS: StatTab[] = [
-  new StatTab('korni', 'Korni', LoadableKorni),
-  new StatTab('wakatime', 'WakaTime', LoadableWakaTime),
-  new StatTab('whatpulse', 'WhatPulse', LoadableWhatPulse),
-  new StatTab('gitlab', 'Gitlab', LoadableGitlab),
-  new StatTab('github', 'Github', LoadableGithub),
+  new StatTab(0, 'Korni', LoadableKorni),
+  new StatTab(1, 'WakaTime', LoadableWakaTime),
+  new StatTab(2, 'WhatPulse', LoadableWhatPulse),
+  new StatTab(3, 'Gitlab', LoadableGitlab),
+  new StatTab(4, 'Github', LoadableGithub),
 ];
 
 interface IStatsPageState {
-  activeTab?: string;
+  activeTab: number;
 }
 
 export default class StatsPage extends React.Component<any, IStatsPageState> {
@@ -42,61 +43,40 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
     this.state = {
       activeTab: TABS[0].id, // use first tab as active one
     };
-
-    this.toggleTab.bind(this);
-    this.renderTabs.bind(this);
-    this.renderTabsContent.bind(this);
   }
 
-  public render() {
+  renderTabs = () => {
     return (
-      <Container>
+      <MUI.Tabs
+        value={this.state.activeTab}
+        onChange={(_, value) => this.setState({ activeTab: value })}
+        indicatorColor="primary"
+        textColor="primary"
+        fullWidth
+        centered>
+        {TABS.map(tab => {
+          return <MUI.Tab key={tab.id} label={tab.label.toUpperCase()} />;
+        })}
+      </MUI.Tabs>
+    );
+  };
+
+  render() {
+    return (
+      <MUI.Grid container>
         {this.renderTabs()}
-        {this.renderTabsContent()}
-      </Container>
-    );
-  }
-
-  private toggleTab(tab: string) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
-    }
-  }
-
-  private renderTabs() {
-    return (
-      <Nav className="stats-nav" tabs>
-        {TABS.map(tab => {
-          return (
-            <NavLink
-              key={tab.id}
-              className={classnames({
-                active: this.state.activeTab === tab.id,
-              })}
-              onClick={() => {
-                this.toggleTab(tab.id);
-              }}>
-              {tab.label.toUpperCase()}
-            </NavLink>
-          );
-        })}
-      </Nav>
-    );
-  }
-
-  private renderTabsContent() {
-    return (
-      <TabContent activeTab={this.state.activeTab}>
-        {TABS.map(tab => {
-          return (
-            <TabPane key={tab.id} tabId={tab.id}>
-              {React.createElement(tab.cmp, {})}
-            </TabPane>
-          );
-        })}
-      </TabContent>
+        <SwipeableViews
+          index={this.state.activeTab}
+          onChangeIndex={value => this.setState({ activeTab: value })}>
+          {TABS.map(tab => {
+            return (
+              <MUI.Typography component="div" key={tab.id}>
+                {React.createElement(tab.cmp, {})}
+              </MUI.Typography>
+            );
+          })}
+        </SwipeableViews>
+      </MUI.Grid>
     );
   }
 }

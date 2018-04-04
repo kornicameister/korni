@@ -1,19 +1,17 @@
 import * as React from 'react';
 
-import { Container, Jumbotron, Media } from 'reactstrap';
+import * as MUI from 'material-ui';
 
 export default class AboutPage extends React.Component {
   public render() {
     return (
       <div>
-        <Jumbotron fluid>
-          <Container fluid>
-            <Media>
-              {this.renderAvatar()}
-              <Media body>{this.renderContent()}</Media>
-            </Media>
-          </Container>
-        </Jumbotron>
+        <MUI.Grid container>
+          <MUI.Card>
+            <MUI.CardMedia>{this.renderAvatar()}</MUI.CardMedia>
+            <MUI.CardContent>{this.renderContent()}</MUI.CardContent>
+          </MUI.Card>
+        </MUI.Grid>
       </div>
     );
   }

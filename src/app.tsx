@@ -1,17 +1,7 @@
 import * as React from 'react';
-import { NavLink as RouterNavLink, Route, Switch } from 'react-router-dom';
-import {
-  Col,
-  Collapse,
-  Container,
-  Fade,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem,
-  Row,
-} from 'reactstrap';
+import * as ReactRouterDOM from 'react-router-dom';
+import * as MUI from 'material-ui';
+import * as MUIIcons from 'material-ui-icons';
 
 import TravisBadge from './common/travis_badge';
 import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
@@ -28,83 +18,63 @@ export default class App extends React.Component<{}, State> {
     };
   }
 
-  public render() {
-    return (
-      <Container>
-        {this.renderBar()}
-        {this.renderContent()}
-      </Container>
-    );
-  }
   private toggleNavBar() {
     const is_open: boolean = this.state.is_open;
     this.setState({ is_open: !is_open });
   }
 
-  private renderNav() {
-    return (
-      <Nav className="ml-auto" navbar>
-        <NavItem>
-          <RouterNavLink to="/" className="nav-link">
-            Home
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/cv" className="nav-link">
-            CV
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/about" className="nav-link">
-            About
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/stats" className="nav-link">
-            Stats
-          </RouterNavLink>
-        </NavItem>
-      </Nav>
-    );
-  }
-
   private renderBar() {
-    const { is_open } = this.state;
+    // const { is_open } = this.state;
     return (
-      <header>
-        <Navbar color="dark" expand="md" className="rounded" dark>
-          <NavbarBrand href="/">
+      <MUI.AppBar position="sticky">
+        <MUI.Toolbar>
+          <MUI.IconButton
+            aria-label="Menu"
+            color="inherit"
+            onClick={() => this.toggleNavBar()}>
+            <MUIIcons.Menu />
+          </MUI.IconButton>
+          <MUI.Typography variant="title">
             <b>kornicameister [{process.env.REACT_APP_VERSION as string}]</b>
-          </NavbarBrand>
-          <NavbarToggler onClick={() => this.toggleNavBar()} />
-          <Collapse isOpen={is_open} navbar>
-            {this.renderNav()}
-            <TravisBadge />
-          </Collapse>
-        </Navbar>
-      </header>
+          </MUI.Typography>
+          <ReactRouterDOM.Link to="/">
+            <MUI.Button>Home</MUI.Button>
+          </ReactRouterDOM.Link>
+          <ReactRouterDOM.Link to="/cv">
+            <MUI.Button>CV</MUI.Button>
+          </ReactRouterDOM.Link>
+          <ReactRouterDOM.Link to="/about">
+            <MUI.Button>About</MUI.Button>
+          </ReactRouterDOM.Link>
+          <ReactRouterDOM.Link to="/stats">
+            <MUI.Button>Stats</MUI.Button>
+          </ReactRouterDOM.Link>
+          <TravisBadge />
+        </MUI.Toolbar>
+      </MUI.AppBar>
     );
   }
 
   private renderContent() {
     return (
       <main role="main">
-        <Container>
-          <Row>
-            <Col>
-              <Fade>
-                <Switch>
-                  <Route path="/" component={AsyncHome} exact />
-                  <Route path="/cv" component={AsyncCV} />
-                  <Route path="/about" component={AsyncAbout} />
-                  <Route path="/stats" component={AsyncStats} />
-                  <Route component={AsyncNotFound} />
-                </Switch>
-              </Fade>
-            </Col>
-          </Row>
-        </Container>
+        <ReactRouterDOM.Switch>
+          <ReactRouterDOM.Route path="/" component={AsyncHome} exact />
+          <ReactRouterDOM.Route path="/cv" component={AsyncCV} />
+          <ReactRouterDOM.Route path="/about" component={AsyncAbout} />
+          <ReactRouterDOM.Route path="/stats" component={AsyncStats} />
+          <ReactRouterDOM.Route component={AsyncNotFound} />
+        </ReactRouterDOM.Switch>
       </main>
+    );
+  }
+
+  render() {
+    return (
+      <MUI.Grid container>
+        {this.renderBar()}
+        {this.renderContent()}
+      </MUI.Grid>
     );
   }
 }
