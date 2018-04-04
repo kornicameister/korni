@@ -3,6 +3,9 @@
   "homepage": "http://kornicameister.github.io/korni",
   "version": "0.2.8",
   "private": true,
+  "engines": {
+    "node": "9.9.0"
+  },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "yarn prettier",
