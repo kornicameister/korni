@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  verify:
+    docker:
+      - image: circleci/node:9.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - run: yarn lint
+      - run: yarn test
+      - run: yarn coverage
+  build:
+    docker:
+      - image: circleci/node:9.11.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - run: yarn build
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - verify
+      - build
