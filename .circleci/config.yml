@@ -12,7 +12,6 @@ jobs:
       - restore_cache:
           keys:
           - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-          - v1-dependencies-
       - run: yarn install
       - save_cache:
           paths:
@@ -34,7 +33,6 @@ jobs:
       - restore_cache:
           keys:
           - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-          - v1-dependencies-
       - run: yarn install
       - save_cache:
           paths:
@@ -45,7 +43,7 @@ jobs:
 
 workflows:
   version: 2
-  one_and_two:
+  pipeline:
     jobs:
       - verify
       - build
