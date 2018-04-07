@@ -1,4 +1,4 @@
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as React from 'react';
 import { LoadingComponentProps } from 'react-loadable';
 import { Container } from 'reactstrap';
@@ -15,7 +15,7 @@ export default class RouteLoader extends React.Component<LoadingComponentProps> 
   }
 
   private renderLoader(): JSX.Element | null {
-    const classes = classNames('alert', {
+    const classes = classnames('alert', {
       'alert-danger': !this.props.isLoading && this.props.error,
       'alert-info': this.props.isLoading && !this.props.timedOut && this.props.pastDelay,
       'alert-warning': this.props.isLoading && this.props.timedOut,
