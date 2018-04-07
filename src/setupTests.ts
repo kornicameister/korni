@@ -11,6 +11,6 @@ global.requestAnimationFrame = callback => {
 // init env
 
 import { configure as EnzymeConfigure } from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-16';
 
 EnzymeConfigure({ adapter: new Adapter() });
