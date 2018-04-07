@@ -2,7 +2,7 @@ version: 2
 jobs:
   verify:
     docker:
-      - image: circleci/node:9
+      - image: circleci/node:9.11.1
 
     working_directory: ~/repo
 
@@ -24,7 +24,7 @@ jobs:
       - run: yarn coverage
   build:
     docker:
-      - image: circleci/node:9
+      - image: circleci/node:9.11.1
 
     working_directory: ~/repo
 
