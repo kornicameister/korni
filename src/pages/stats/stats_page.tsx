@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import * as React from 'react';
 import { LoadableComponent } from 'react-loadable';
 import { Container, Nav, NavLink, TabContent, TabPane } from 'reactstrap';
