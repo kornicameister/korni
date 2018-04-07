@@ -22,6 +22,8 @@
     "noUnusedLocals": true,
     "diagnostics": true,
     "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "pretty": false,
     "typeRoots": [
       "src/types/",
       "node_modules/@types/"

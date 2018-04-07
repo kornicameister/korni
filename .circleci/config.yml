@@ -1,10 +1,9 @@
 version: 2
 jobs:
   verify:
+    working_directory: ~/repo
     docker:
       - image: circleci/node:9.11.1
-
-    working_directory: ~/repo
 
     steps:
       - checkout
@@ -12,7 +11,7 @@ jobs:
       - restore_cache:
           keys:
           - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - ~/.cache/yarn
@@ -21,11 +20,11 @@ jobs:
       - run: yarn lint
       - run: yarn test
       - run: yarn coverage
+
   build:
+    working_directory: ~/repo
     docker:
       - image: circleci/node:9.11.1
-
-    working_directory: ~/repo
 
     steps:
       - checkout
@@ -40,10 +39,103 @@ jobs:
           key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
 
       - run: yarn build
+      - persist_to_workspace:
+          root: build
+          paths:
+            - .
+
+  # verify if tag matches package.json version
+  verify_version_match:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:9.11.1
+    steps:
+      - checkout
+      - run:
+          command: |
+            repo_tag=$(git describe --tags)
+            pkg_tag=$(node -p "require('./package.json').version")
+            [ "${repo_tag}" != "${pgk_tag}" ] && echo "Tag ${repo_tag} and application version ${pkg_tag} differ" &&  exit 666
+
+
+  # deploy github releases
+  deploy_gr:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/golang:1.9
+    steps:
+      # prepare
+      - checkout
+      - attach_workspace:
+          at: ~/repo/build
+      # download github release tool
+      - run: go get -u github.com/tcnksm/ghr
+      # prepare artifacts
+      - run: mkdir -p ~/repo/release
+      - run: tar -zcvf build.tar.gz ~/repo/build && mv build.tar.gz ~/repo/release
+      - run: cp CHANGELOG.md ~/repo/release
+      # github release
+      - run:
+          command: |
+            ghr -t "${GITHUB_TOKEN}" \
+              -u "${CIRCLE_PROJECT_USERNAME}" \
+              -r "${CIRCLE_PROJECT_REPONAME}" \
+              --replace `git describe --tags` \
+              ~/repo/release
+
+  deploy_gp:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:9.11.1
+    steps:
+      # prepare
+      - checkout
+      - attach_workspace:
+          at: ~/repo/build
+      # setup everything
+      - run:
+          command: |
+            yarn add gh-pages --no-lockfile ; \
+            git config --global user.email "build_${CIRCLE_BUILD_NUM}@circleci.com" ; \
+            git config --global user.name "CircleCI"
+      #  do release
+      - run:
+          command: |
+            ./node_modules/.bin/gh-pages \
+              -d build \
+              -m "Released with CircleCI@${CIRCLE_BUILD_NUM}"
+
 
 workflows:
   version: 2
   pipeline:
     jobs:
-      - verify
-      - build
+      - verify:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - build:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - verify_version_match:
+          requires:
+            - verify
+            - build
+          filters:
+            tags:
+              only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
+      - deploy_gr:
+          requires:
+            - verify_version_match
+          filters:
+            tags:
+              only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
+      - deploy_gp:
+          requires:
+            - verify_version_match
+          filters:
+            tags:
+              only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
