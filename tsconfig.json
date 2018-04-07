@@ -21,6 +21,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "diagnostics": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "src/types/",
       "node_modules/@types/"
