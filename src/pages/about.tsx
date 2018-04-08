@@ -1,23 +1,7 @@
 import * as React from 'react';
 
-import { Container, Jumbotron, Media } from 'reactstrap';
-
 export default class AboutPage extends React.Component {
-  public render() {
-    return (
-      <div>
-        <Jumbotron fluid>
-          <Container fluid>
-            <Media>
-              {this.renderAvatar()}
-              <Media body>{this.renderContent()}</Media>
-            </Media>
-          </Container>
-        </Jumbotron>
-      </div>
-    );
-  }
-  private renderAvatar() {
+  renderAvatar = () => {
     const alt: string = 'kornicameister gravatar';
     const srcSize: number = 120;
     const src: string = `https://s.gravatar.com/avatar/140db4c0a9767838be5a5289ad78eca6?s=${srcSize}`;
@@ -29,9 +13,9 @@ export default class AboutPage extends React.Component {
         src={src}
       />
     );
-  }
+  };
 
-  private renderContent() {
+  renderContent = () => {
     const paragraphs: string[] = [
       'What to tell...I am a guy whose work is his pride',
       `I am always trying to push myself and others to try and see all
@@ -57,6 +41,19 @@ export default class AboutPage extends React.Component {
               </p>
             );
           })}
+        </div>
+      </div>
+    );
+  };
+
+  render() {
+    return (
+      <div className="jumbotron-fluid">
+        <div className="container-fluid">
+          <div className="media">
+            {this.renderAvatar()}
+            <div className="media-body">{this.renderContent()}</div>
+          </div>
         </div>
       </div>
     );

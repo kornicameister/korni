@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { LoadableComponent } from 'react-loadable';
-import { Container, Nav, NavLink, TabContent, TabPane } from 'reactstrap';
 
 import './stats_page.css';
 import {
@@ -50,10 +49,10 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
 
   public render() {
     return (
-      <Container>
+      <div className="container">
         {this.renderTabs()}
         {this.renderTabsContent()}
-      </Container>
+      </div>
     );
   }
 
@@ -67,36 +66,40 @@ export default class StatsPage extends React.Component<any, IStatsPageState> {
 
   private renderTabs() {
     return (
-      <Nav className="stats-nav" tabs>
+      <div className="nav nav-tabs nav-tabs-justified stats-nav">
         {TABS.map(tab => {
           return (
-            <NavLink
+            <div
               key={tab.id}
-              className={classnames({
+              className={classnames('nav-link', {
                 active: this.state.activeTab === tab.id,
               })}
               onClick={() => {
                 this.toggleTab(tab.id);
               }}>
               {tab.label.toUpperCase()}
-            </NavLink>
+            </div>
           );
         })}
-      </Nav>
+      </div>
     );
   }
 
   private renderTabsContent() {
     return (
-      <TabContent activeTab={this.state.activeTab}>
+      <div className="tab-content">
         {TABS.map(tab => {
           return (
-            <TabPane key={tab.id} tabId={tab.id}>
+            <div
+              key={tab.id}
+              className={classnames('tab-pane fade', {
+                'show active': tab.id === this.state.activeTab,
+              })}>
               {React.createElement(tab.cmp, {})}
-            </TabPane>
+            </div>
           );
         })}
-      </TabContent>
+      </div>
     );
   }
 }

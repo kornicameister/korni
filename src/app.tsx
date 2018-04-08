@@ -1,17 +1,6 @@
+import classnames from 'classnames';
 import * as React from 'react';
 import { NavLink as RouterNavLink, Route, Switch } from 'react-router-dom';
-import {
-  Col,
-  Collapse,
-  Container,
-  Fade,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem,
-  Row,
-} from 'reactstrap';
 
 import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
@@ -29,10 +18,10 @@ export default class App extends React.Component<{}, State> {
 
   public render() {
     return (
-      <Container>
+      <div className="container">
         {this.renderBar()}
         {this.renderContent()}
-      </Container>
+      </div>
     );
   }
   private toggleNavBar() {
@@ -44,41 +33,46 @@ export default class App extends React.Component<{}, State> {
     const { is_open } = this.state;
     return (
       <header>
-        <Navbar color="dark" expand="md" className="rounded" dark>
-          <NavbarBrand href="/">
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <button
+            className="navbar-toggler"
+            type="button"
+            onClick={() => this.toggleNavBar()}>
+            <span className="navbar-toggler-icon" />
+          </button>
+          <a className="navbar-brand" href="/">
             <b>kornicameister [{process.env.REACT_APP_VERSION as string}]</b>
-          </NavbarBrand>
-          <NavbarToggler onClick={() => this.toggleNavBar()} />
-          <Collapse isOpen={is_open} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
+          </a>
+          <div className={classnames('navbar-collapse', { collapse: !is_open })}>
+            <ul className="ml-auto navbar-nav">
+              <div className="nav-item">
                 <RouterNavLink to="/" className="nav-link">
                   Home
                 </RouterNavLink>
-              </NavItem>
-              <NavItem>
+              </div>
+              <div className="nav-item">
                 <RouterNavLink to="/cv" className="nav-link">
                   CV
                 </RouterNavLink>
-              </NavItem>
-              <NavItem>
+              </div>
+              <div className="nav-item">
                 <RouterNavLink to="/about" className="nav-link">
                   About
                 </RouterNavLink>
-              </NavItem>
-              <NavItem>
+              </div>
+              <div className="nav-item">
                 <RouterNavLink to="/stats" className="nav-link">
                   Stats
                 </RouterNavLink>
-              </NavItem>
-            </Nav>
+              </div>
+            </ul>
             <img
               src="https://circleci.com/gh/kornicameister/korni/tree/master.svg?style=svg"
               alt="Circle CI badge"
               title="CircleCI @ master"
             />
-          </Collapse>
-        </Navbar>
+          </div>
+        </nav>
       </header>
     );
   }
@@ -86,21 +80,19 @@ export default class App extends React.Component<{}, State> {
   private renderContent() {
     return (
       <main role="main">
-        <Container>
-          <Row>
-            <Col>
-              <Fade>
-                <Switch>
-                  <Route path="/" component={AsyncHome} exact />
-                  <Route path="/cv" component={AsyncCV} />
-                  <Route path="/about" component={AsyncAbout} />
-                  <Route path="/stats" component={AsyncStats} />
-                  <Route component={AsyncNotFound} />
-                </Switch>
-              </Fade>
-            </Col>
-          </Row>
-        </Container>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <Switch>
+                <Route path="/" component={AsyncHome} exact />
+                <Route path="/cv" component={AsyncCV} />
+                <Route path="/about" component={AsyncAbout} />
+                <Route path="/stats" component={AsyncStats} />
+                <Route component={AsyncNotFound} />
+              </Switch>
+            </div>
+          </div>
+        </div>
       </main>
     );
   }

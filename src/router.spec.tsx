@@ -23,10 +23,10 @@ describe('RouteLoader', () => {
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
-    const div = wrapper.find('div');
+    const div = wrapper.find('.container-fluid');
 
     expect(div).toHaveLength(1);
-    expect(div.get(0).props.className).toEqual('alert alert-warning');
+    expect(div.children().get(0).props.className).toEqual('alert alert-warning');
   });
 
   it('renders error', () => {
@@ -38,10 +38,10 @@ describe('RouteLoader', () => {
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
-    const div = wrapper.find('div');
+    const div = wrapper.find('.container-fluid');
 
     expect(div).toHaveLength(1);
-    expect(div.get(0).props.className).toEqual('alert alert-danger');
+    expect(div.children().get(0).props.className).toEqual('alert alert-danger');
   });
 
   it('renders loading if delay exceeded', () => {
@@ -67,7 +67,7 @@ describe('RouteLoader', () => {
     };
 
     const wrapper = shallow(<RouteLoader {...props} />);
-    const div = wrapper.find('div');
+    const div = wrapper.find('.container-fluid');
 
     expect(div).toHaveLength(0);
   });
