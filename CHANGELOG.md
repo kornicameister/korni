@@ -1,3 +1,6 @@
+### Version 0.2.12
+- Include all tags in build & verify (#304)
+
 ### Version 0.2.11
 - Fix veryfying the version (#302)
 - Fix filters for deployment (#303)
