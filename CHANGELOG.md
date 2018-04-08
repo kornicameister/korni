@@ -1,3 +1,8 @@
+### Version 0.2.10
+- Fixup semver for releases (#299)
+- Trying to get deploying up (#300) (tag: 0.2.9)
+- Fix veryfying the version (#301)
+
 ### Version 0.2.9
 - Update ts-jest in / from 22.0.1 to 22.0.2 (#219)
 - Update @types/jest in / from 22.1.0 to 22.1.1 (#220)
