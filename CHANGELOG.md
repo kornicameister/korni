@@ -1,3 +1,7 @@
+### Version 0.2.11
+- Fix veryfying the version (#302)
+- Fix filters for deployment (#303)
+
 ### Version 0.2.10
 - Fixup semver for releases (#299)
 - Trying to get deploying up (#300) (tag: 0.2.9)
