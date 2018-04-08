@@ -126,22 +126,22 @@ workflows:
             - verify
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
-              only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
+              only: /^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/
       - deploy_gr:
           requires:
             - verify_version_match
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
-              only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
+              only: /^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/
       - deploy_gp:
           requires:
             - verify_version_match
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
-              only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
+              only: /^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/
