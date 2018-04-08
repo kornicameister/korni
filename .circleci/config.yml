@@ -129,7 +129,6 @@ workflows:
                 - gh-pages
       - verify_version_match:
           requires:
-            - verify
             - build
           filters:
             branches:
