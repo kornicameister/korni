@@ -126,7 +126,7 @@ workflows:
             - verify
           filters:
             branches:
-              ignore: /.*/
+              only: master
             tags:
               only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
       - deploy_gr:
@@ -134,7 +134,7 @@ workflows:
             - verify_version_match
           filters:
             branches:
-              ignore: /.*/
+              only: master
             tags:
               only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
       - deploy_gp:
@@ -142,6 +142,6 @@ workflows:
             - verify_version_match
           filters:
             branches:
-              ignore: /.*/
+              only: master
             tags:
               only: ^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$
