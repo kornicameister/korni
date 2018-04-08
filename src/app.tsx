@@ -13,7 +13,6 @@ import {
   Row,
 } from 'reactstrap';
 
-import TravisBadge from './common/travis_badge';
 import { AsyncAbout, AsyncCV, AsyncHome, AsyncNotFound, AsyncStats } from './routes';
 
 interface State {
@@ -41,33 +40,6 @@ export default class App extends React.Component<{}, State> {
     this.setState({ is_open: !is_open });
   }
 
-  private renderNav() {
-    return (
-      <Nav className="ml-auto" navbar>
-        <NavItem>
-          <RouterNavLink to="/" className="nav-link">
-            Home
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/cv" className="nav-link">
-            CV
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/about" className="nav-link">
-            About
-          </RouterNavLink>
-        </NavItem>
-        <NavItem>
-          <RouterNavLink to="/stats" className="nav-link">
-            Stats
-          </RouterNavLink>
-        </NavItem>
-      </Nav>
-    );
-  }
-
   private renderBar() {
     const { is_open } = this.state;
     return (
@@ -78,8 +50,33 @@ export default class App extends React.Component<{}, State> {
           </NavbarBrand>
           <NavbarToggler onClick={() => this.toggleNavBar()} />
           <Collapse isOpen={is_open} navbar>
-            {this.renderNav()}
-            <TravisBadge />
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <RouterNavLink to="/" className="nav-link">
+                  Home
+                </RouterNavLink>
+              </NavItem>
+              <NavItem>
+                <RouterNavLink to="/cv" className="nav-link">
+                  CV
+                </RouterNavLink>
+              </NavItem>
+              <NavItem>
+                <RouterNavLink to="/about" className="nav-link">
+                  About
+                </RouterNavLink>
+              </NavItem>
+              <NavItem>
+                <RouterNavLink to="/stats" className="nav-link">
+                  Stats
+                </RouterNavLink>
+              </NavItem>
+            </Nav>
+            <img
+              src="https://circleci.com/gh/kornicameister/korni/tree/master.svg?style=svg"
+              alt="Circle CI badge"
+              title="CircleCI @ master"
+            />
           </Collapse>
         </Navbar>
       </header>
