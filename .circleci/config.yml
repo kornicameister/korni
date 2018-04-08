@@ -108,7 +108,7 @@ jobs:
 
 workflows:
   version: 2
-  pipeline:
+  verify_and_build:
     jobs:
       - verify:
           filters:
@@ -120,22 +120,38 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+  verify_build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - verify_version_match:
           requires:
             - verify
             - build
           filters:
+            branches:
+              ignore:
+                - gh-pages
             tags:
               only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
       - deploy_gr:
           requires:
             - verify_version_match
           filters:
+            branches:
+              ignore:
+                - gh-pages
             tags:
               only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
       - deploy_gp:
           requires:
             - verify_version_match
           filters:
+            branches:
+              ignore:
+                - gh-pages
             tags:
               only: /(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
