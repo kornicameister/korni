@@ -55,7 +55,7 @@ jobs:
           command: |
             repo_tag=$(git describe --tags)
             pkg_tag=$(node -p "require('./package.json').version")
-            [ "${repo_tag}" != "${pkg_tag}" ] && echo "Tag ${repo_tag} and application version ${pkg_tag} differ" &&  exit 666
+            if [ "${repo_tag}" != "${pkg_tag}" ]; then echo "Tag ${repo_tag} and application version ${pkg_tag} differ"; exit 1;  fi
 
 
   # deploy github releases
