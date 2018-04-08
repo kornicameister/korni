@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Jumbotron } from 'reactstrap';
 
 import AboutPage from './about';
 
@@ -11,7 +10,7 @@ describe('AboutPage', () => {
 
   it('contains fluid jumbotron as top-component', () => {
     const wrapper = shallow(<AboutPage />);
-    const el = shallow(<Jumbotron fluid />);
+    const el = shallow(<div className="jumbotron-fluid" />);
     expect(wrapper.first().type()).toEqual(el.type());
   });
 
