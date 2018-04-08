@@ -115,11 +115,15 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+            tags:
+              only: /.*/
       - build:
           filters:
             branches:
               ignore:
                 - gh-pages
+            tags:
+              only: /.*/
       - verify_version_match:
           requires:
             - build
