@@ -2151,8 +2151,8 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
     cssom "0.3.x"
 
 csstype@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.3.0.tgz#062e141c78345cf814da0e0b716ad777931b08af"
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.3.1.tgz#3ee8e0110cb414e636c9c53c5e61d3118ccdec87"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
