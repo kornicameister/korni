@@ -163,8 +163,8 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
 
 "@types/react-autosuggest@^9.3.3":
-  version "9.3.3"
-  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.3.tgz#a6bc7a6f5076629372fafe2e7a48e15f5b76ff90"
+  version "9.3.4"
+  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.4.tgz#1e0fee77f077e6b703a414ce7a3e35c124ed9e69"
   dependencies:
     "@types/react" "*"
 
@@ -191,8 +191,8 @@
     "@types/react-router" "*"
 
 "@types/react-router@*":
-  version "4.0.23"
-  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.23.tgz#d0509dcbdb1c686aed8f3d5cb186f42e5fbe7c2a"
+  version "4.0.24"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.24.tgz#e378e84186522216ae36cea12313965e190cd55f"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -204,8 +204,8 @@
     csstype "^2.2.0"
 
 "@types/reactstrap@^5.0.19":
-  version "5.0.21"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.21.tgz#212226b4d53b7a536775d82f981ad0c1770992be"
+  version "5.0.23"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.23.tgz#687ed94f7f28c9c05643ede1fba9b4a518dfae7d"
   dependencies:
     "@types/react" "*"
 
@@ -220,8 +220,8 @@
     source-map "^0.6.1"
 
 "@types/webpack@*":
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.1.3.tgz#1cbb3fceb275590b63addf7cfb1534fda7e645a1"
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.1.4.tgz#553fe3f7ac1d8b403ebb01f25b31272b234d5ef6"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -2151,8 +2151,8 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
     cssom "0.3.x"
 
 csstype@^2.2.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.3.1.tgz#3ee8e0110cb414e636c9c53c5e61d3118ccdec87"
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.4.0.tgz#6c7d711cc135dcd90c812a80213eab006fc1acff"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -3683,8 +3683,8 @@ http-errors@~1.6.2:
     statuses ">= 1.4.0 < 2"
 
 http-parser-js@>=0.4.0:
-  version "0.4.11"
-  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.11.tgz#5b720849c650903c27e521633d94696ee95f3529"
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.12.tgz#b9cfbf4a2cf26f0fc34b10ca1489a27771e3474f"
 
 http-proxy-middleware@~0.17.4:
   version "0.17.4"
@@ -4985,8 +4985,8 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
 "lodash@>=3.5 <5", lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 log-driver@^1.x:
   version "1.2.7"
@@ -7387,9 +7387,10 @@ source-map-support@^0.4.15:
     source-map "^0.5.6"
 
 source-map-support@^0.5.0:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.4.tgz#54456efa89caa9270af7cd624cc2f123e51fbae8"
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.5.tgz#0d4af9e00493e855402e8ec36ebed2d266fceb90"
   dependencies:
+    buffer-from "^1.0.0"
     source-map "^0.6.0"
 
 source-map-url@^0.4.0:
