@@ -209,11 +209,12 @@
   dependencies:
     csstype "^2.2.0"
 
-"@types/reactstrap@^5.0.19":
-  version "5.0.24"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-5.0.24.tgz#0a8fdbe8d81f48905300229763ed73d51db5d09b"
+"@types/reactstrap@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-6.0.0.tgz#76224f7de991767414e9edd68101ac64967938cb"
   dependencies:
     "@types/react" "*"
+    popper.js "^1.14.1"
 
 "@types/tapable@*":
   version "1.0.2"
@@ -5963,6 +5964,10 @@ please-upgrade-node@^3.0.2:
 pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
+
+popper.js@^1.14.1:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.3.tgz#1438f98d046acf7b4d78cd502bf418ac64d4f095"
 
 portfinder@^1.0.9:
   version "1.0.13"
