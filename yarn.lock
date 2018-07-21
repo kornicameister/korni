@@ -156,9 +156,9 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
-"@types/jest@23.1.4":
-  version "23.1.4"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.1.4.tgz#71e1e2d08b1db742f479ee2795536ebc999a2419"
+"@types/jest@23.3.0":
+  version "23.3.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.0.tgz#5dd70033b616a6228042244ebd992f6426808810"
 
 "@types/jsonp@^0.2.0":
   version "0.2.0"
@@ -209,9 +209,9 @@
   dependencies:
     csstype "^2.2.0"
 
-"@types/reactstrap@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-6.0.0.tgz#76224f7de991767414e9edd68101ac64967938cb"
+"@types/reactstrap@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@types/reactstrap/-/reactstrap-6.0.1.tgz#72616e6f6ef985b9d5bda748c084db4025f5ecaf"
   dependencies:
     "@types/react" "*"
     popper.js "^1.14.1"
