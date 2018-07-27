@@ -61,7 +61,7 @@
     "@types/classnames": "^2.2.3",
     "@types/enzyme": "^3.1.9",
     "@types/google.visualization": "^0.0.41",
-    "@types/jest": "23.3.0",
+    "@types/jest": "23.3.1",
     "@types/jsonp": "^0.2.0",
     "@types/react-autosuggest": "^9.3.3",
     "@types/react-dom": "^16.0.3",
