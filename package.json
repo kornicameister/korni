@@ -71,7 +71,7 @@
     "codacy-coverage": "3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "husky": "^0.14.3",
+    "husky": "1.1.1",
     "jest-enzyme": "6.0.2",
     "lint-staged": "7.2.2",
     "prettier": "^1.11.1",
