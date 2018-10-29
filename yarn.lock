@@ -173,10 +173,10 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/google.visualization@0.0.43":
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.43.tgz#d4172f94292b68a49a5666033386ce177f0ead9d"
-  integrity sha512-SmQWGJ4UykOzChj+AVo5JB8vC0hDnI3hUT6auRD34mnyO/s9ll1i4cT1hSmng3ZXbxG7qAdOctNElOpD9xqJZQ==
+"@types/google.visualization@0.0.44":
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.44.tgz#fafcfbdbd7def1c49a6b2d6a9f773fbcdeeded87"
+  integrity sha512-Lq6pLH1FRCHipD5AvhYGQX3poxypfx/XX10rM6JTxhmTTU+rLcS15v1E4421S+by/YLVbCfhcC4SfV2qv8gPaw==
 
 "@types/history@*":
   version "4.6.2"
