@@ -9,8 +9,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "yarn prettier",
-      "yarn lint",
+      "npm run prettier",
+      "npm run lint",
       "git add"
     ]
   },
