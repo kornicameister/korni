@@ -35,8 +35,7 @@ describe('StatsPage', () => {
 
     it('toggling tab changes state', () => {
       const label: string = 'wakatime';
-      el
-        .find('.nav-link')
+      el.find('.nav-link')
         .findWhere((n: any) => n.key() === label)
         .simulate('click');
       expect(el.state().activeTab).toEqual('wakatime');
@@ -51,8 +50,7 @@ describe('StatsPage', () => {
       expect(c).toHaveLength(0);
 
       // simulate clicking on it
-      el
-        .find('.nav-link')
+      el.find('.nav-link')
         .findWhere((n: any) => {
           return n.key() === label;
         })

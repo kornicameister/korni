@@ -186,7 +186,8 @@ export class CVPage extends React.Component<Props & RouteComponentProps<Props>, 
                         If you need help please go{' '}
                         <Link to="/cv/help" aria-label="CV Help">
                           here
-                        </Link>.
+                        </Link>
+                        .
                       </p>
                     </div>
                   </div>

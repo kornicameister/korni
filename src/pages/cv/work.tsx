@@ -13,9 +13,11 @@ const CVWork: React.SFC<{ work: object }> = props => {
     w.startDate = moment(w.startDate);
     w.endDate = eDate ? moment(eDate) : 'now';
   });
-  work.sort((a, b): number => {
-    return moment(b.startDate).diff(a.startDate);
-  });
+  work.sort(
+    (a, b): number => {
+      return moment(b.startDate).diff(a.startDate);
+    },
+  );
 
   return (
     <div id="work-accordion" role="tablist" aria-label="work" className="container-fluid">
@@ -28,12 +30,11 @@ const CVWork: React.SFC<{ work: object }> = props => {
                 className="card-header"
                 aria-label="company">
                 <h4 className="mb-0 pull-left">
-                  {w.position} [<a
-                    href={w.website}
-                    aria-label={w.company}
-                    target="_blank">
+                  {w.position} [
+                  <a href={w.website} aria-label={w.company} target="_blank">
                     {w.company}
-                  </a>]
+                  </a>
+                  ]
                 </h4>
                 <a
                   className="pull-right"

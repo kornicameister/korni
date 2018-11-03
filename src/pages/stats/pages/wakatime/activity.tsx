@@ -55,7 +55,8 @@ class WakaTimeActivityView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeActivity extends WakaTimeContainer {
-  protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/8e8cf819-5351-4b04-a8f1-e44da271d477.json';
+  protected dataUrl: string =
+    'https://wakatime.com/share/@kornicameister/8e8cf819-5351-4b04-a8f1-e44da271d477.json';
 
   public render() {
     return <WakaTimeActivityView data={this.state.data} stage={this.state.stage} />;
