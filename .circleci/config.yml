@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           keys:
           - cache-v2-{{ checksum "package.json" }}-{{ arch }}
-      - run: yarn install
+      - run: npm ci
       - save_cache:
           paths:
             - ~/.npm
