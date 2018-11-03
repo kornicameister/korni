@@ -7,7 +7,7 @@ jobs:
 
     steps:
       - checkout
-      - run: npm install npm@latest --no-save
+      - run: sudo npm install -g npm@latest
 
       - restore_cache:
           keys:
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - checkout
-      - run: npm install npm@latest --no-save
+      - run: sudo npm install -g npm@latest
 
       - restore_cache:
           keys:
@@ -101,7 +101,8 @@ jobs:
       # setup everything
       - run:
           command: |
-            npm install npm@latest gh-pages --no-save ; \
+            sudo npm install -g npm@latest ; \
+            npm install gh-pages --no-save ; \
             git config --global user.email "build_${CIRCLE_BUILD_NUM}@circleci.com" ; \
             git config --global user.name "CircleCI"
       #  do release
