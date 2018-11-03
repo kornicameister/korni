@@ -8,13 +8,6 @@ jest.mock('./stats_routes', () => ({
   LoadableWakaTime: () => '',
   LoadableWhatPulse: () => '',
 }));
-import {
-  LoadableGithub,
-  LoadableGitlab,
-  LoadableKorni,
-  LoadableWakaTime,
-  LoadableWhatPulse,
-} from './stats_routes';
 
 import StatsPage from './stats_page';
 
@@ -91,50 +84,6 @@ describe('StatsPage', () => {
         });
         expect(foundPane).toHaveLength(1);
         expect(foundLink).toHaveLength(1);
-      });
-      it(`each pane contains appropriate loadable for ${label}`, () => {
-        const foundCmp = el.find('.tab-pane').findWhere((n: any) => {
-          switch (label) {
-            case 'wakatime':
-              return (
-                n
-                  .children()
-                  .first()
-                  .type() === LoadableWakaTime
-              );
-            case 'github':
-              return (
-                n
-                  .children()
-                  .first()
-                  .type() === LoadableGithub
-              );
-            case 'gitlab':
-              return (
-                n
-                  .children()
-                  .first()
-                  .type() === LoadableGitlab
-              );
-            case 'whatpulse':
-              return (
-                n
-                  .children()
-                  .first()
-                  .type() === LoadableWhatPulse
-              );
-            case 'korni':
-              return (
-                n
-                  .children()
-                  .first()
-                  .type() === LoadableKorni
-              );
-            default:
-              return false;
-          }
-        });
-        expect(foundCmp).toHaveLength(1);
       });
     });
   });
