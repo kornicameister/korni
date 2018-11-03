@@ -58,7 +58,8 @@ class WakaTimeEditorView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeEditor extends WakaTimeContainer {
-  protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/084a7fed-951e-4c62-9871-208b7b55e4ab.json';
+  protected dataUrl: string =
+    'https://wakatime.com/share/@kornicameister/084a7fed-951e-4c62-9871-208b7b55e4ab.json';
 
   public render() {
     return <WakaTimeEditorView data={this.state.data} stage={this.state.stage} />;

@@ -54,7 +54,8 @@ class WakaTimeOSStatsView extends React.Component<IViewProps, any> {
 }
 
 export default class WakaTimeOS extends WakaTimeContainer {
-  protected dataUrl: string = 'https://wakatime.com/share/@kornicameister/e1cf8cbb-220d-42a9-b636-a2e12d3a6850.json';
+  protected dataUrl: string =
+    'https://wakatime.com/share/@kornicameister/e1cf8cbb-220d-42a9-b636-a2e12d3a6850.json';
 
   public render() {
     return <WakaTimeOSStatsView data={this.state.data} stage={this.state.stage} />;

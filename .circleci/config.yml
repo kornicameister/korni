@@ -3,42 +3,48 @@ jobs:
   verify:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:9.11.1
+      - image: circleci/node:9.11.2
 
     steps:
       - checkout
+      - run: sudo npm install -g npm@latest
 
       - restore_cache:
           keys:
-          - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-      - run: yarn install --frozen-lockfile
+          - cache-v2-{{ checksum "package.json" }}-{{ arch }}
+      - run: npm ci
       - save_cache:
           paths:
-            - ~/.cache/yarn
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+            - ~/.npm
+            - ./node-modules
+            - ./package-lock.json
+          key: cache-v2-{{ checksum "package.json" }}-{{ arch }}
 
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn coverage
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run coverage
 
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:9.11.1
+      - image: circleci/node:9.11.2
 
     steps:
       - checkout
+      - run: sudo npm install -g npm@latest
 
       - restore_cache:
           keys:
-          - yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-      - run: yarn install
+          - cache-v2-{{ checksum "package.json" }}-{{ arch }}
+      - run: npm ci
       - save_cache:
           paths:
-            - ~/.cache/yarn
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+            - ~/.npm
+            - ./node-modules
+            - ./package-lock.json
+          key: cache-v2-{{ checksum "package.json" }}-{{ arch }}
 
-      - run: yarn build
+      - run: npm run build
       - persist_to_workspace:
           root: build
           paths:
@@ -48,7 +54,7 @@ jobs:
   verify_version_match:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:9.11.1
+      - image: circleci/node:9.11.2
     steps:
       - checkout
       - run:
@@ -86,7 +92,7 @@ jobs:
   deploy_gp:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:9.11.1
+      - image: circleci/node:9.11.2
     steps:
       # prepare
       - checkout
@@ -95,7 +101,8 @@ jobs:
       # setup everything
       - run:
           command: |
-            yarn add gh-pages --no-lockfile ; \
+            sudo npm install -g npm@latest ; \
+            npm install gh-pages --no-save ; \
             git config --global user.email "build_${CIRCLE_BUILD_NUM}@circleci.com" ; \
             git config --global user.name "CircleCI"
       #  do release
