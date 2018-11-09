@@ -1,0 +1,23 @@
+{
+  "name": "src.kornicameister.github.io",
+  "homepage": "http://kornicameister.github.io/korni",
+  "version": "0.2.12",
+  "private": true,
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "start": "elm-app start",
+    "build": "elm-app build",
+    "test": "elm-app test",
+    "lint": "elm-format --validate src tests && prettier --list-different '**/*.*'"
+  },
+  "dependencies": {
+    "create-elm-app": "^2.2.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.3",
+    "elm-format": "0.8.1"
+  }
+}
