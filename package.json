@@ -12,7 +12,8 @@
     "build": "elm-app build",
     "test": "elm-app test",
     "lint": "elm-format --validate src tests && prettier --list-different '**/*.*'",
-    "prettier": "prettier --write --config .prettierrc 'src/*.js'"
+    "prettier": "prettier --write --config .prettierrc 'src/*.js'",
+    "eject": "elm-app eject"
   },
   "dependencies": {
     "create-elm-app": "^2.2.3"
