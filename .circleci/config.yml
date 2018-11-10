@@ -11,12 +11,12 @@ jobs:
 
       - restore_cache:
           keys:
-          - cache-v3-{{ checksum "package.json" }}
+          - cache-v4-{{ checksum "package.json" }}
       - run: npm ci
       - save_cache:
           paths:
             - ./node-modules
-          key: cache-v3-{{ checksum "package.json" }}
+          key: cache-v4-{{ checksum "package.json" }}
 
       - run:
           name: Lint
