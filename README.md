@@ -2,5 +2,5 @@
 
 # Korni
 
-**korni** is a project aiming to be my personal webpage and a tool to keep myself
-updated with what is going on in React world.
+**korni** is a project aiming to be my personal webpage.
+Written with `Elm` help is a chance to write something cool and make my mark in `Elm` world.

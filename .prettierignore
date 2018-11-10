@@ -1,0 +1,14 @@
+# Exclude Elm files since they are handled by elm-format
+**/elm-stuff/
+*.elm
+
+# Exclude unsupported files
+*.html
+
+# Exclude generated files
+*.css
+
+# Exclude everything but src
+/*
+!/src
+
