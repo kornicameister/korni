@@ -11,14 +11,12 @@ jobs:
 
       - restore_cache:
           keys:
-          - cache-v3-{{ checksum "package.json" }}-{{ arch }}
+          - cache-v3-{{ checksum "package.json" }}
       - run: npm ci
       - save_cache:
           paths:
-            - ~/.npm
             - ./node-modules
-            - ./package-lock.json
-          key: cache-v3-{{ checksum "package.json" }}-{{ arch }}
+          key: cache-v3-{{ checksum "package.json" }}
 
       - run:
           name: Lint
