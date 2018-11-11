@@ -11,5 +11,5 @@ node_modules/
 npm-debug.log*
 
 # css files, because we build from scss
-.css
+*.css
 
