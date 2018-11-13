@@ -1,5 +1,5 @@
 // styles
-import 'normalize.css'
+import 'normalize.css';
 import './main.css';
 
 // Elm and rest
