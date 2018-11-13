@@ -1,15 +1,31 @@
-body {
-  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans',
-    'Helvetica Neue', sans-serif;
-  margin: 0;
-  text-align: center;
-  color: #293c4b;
-  h1 {
-    font-size: 30px;
+main {
+  display: grid;
+  grid-template-columns: 1fr 15rem;
+  grid-template-rows: 5rem auto 2rem;
+  grid-template-areas:
+    'header header'
+    'console console'
+    'commands footer';
+  grid-row-gap: 1px;
+  width: 100vw;
+  height: 100vh;
+  align-items: stretch;
+  justify-content: stretch;
+  align-content: stretch;
+
+  header {
+    grid-area: header;
   }
 
-  img {
-    margin: 20px 0;
-    max-width: 200px;
+  section {
+    grid-area: console;
+  }
+
+  input {
+    grid-area: commands;
+  }
+
+  footer {
+    grid-area: commands;
   }
 }
