@@ -1,8 +1,8 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
-import Browser
-import Html exposing (Html, div, h1, img, text)
-import Html.Attributes exposing (src)
+import Browser as B
+import Html as H
+import Html.Attributes as A
 
 
 
@@ -35,11 +35,13 @@ update msg model =
 ---- VIEW ----
 
 
-view : Model -> Html Msg
+view : Model -> H.Html Msg
 view model =
-    div []
-        [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
+    H.main_ []
+        [ H.header [] []
+        , H.section [] []
+        , H.input [] []
+        , H.footer [] []
         ]
 
 
@@ -49,7 +51,7 @@ view model =
 
 main : Program () Model Msg
 main =
-    Browser.element
+    B.element
         { view = view
         , init = \_ -> init
         , update = update
