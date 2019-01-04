@@ -13,3 +13,6 @@ npm-debug.log*
 # css files, because we build from scss
 *.css
 
+# env files for local dev
+.env.development*
+.env.*.local
