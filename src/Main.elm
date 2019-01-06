@@ -15,6 +15,7 @@ import View.Navigation
 
 type alias Model =
     { version : String
+    , navKey : Browser.Navigation.Key
     , navigationModel : View.Navigation.Model
     }
 
@@ -24,12 +25,13 @@ init :
     -> Url.Url
     -> Browser.Navigation.Key
     -> ( Model, Cmd Msg )
-init { version, trianglifyDataUris } navigationKey url =
+init { version, trianglifyDataUris } url navKey =
     let
         ( navigationModel, navigationMsg ) =
             View.Navigation.init trianglifyDataUris
     in
     ( { version = version
+      , navKey = navKey
       , navigationModel = navigationModel
       }
     , navigationMsg |> Cmd.map NavigationMsg
@@ -64,8 +66,8 @@ view model =
 
 type Msg
     = NavigationMsg View.Navigation.Msg
+    | URLRequest Browser.UrlRequest
     | URLChanged Url.Url
-    | LinkClicked Browser.UrlRequest
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -78,10 +80,19 @@ update msg model =
             in
             ( { model | navigationModel = nextModel }, nextMsg |> Cmd.map NavigationMsg )
 
-        URLChanged url ->
-            ( model, Cmd.none )
+        URLRequest request ->
+            case request of
+                Browser.Internal url ->
+                    ( model
+                    , Browser.Navigation.pushUrl model.navKey (Url.toString url)
+                    )
 
-        LinkClicked request ->
+                Browser.External url ->
+                    ( model
+                    , Browser.Navigation.load url
+                    )
+
+        URLChanged url ->
             ( model, Cmd.none )
 
 
@@ -97,5 +108,5 @@ main =
         , update = update
         , subscriptions = always Sub.none
         , onUrlChange = URLChanged
-        , onUrlRequest = LinkClicked
+        , onUrlRequest = URLRequest
         }
