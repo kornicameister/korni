@@ -1,68 +1,66 @@
-main {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  grid-template-areas:
-    '. header . . . . . .'
-    '. . . . content content content .'
-    '. logo logo . content content content .'
-    '. logo logo . content content content .'
-    '. logo logo . content content content .'
-    '. . . . . . . .';
-  grid-gap: 1rem;
+@font-face {
+  font-family: 'hattori_hanzolight';
+  src: local('Hattori Hanzo Light'),
+    url('./fonts/Hattori_Hanzo-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
-  margin: 2vh 1vw 2vh 1vw;
-  width: 98vw;
-  height: 96vh;
+body {
+  font-family: 'hattori_hanzolight';
 
-  align-items: stretch;
-  justify-content: stretch;
-  align-content: stretch;
-
-  header {
-    grid-area: header;
-    align-self: center;
-    justify-self: center;
-  }
-
-  .logo {
-    grid-area: logo;
-    img {
-      height: auto;
-      max-width: 100%;
-      object-fit: cover;
-      border-radius: 5rem;
-    }
-  }
-
-  .content {
-    grid-area: content;
+  main {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
-      'c11 c12 c13 c14'
-      'c21 c22 c23 c24'
-      'c31 c32 c33 c34'
-      'c41 c42 c43 c44';
+      '. header . . . . . .'
+      '. logo logo . content content content .'
+      '. logo logo . content content content .'
+      '. logo logo . content content content .'
+      '. logo logo . content content content .'
+      '. . . . . . . .';
     grid-gap: 1rem;
+
+    margin: 2vh 1vw 2vh 1vw;
+    width: 98vw;
+    height: 96vh;
 
     align-items: stretch;
     justify-content: stretch;
     align-content: stretch;
 
-    margin: 1rem 0 1rem 0;
+    header {
+      grid-area: header;
+      align-self: center;
+      justify-self: center;
+    }
 
-    .tile {
-      width: 100%;
-      height: 100%;
+    .logo {
+      grid-area: logo;
+      img {
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 5rem;
+      }
+    }
 
-      &:hover {
-        transform: scale(1.1);
-        border-radius: 5%;
-        z-index: 1000;
-        box-shadow: 0px 0px 15px 5px rgba(202, 194, 242, 1);
-        cursor: pointer;
+    .content {
+      grid-area: content;
+
+      align-items: stretch;
+      justify-content: stretch;
+      align-content: stretch;
+
+      margin: 1rem 0 1rem 0;
+      box-shadow: 0px 0px 15px 5px rgba(202, 194, 242, 1);
+
+      .greeting {
+        text-align: center;
+      }
+      section {
+        padding: 0 1.25rem 0 1.25rem;
       }
     }
   }

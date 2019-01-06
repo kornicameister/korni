@@ -6,7 +6,6 @@ import Html as H
 import Html.Attributes as A
 import Task
 import Url
-import View.Navigation
 
 
 
@@ -16,7 +15,6 @@ import View.Navigation
 type alias Model =
     { version : String
     , navKey : Browser.Navigation.Key
-    , navigationModel : View.Navigation.Model
     }
 
 
@@ -26,15 +24,10 @@ init :
     -> Browser.Navigation.Key
     -> ( Model, Cmd Msg )
 init { version, trianglifyDataUris } url navKey =
-    let
-        ( navigationModel, navigationMsg ) =
-            View.Navigation.init trianglifyDataUris
-    in
     ( { version = version
       , navKey = navKey
-      , navigationModel = navigationModel
       }
-    , navigationMsg |> Cmd.map NavigationMsg
+    , Cmd.none
     )
 
 
@@ -53,8 +46,46 @@ view model =
             , H.section [ A.class "logo" ]
                 [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
                 ]
-            , View.Navigation.view model.navigationModel
-                |> H.map NavigationMsg
+            , H.article [ A.class "content" ]
+                [ H.h1 [ A.class "greeting" ] [ H.text "Boya mates" ]
+                , H.section []
+                    [ H.p []
+                        [ H.text "I am "
+                        , H.strong [] [ H.text "kornicameister" ]
+                        , H.text " also known as "
+                        , H.i [] [ H.text "Tomasz Trębski." ]
+                        ]
+                    ]
+                , H.section []
+                    [ H.p []
+                        [ H.text "Born in 1990 in Łowicz, Poland - I actually never thought my journey with computers "
+                        , H.text "might be something more than playing video games or being exhausted after being forced to write those "
+                        , H.text "\"hello-world\"-ish programs in Pascal during my high school classes. "
+                        , H.strong [] [ H.text "I was so wrong, wasn't I?" ]
+                        ]
+                    ]
+                , H.section []
+                    [ H.p []
+                        [ H.text "I think that some credit must be given to my classmate from the time I was doing my engineering degree "
+                        , H.text " from Logistic. He was, back then, about to graduate with the same degree from computer science. "
+                        , H.text "As a extracurricular activity; ha has infected me with the love for programming"
+                        ]
+                    ]
+                , H.section []
+                    [ H.p []
+                        [ H.text "I started out by doing simple C/C++ programs, just to get myself familiar with the world I was "
+                        , H.text "entering. After that I met Java and I think that it kept me busy for around 3 years, including "
+                        , H.text "my first 2 years of professional career. "
+                        , H.text "Then, I joined Python camp and I have been its faitful member since 2015."
+                        ]
+                    , H.br [] []
+                    , H.p []
+                        [ H.text "But I haven't stopped there and I am still exploring this wonderful world that allowed me to "
+                        , H.text "indulge my passion to learn, give me only so much joy a challange can bring "
+                        , H.text "and, last but no less important, to start a family to share a life. "
+                        ]
+                    ]
+                ]
             ]
         ]
     }
@@ -65,21 +96,13 @@ view model =
 
 
 type Msg
-    = NavigationMsg View.Navigation.Msg
-    | URLRequest Browser.UrlRequest
+    = URLRequest Browser.UrlRequest
     | URLChanged Url.Url
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NavigationMsg innerMsg ->
-            let
-                ( nextModel, nextMsg ) =
-                    View.Navigation.update innerMsg model.navigationModel
-            in
-            ( { model | navigationModel = nextModel }, nextMsg |> Cmd.map NavigationMsg )
-
         URLRequest request ->
             case request of
                 Browser.Internal url ->
