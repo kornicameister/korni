@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:10.13.0
+      - image: circleci/node:11.6.0
 
     steps:
       - checkout
@@ -37,7 +37,7 @@ jobs:
   verify_version_match:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:10.13.0
+      - image: circleci/node:11.6.0
     steps:
       - checkout
       - run:
