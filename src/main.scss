@@ -1,12 +1,14 @@
 main {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   grid-template-areas:
-    'header header . content content content'
-    'logo logo . content content content'
-    'logo logo . content content content'
-    'logo logo . content content content';
+    '. header . . . . . .'
+    '. . . . content content content .'
+    '. logo logo . content content content .'
+    '. logo logo . content content content .'
+    '. logo logo . content content content .'
+    '. . . . . . . .';
   grid-gap: 1rem;
 
   margin: 2vh 1vw 2vh 1vw;
@@ -26,8 +28,8 @@ main {
   .logo {
     grid-area: logo;
     img {
-      height: 100%;
-      width: 100%;
+      height: auto;
+      max-width: 100%;
       object-fit: cover;
       border-radius: 5rem;
     }
