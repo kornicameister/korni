@@ -1,9 +1,11 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
-import Browser as B
+import Browser
+import Browser.Navigation
 import Html as H
 import Html.Attributes as A
 import Task
+import Url
 import View.Navigation
 
 
@@ -17,8 +19,12 @@ type alias Model =
     }
 
 
-init : String -> List String -> ( Model, Cmd Msg )
-init version trianglifyDataUris =
+init :
+    { version : String, trianglifyDataUris : List String }
+    -> Url.Url
+    -> Browser.Navigation.Key
+    -> ( Model, Cmd Msg )
+init { version, trianglifyDataUris } navigationKey url =
     let
         ( navigationModel, navigationMsg ) =
             View.Navigation.init trianglifyDataUris
@@ -34,18 +40,22 @@ init version trianglifyDataUris =
 ---- VIEW ----
 
 
-view : Model -> H.Html Msg
+view : Model -> Browser.Document Msg
 view model =
-    H.main_ []
-        [ H.header []
-            [ H.h1 [] [ H.strong [] [ [ "korni", model.version ] |> String.join "@" |> H.text ] ]
+    { title = "Korni"
+    , body =
+        [ H.main_ []
+            [ H.header []
+                [ H.h1 [] [ H.strong [] [ [ "korni", model.version ] |> String.join "@" |> H.text ] ]
+                ]
+            , H.section [ A.class "logo" ]
+                [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
+                ]
+            , View.Navigation.view model.navigationModel
+                |> H.map NavigationMsg
             ]
-        , H.section [ A.class "logo" ]
-            [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
-            ]
-        , View.Navigation.view model.navigationModel
-            |> H.map NavigationMsg
         ]
+    }
 
 
 
@@ -54,6 +64,8 @@ view model =
 
 type Msg
     = NavigationMsg View.Navigation.Msg
+    | URLChanged Url.Url
+    | LinkClicked Browser.UrlRequest
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -66,6 +78,12 @@ update msg model =
             in
             ( { model | navigationModel = nextModel }, nextMsg |> Cmd.map NavigationMsg )
 
+        URLChanged url ->
+            ( model, Cmd.none )
+
+        LinkClicked request ->
+            ( model, Cmd.none )
+
 
 
 ---- PROGRAM ----
@@ -73,9 +91,11 @@ update msg model =
 
 main : Program { version : String, trianglifyDataUris : List String } Model Msg
 main =
-    B.element
+    Browser.application
         { view = view
-        , init = \{ version, trianglifyDataUris } -> init version trianglifyDataUris
+        , init = init
         , update = update
         , subscriptions = always Sub.none
+        , onUrlChange = URLChanged
+        , onUrlRequest = LinkClicked
         }
