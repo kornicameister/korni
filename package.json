@@ -27,6 +27,6 @@
     "concurrently": "^4.0.1",
     "prettier": "^1.15.3",
     "elm-format": "0.8.1",
-    "webpack": "^4.28.4"
+    "webpack": "^4.29.0"
   }
 }
