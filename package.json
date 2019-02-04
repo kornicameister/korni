@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
-    "prettier": "^1.16.3",
+    "prettier": "^1.16.4",
     "elm-format": "0.8.1",
     "webpack": "^4.29.0"
   }
