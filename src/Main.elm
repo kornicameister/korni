@@ -27,7 +27,7 @@ init :
     -> Url.Url
     -> Browser.Navigation.Key
     -> ( Model, Cmd Msg )
-init { version, trianglifyDataUris } url navKey =
+init { version } _ navKey =
     ( { version = version
       , navKey = navKey
       }
@@ -146,7 +146,7 @@ update msg model =
                     , Browser.Navigation.load url
                     )
 
-        URLChanged url ->
+        URLChanged _ ->
             ( model, Cmd.none )
 
 
