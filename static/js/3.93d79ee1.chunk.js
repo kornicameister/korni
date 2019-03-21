@@ -1,2 +1,0 @@
-webpackJsonp([3],{111:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(0);n.n(r);t.default=function(){return r.createElement("p",null,"Home page with router")}}});
-//# sourceMappingURL=3.93d79ee1.chunk.js.map

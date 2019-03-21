@@ -1,6 +1,6 @@
 {
   "short_name": "korni",
-  "name": "kornicameister official page",
+  "name": "Official kornicameister page, built with Elm and love",
   "icons": [
     {
       "src": "favicon.ico",
