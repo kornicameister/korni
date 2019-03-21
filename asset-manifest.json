@@ -1,14 +1,14 @@
 {
-  "main.css": "/static/css/main.a61af105.chunk.css",
-  "main.js": "/static/js/main.d963ead6.chunk.js",
-  "main.css.map": "/static/css/main.a61af105.chunk.css.map",
-  "main.js.map": "/static/js/main.d963ead6.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.d53d57e4.js",
-  "runtime~main.js.map": "/static/js/runtime~main.d53d57e4.js.map",
-  "vendors~main.css": "/static/css/vendors~main.b0f8db13.chunk.css",
-  "vendors~main.js": "/static/js/vendors~main.a3f89202.chunk.js",
-  "vendors~main.css.map": "/static/css/vendors~main.b0f8db13.chunk.css.map",
-  "vendors~main.js.map": "/static/js/vendors~main.a3f89202.chunk.js.map",
-  "index.html": "/index.html",
-  "static/media/main.css": "/static/media/Hattori_Hanzo-webfont.1752a95b.woff"
+  "main.css": "/korni/static/css/main.b97b87de.chunk.css",
+  "main.js": "/korni/static/js/main.eb1494bb.chunk.js",
+  "main.css.map": "/korni/static/css/main.b97b87de.chunk.css.map",
+  "main.js.map": "/korni/static/js/main.eb1494bb.chunk.js.map",
+  "runtime~main.js": "/korni/static/js/runtime~main.5b676a5a.js",
+  "runtime~main.js.map": "/korni/static/js/runtime~main.5b676a5a.js.map",
+  "vendors~main.css": "/korni/static/css/vendors~main.b0f8db13.chunk.css",
+  "vendors~main.js": "/korni/static/js/vendors~main.a3f89202.chunk.js",
+  "vendors~main.css.map": "/korni/static/css/vendors~main.b0f8db13.chunk.css.map",
+  "vendors~main.js.map": "/korni/static/js/vendors~main.a3f89202.chunk.js.map",
+  "index.html": "/korni/index.html",
+  "static/media/main.css": "/korni/static/media/Hattori_Hanzo-webfont.1752a95b.woff"
 }
