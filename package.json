@@ -12,7 +12,7 @@
     "build": "npm run build-css && elm-app build",
     "test": "elm-app test",
     "eject": "elm-app eject",
-    "lint": "elm-format --validate src tests && prettier --list-different '**/*.*'",
+    "lint": "elm-format --validate src tests && prettier --list-different '**/*.*' && elm-analyse",
     "prettier": "prettier --write --config .prettierrc 'src/*.js'",
     "build-css": "node-sass-chokidar --output-style compressed --include-path node_modules/ src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path node_modules/ src/ -o src/ --watch"
@@ -27,6 +27,7 @@
     "concurrently": "^4.0.1",
     "prettier": "^1.16.4",
     "elm-format": "0.8.1",
+    "elm-analyse": "^0.16.1",
     "webpack": "^4.29.6"
   }
 }
