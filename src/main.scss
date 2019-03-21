@@ -14,7 +14,7 @@ body {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
-      '. header . . . . . .'
+      '. header header . . . nav .'
       '. logo logo . content content content .'
       '. logo logo . content content content .'
       '. logo logo . content content content .'
@@ -32,6 +32,15 @@ body {
 
     header {
       grid-area: header;
+      align-self: center;
+      justify-self: center;
+    }
+
+    nav {
+      position: sticky;
+      top: -1;
+
+      grid-area: nav;
       align-self: center;
       justify-self: center;
     }

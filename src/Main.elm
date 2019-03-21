@@ -2,6 +2,11 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
 import Browser.Navigation
+import FontAwesome.Attributes as Icon
+import FontAwesome.Brands as Icon
+import FontAwesome.Icon as Icon
+import FontAwesome.Solid as Icon
+import FontAwesome.Styles as Icon
 import Html as H
 import Html.Attributes as A
 import Task
@@ -40,11 +45,38 @@ view model =
     { title = "Korni"
     , body =
         [ H.main_ []
-            [ H.header []
-                [ H.h1 [] [ H.strong [] [ [ "korni", model.version ] |> String.join "@" |> H.text ] ]
+            [ Icon.css
+            , H.header []
+                [ H.h1 []
+                    [ H.a [ A.href "/" ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.home ]
+                    , H.span [] [ H.text "kornicameister home page..." ]
+                    ]
+                , H.h3 [] [ model.version |> H.text ]
                 ]
             , H.section [ A.class "logo" ]
                 [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
+                ]
+            , H.nav []
+                [ H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.tachometerAlt ]
+                , H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.blog ]
+                , H.a
+                    [ A.href "https://www.linkedin.com/in/tomasz-trębski"
+                    , A.title "My LinkedIn profile"
+                    , A.target "_blank"
+                    ]
+                    [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.linkedin ]
+                , H.a
+                    [ A.href "https://www.github.com/kornicameister"
+                    , A.title "My Github profile"
+                    , A.target "_blank"
+                    ]
+                    [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.github ]
+                , H.a
+                    [ A.href "https://www.gitlab.com/kornicameister"
+                    , A.title "My Gitlab profile"
+                    , A.target "_blank"
+                    ]
+                    [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.gitlab ]
                 ]
             , H.article [ A.class "content" ]
                 [ H.h1 [ A.class "greeting" ] [ H.text "Boya mates" ]
@@ -78,7 +110,7 @@ view model =
                         , H.text "my first 2 years of professional career. "
                         , H.text "Then, I joined Python camp and I have been its faitful member since 2015."
                         ]
-                    , H.br [] []
+                    , H.hr [] []
                     , H.p []
                         [ H.text "But I haven't stopped there and I am still exploring this wonderful world that allowed me to "
                         , H.text "indulge my passion to learn, give me only so much joy a challange can bring "
