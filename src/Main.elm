@@ -22,12 +22,12 @@ type alias Model =
     }
 
 
-init :
-    { version : String, trianglifyDataUris : List String }
-    -> Url.Url
-    -> Browser.Navigation.Key
-    -> ( Model, Cmd Msg )
-init { version } _ navKey =
+type alias Version =
+    String
+
+
+init : Version -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
+init version _ navKey =
     ( { version = version
       , navKey = navKey
       }
@@ -58,6 +58,7 @@ view model =
             , H.nav []
                 [ H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.tachometerAlt ]
                 , H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.blog ]
+                , H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.ad ]
                 , H.a
                     [ A.href "https://www.linkedin.com/in/tomasz-trębski"
                     , A.title "My LinkedIn profile"
@@ -154,7 +155,7 @@ update msg model =
 ---- PROGRAM ----
 
 
-main : Program { version : String, trianglifyDataUris : List String } Model Msg
+main : Program Version Model Msg
 main =
     Browser.application
         { view = view
