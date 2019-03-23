@@ -60,11 +60,11 @@ view model =
 header : Version -> H.Html never
 header version =
     H.header []
-        [ H.h1 []
+        [ H.h1 [ A.class "header" ]
             [ H.a [ A.href "/" ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.home ]
             , H.span [] [ H.text "kornicameister home page..." ]
             ]
-        , H.h3 [] [ version |> H.text ]
+        , H.h3 [ A.class "version" ] [ version |> H.text ]
         ]
 
 

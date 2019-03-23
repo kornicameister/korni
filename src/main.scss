@@ -1,3 +1,6 @@
+@import './responsivness.scss';
+@import './colors.scss';
+
 @font-face {
   font-family: 'hattori_hanzolight';
   src: local('Hattori Hanzo Light'),
@@ -8,6 +11,8 @@
 
 body {
   font-family: 'hattori_hanzolight';
+  @extend .is-black;
+
   &:before {
     content: '';
     position: fixed;
@@ -18,22 +23,36 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
     z-index: 100;
   }
+
+  overflow: hidden auto;
   align-items: stretch;
   justify-content: stretch;
   align-content: stretch;
 
   main {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-areas:
-      '. header header . . . nav .'
-      '. avatar avatar . content content content .'
-      '. avatar avatar . content content content .'
-      '. avatar avatar . content content content .'
-      '. avatar avatar . content content content .'
-      '. . footer footer footer footer . .';
-    grid-gap: 1rem;
+    @include fullhd {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      grid-template-areas:
+        '. header header . . . nav .'
+        '. avatar avatar . content content content .'
+        '. avatar avatar . content content content .'
+        '. avatar avatar . content content content .'
+        '. avatar avatar . content content content .'
+        '. . footer footer footer footer . .';
+      grid-gap: 1rem;
+    }
+
+    @include mobile {
+      display: grid;
+      grid-template-areas:
+        'header'
+        'nav'
+        'content'
+        'footer';
+      grid-row-gap: 1.5rem;
+    }
 
     margin: 2vh 1vw 2vh 1vw;
     width: 98vw;
@@ -41,6 +60,19 @@ body {
 
     header {
       grid-area: header;
+      position: sticky;
+      top: -1px;
+
+      @include mobile {
+        display: inline-flex;
+        align-items: center;
+        .header {
+          flex: 1 0 75%;
+        }
+        .version {
+          flex: 1 0 15%;
+        }
+      }
     }
     footer {
       grid-area: footer;
@@ -50,20 +82,31 @@ body {
 
     nav {
       grid-area: nav;
-
-      position: sticky;
-      top: -1;
+      display: flex;
+      & {
+        flex: 1 0 0;
+      }
+      justify-content: space-between;
+      @include fullhd {
+        justify-content: center;
+      }
     }
 
     .avatar {
-      grid-area: avatar;
-      display: flex;
-
-      img {
-        height: auto;
-        max-width: 100%;
-        object-fit: cover;
-        border-radius: 5rem;
+      display: none;
+      visibility: hidden;
+    }
+    @include fullhd {
+      .avatar {
+        grid-area: avatar;
+        display: flex;
+        visibility: visible;
+        img {
+          height: auto;
+          max-width: 100%;
+          object-fit: scale-down;
+          border-radius: 5rem;
+        }
       }
     }
 
