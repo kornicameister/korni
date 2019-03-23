@@ -1,3 +1,7 @@
+0.3.2 / 2019-03-23
+==================
+
+  * Add a link to github profile according to octocat usage
 0.3.1 / 2019-03-23
 ==================
 
