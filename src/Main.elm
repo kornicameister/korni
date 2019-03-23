@@ -56,10 +56,7 @@ view model =
                 [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
                 ]
             , H.nav []
-                [ H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.tachometerAlt ]
-                , H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.blog ]
-                , H.a [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.ad ]
-                , H.a
+                [ H.a
                     [ A.href "https://www.linkedin.com/in/tomasz-trębski"
                     , A.title "My LinkedIn profile"
                     , A.target "_blank"
