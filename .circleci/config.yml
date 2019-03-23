@@ -3,11 +3,11 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:11.6.0
+      - image: circleci/node:11.12.0
 
     steps:
       - checkout
-      - run: sudo npm install -g npm@latest
+      - run: sudo npm install -g npm@6.9.0
 
       - restore_cache:
           keys:
@@ -39,7 +39,7 @@ jobs:
   verify_version_match:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:11.6.0
+      - image: circleci/node:11.12.0
     steps:
       - checkout
       - run:
@@ -85,7 +85,7 @@ jobs:
       # setup everything
       - run:
           command: |
-            sudo npm install -g npm@latest ; \
+            sudo npm install -g npm@6.9.0 ; \
             npm install gh-pages --no-save ; \
             git config --global user.email "build_${CIRCLE_BUILD_NUM}@circleci.com" ; \
             git config --global user.name "CircleCI"
