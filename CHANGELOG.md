@@ -1,3 +1,12 @@
+0.3.1 / 2019-03-23
+==================
+
+  * Remove footer temporarily
+  * Different avatar and favicon
+  * Trying some responsivness fun & colors
+  * Some nicer layout
+  * Remove currently icons I do not have plans for
+  * Remove some stuff I do not need
 0.3.0 / 2019-03-21
 ==================
 
