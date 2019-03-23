@@ -47,7 +47,16 @@ view model =
             [ Icon.css
             , header model.version
             , H.section [ A.class "avatar" ]
-                [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
+                [ H.a
+                    [ A.href "https://www.github.com/kornicameister"
+                    , A.title "My Github profile"
+                    , A.target "_blank"
+                    ]
+                    [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
+                    ]
+                , H.span [ A.class "caption is-grey" ]
+                    [ H.text "My github profile"
+                    ]
                 ]
             , navigation
             , content
