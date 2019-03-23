@@ -51,7 +51,6 @@ view model =
                 ]
             , navigation
             , content
-            , footer
             ]
         ]
     }
@@ -66,11 +65,6 @@ header version =
             ]
         , H.h3 [ A.class "version" ] [ version |> H.text ]
         ]
-
-
-footer : H.Html never
-footer =
-    H.footer [] []
 
 
 navigation : H.Html never
