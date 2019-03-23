@@ -9,6 +9,35 @@
   font-style: normal;
 }
 
+.side-by-side {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .left-side,
+  .right-side {
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    & > * {
+      align-items: center;
+      display: flex;
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      justify-content: center;
+    }
+  }
+  .left-side {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right-side {
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
 body {
   font-family: 'hattori_hanzolight';
   @extend .is-black;

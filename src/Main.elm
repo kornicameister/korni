@@ -9,6 +9,9 @@ import FontAwesome.Solid as Icon
 import FontAwesome.Styles as Icon
 import Html as H
 import Html.Attributes as A
+import Http
+import Json.Decode as Decode
+import RemoteData
 import Url
 
 
@@ -19,6 +22,9 @@ import Url
 type alias Model =
     { version : String
     , navKey : Browser.Navigation.Key
+    , whatPulse :
+        { profile : RemoteData.WebData WhatPulseProfile
+        }
     }
 
 
@@ -30,9 +36,43 @@ init : Version -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
 init version _ navKey =
     ( { version = version
       , navKey = navKey
+      , whatPulse =
+            { profile = RemoteData.Loading
+            }
       }
-    , Cmd.none
+    , getWhatpulseProfile
     )
+
+
+
+---- REQUESTS ----
+
+
+type alias WhatPulseProfile =
+    { totalKeys : Int
+    , totalClicks : Int
+    , rankKeys : Int
+    , rankClicks : Int
+    }
+
+
+getWhatpulseProfile : Cmd Msg
+getWhatpulseProfile =
+    let
+        decodeStringToInt =
+            String.toInt >> Maybe.map Decode.succeed >> Maybe.withDefault (Decode.fail <| "Failed to decode String to Int")
+
+        decoder =
+            Decode.map4 WhatPulseProfile
+                (Decode.field "Keys" Decode.string |> Decode.andThen decodeStringToInt)
+                (Decode.field "Clicks" Decode.string |> Decode.andThen decodeStringToInt)
+                (Decode.at [ "Ranks", "Keys" ] Decode.string |> Decode.andThen decodeStringToInt)
+                (Decode.at [ "Ranks", "Clicks" ] Decode.string |> Decode.andThen decodeStringToInt)
+    in
+    Http.get
+        { url = "http://api.whatpulse.org/user.php?user=kornicameister&format=json"
+        , expect = Http.expectJson (RemoteData.fromResult >> GotWhatPulseProfile) decoder
+        }
 
 
 
@@ -46,6 +86,7 @@ view model =
         [ H.main_ []
             [ Icon.css
             , header model.version
+            , footer model.whatPulse.profile
             , H.section [ A.class "avatar" ]
                 [ H.a
                     [ A.href "https://www.github.com/kornicameister"
@@ -73,6 +114,32 @@ header version =
             , H.span [] [ H.text "kornicameister home page..." ]
             ]
         , H.h3 [ A.class "version" ] [ version |> H.text ]
+        ]
+
+
+footer : RemoteData.WebData WhatPulseProfile -> H.Html never
+footer whatPulse =
+    H.footer []
+        [ case whatPulse of
+            RemoteData.NotAsked ->
+                H.text ""
+
+            RemoteData.Loading ->
+                Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner
+
+            RemoteData.Failure _ ->
+                H.text ""
+
+            RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
+                H.div [ A.class "side-by-side" ]
+                    [ H.div [ A.class "left-side" ]
+                        [ H.img [ A.src "https://whatpulse.org/images/dashboard/logo.png" ] []
+                        ]
+                    , H.div [ A.class "right-side" ]
+                        [ H.p [] [ H.strong [] [ H.text "Rank" ] ]
+                        , H.p [] [ H.strong [] [ H.text "Total" ] ]
+                        ]
+                    ]
         ]
 
 
@@ -151,11 +218,22 @@ content =
 type Msg
     = URLRequest Browser.UrlRequest
     | URLChanged Url.Url
+    | GotWhatPulseProfile (RemoteData.WebData WhatPulseProfile)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        GotWhatPulseProfile result ->
+            let
+                oldWhatPulse =
+                    model.whatPulse
+
+                newWhatPulse =
+                    { oldWhatPulse | profile = result }
+            in
+            ( { model | whatPulse = newWhatPulse }, Cmd.none )
+
         URLRequest request ->
             case request of
                 Browser.Internal url ->
