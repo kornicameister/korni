@@ -16,15 +16,9 @@
   .left-side,
   .right-side {
     display: flex;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
     & > * {
-      align-items: center;
       display: flex;
-      flex-basis: auto;
-      flex-grow: 0;
-      flex-shrink: 0;
+      align-items: center;
       justify-content: center;
     }
   }
@@ -36,6 +30,13 @@
     align-items: center;
     justify-content: flex-end;
   }
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  object-fit: scale-down;
+  border-radius: 5rem;
 }
 
 body {
@@ -105,8 +106,10 @@ body {
     }
     footer {
       grid-area: footer;
-      border-top: 1px solid black;
-      border-radius: 10px;
+      .whatpulse {
+        @extend .has-background-grey;
+        padding-right: 2rem;
+      }
     }
 
     nav {
@@ -137,12 +140,6 @@ body {
         align-items: center;
         justify-content: center;
 
-        img {
-          height: auto;
-          max-width: 100%;
-          object-fit: scale-down;
-          border-radius: 5rem;
-        }
         .caption {
           height: 10px;
           font-weight: bold;

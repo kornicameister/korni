@@ -9,6 +9,7 @@ import FontAwesome.Solid as Icon
 import FontAwesome.Styles as Icon
 import Html as H
 import Html.Attributes as A
+import Html.Lazy as HL
 import Http
 import Json.Decode as Decode
 import RemoteData
@@ -22,9 +23,7 @@ import Url
 type alias Model =
     { version : String
     , navKey : Browser.Navigation.Key
-    , whatPulse :
-        { profile : RemoteData.WebData WhatPulseProfile
-        }
+    , whatPulseProfile : RemoteData.WebData WhatPulseProfile
     }
 
 
@@ -36,9 +35,7 @@ init : Version -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
 init version _ navKey =
     ( { version = version
       , navKey = navKey
-      , whatPulse =
-            { profile = RemoteData.Loading
-            }
+      , whatPulseProfile = RemoteData.Loading
       }
     , getWhatpulseProfile
     )
@@ -85,8 +82,8 @@ view model =
     , body =
         [ H.main_ []
             [ Icon.css
-            , header model.version
-            , footer model.whatPulse.profile
+            , HL.lazy header model.version
+            , HL.lazy footer model.whatPulseProfile
             , H.section [ A.class "avatar" ]
                 [ H.a
                     [ A.href "https://www.github.com/kornicameister"
@@ -131,13 +128,38 @@ footer whatPulse =
                 H.text ""
 
             RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
-                H.div [ A.class "side-by-side" ]
+                H.div [ A.class "whatpulse side-by-side" ]
                     [ H.div [ A.class "left-side" ]
                         [ H.img [ A.src "https://whatpulse.org/images/dashboard/logo.png" ] []
+                        , H.h3 [] [ H.text "Whatpulse" ]
                         ]
                     , H.div [ A.class "right-side" ]
-                        [ H.p [] [ H.strong [] [ H.text "Rank" ] ]
-                        , H.p [] [ H.strong [] [ H.text "Total" ] ]
+                        [ H.div []
+                            [ H.strong [] [ H.text "Rank" ]
+                            , H.ul [ Icon.ul ]
+                                [ H.li []
+                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                                    , H.text <| String.fromInt <| rankKeys
+                                    ]
+                                , H.li []
+                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                                    , H.text <| String.fromInt <| rankClicks
+                                    ]
+                                ]
+                            ]
+                        , H.div []
+                            [ H.strong [] [ H.text "Total" ]
+                            , H.ul [ Icon.ul ]
+                                [ H.li []
+                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                                    , H.text <| String.fromInt <| totalKeys
+                                    ]
+                                , H.li []
+                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                                    , H.text <| String.fromInt <| totalClicks
+                                    ]
+                                ]
+                            ]
                         ]
                     ]
         ]
@@ -225,14 +247,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GotWhatPulseProfile result ->
-            let
-                oldWhatPulse =
-                    model.whatPulse
-
-                newWhatPulse =
-                    { oldWhatPulse | profile = result }
-            in
-            ( { model | whatPulse = newWhatPulse }, Cmd.none )
+            ( { model | whatPulseProfile = result }, Cmd.none )
 
         URLRequest request ->
             case request of
