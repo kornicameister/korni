@@ -95,7 +95,6 @@ view model =
         [ H.main_ []
             [ Icon.css
             , HL.lazy header model.version
-            , HL.lazy2 footer model.whatPulseProfile model.wakatimeStats
             , H.section [ A.class "avatar" ]
                 [ H.a
                     [ A.href "https://www.github.com/kornicameister"
@@ -110,6 +109,7 @@ view model =
                 ]
             , navigation
             , content
+            , HL.lazy2 footer model.whatPulseProfile model.wakatimeStats
             ]
         ]
     }
@@ -159,7 +159,6 @@ wakatimeStats wakatime =
                                     , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
                             )
-                        |> List.intersperse (H.text ",")
                         |> H.span []
                     , H.text " utilizing "
                     , top3Editors
@@ -170,7 +169,6 @@ wakatimeStats wakatime =
                                     , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
                             )
-                        |> List.intersperse (H.text ",")
                         |> H.span []
                     , H.text " editors."
                     ]

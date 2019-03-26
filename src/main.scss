@@ -124,6 +124,13 @@ body {
         display: flex;
       }
 
+      .wakatime dt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+      }
+
       img {
         max-width: 25px;
       }
