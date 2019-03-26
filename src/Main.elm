@@ -12,6 +12,7 @@ import Html.Attributes as A
 import Html.Lazy as HL
 import Http
 import Json.Decode as Decode
+import Ports
 import RemoteData
 import Url
 
@@ -24,6 +25,7 @@ type alias Model =
     { version : String
     , navKey : Browser.Navigation.Key
     , whatPulseProfile : RemoteData.WebData WhatPulseProfile
+    , wakatimeStats : WakatimeStats
     }
 
 
@@ -36,6 +38,10 @@ init version _ navKey =
     ( { version = version
       , navKey = navKey
       , whatPulseProfile = RemoteData.Loading
+      , wakatimeStats =
+            { top3Languages = Nothing
+            , top3Editors = Nothing
+            }
       }
     , getWhatpulseProfile
     )
@@ -50,6 +56,12 @@ type alias WhatPulseProfile =
     , totalClicks : Int
     , rankKeys : Int
     , rankClicks : Int
+    }
+
+
+type alias WakatimeStats =
+    { top3Languages : Maybe (Result Decode.Error (List ( String, Float )))
+    , top3Editors : Maybe (Result Decode.Error (List ( String, Float )))
     }
 
 
@@ -83,7 +95,6 @@ view model =
         [ H.main_ []
             [ Icon.css
             , HL.lazy header model.version
-            , HL.lazy footer model.whatPulseProfile
             , H.section [ A.class "avatar" ]
                 [ H.a
                     [ A.href "https://www.github.com/kornicameister"
@@ -98,6 +109,7 @@ view model =
                 ]
             , navigation
             , content
+            , HL.lazy2 footer model.whatPulseProfile model.wakatimeStats
             ]
         ]
     }
@@ -114,55 +126,105 @@ header version =
         ]
 
 
-footer : RemoteData.WebData WhatPulseProfile -> H.Html never
-footer whatPulse =
+footer : RemoteData.WebData WhatPulseProfile -> WakatimeStats -> H.Html never
+footer whatPulse wakatime =
     H.footer []
-        [ case whatPulse of
-            RemoteData.NotAsked ->
-                H.text ""
+        [ whatPulseStats whatPulse
+        , wakatimeStats wakatime
+        ]
 
-            RemoteData.Loading ->
-                Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner
 
-            RemoteData.Failure _ ->
-                H.text ""
-
-            RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
-                H.div [ A.class "whatpulse side-by-side" ]
-                    [ H.div [ A.class "left-side" ]
-                        [ H.img [ A.src "https://whatpulse.org/images/dashboard/logo.png" ] []
-                        , H.h3 [] [ H.text "Whatpulse" ]
+wakatimeStats : WakatimeStats -> H.Html never
+wakatimeStats wakatime =
+    case ( wakatime.top3Languages, wakatime.top3Editors ) of
+        ( Just (Ok top3Languages), Just (Ok top3Editors) ) ->
+            H.div [ A.class "wakatime side-by-side" ]
+                [ H.div [ A.class "left-side" ]
+                    [ H.img
+                        [ A.src "%PUBLIC_URL%/wakatime_logo.svg"
+                        , A.title "Wakatime"
+                        , A.alt "Wakatime logo"
                         ]
-                    , H.div [ A.class "right-side" ]
-                        [ H.div []
-                            [ H.strong [] [ H.text "Rank" ]
-                            , H.ul [ Icon.ul ]
-                                [ H.li []
-                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                                    , H.text <| String.fromInt <| rankKeys
+                        []
+                    ]
+                , H.div [ A.class "right-side" ]
+                    [ H.text "In last "
+                    , H.strong [] [ H.text "7" ]
+                    , H.text " days, I have been coding the most in "
+                    , top3Languages
+                        |> List.map
+                            (\( language, percent ) ->
+                                H.dt []
+                                    [ H.dl [] [ H.strong [] [ H.text language ] ]
+                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
-                                , H.li []
-                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                                    , H.text <| String.fromInt <| rankClicks
+                            )
+                        |> H.span []
+                    , H.text " utilizing "
+                    , top3Editors
+                        |> List.map
+                            (\( editor, percent ) ->
+                                H.dt []
+                                    [ H.dl [] [ H.strong [] [ H.text editor ] ]
+                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
+                            )
+                        |> H.span []
+                    , H.text " editors."
+                    ]
+                ]
+
+        ( _, _ ) ->
+            H.text ""
+
+
+whatPulseStats : RemoteData.WebData WhatPulseProfile -> H.Html never
+whatPulseStats whatPulse =
+    case whatPulse of
+        RemoteData.NotAsked ->
+            H.text ""
+
+        RemoteData.Loading ->
+            Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner
+
+        RemoteData.Failure _ ->
+            H.text ""
+
+        RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
+            H.div [ A.class "whatpulse side-by-side" ]
+                [ H.div [ A.class "left-side" ]
+                    [ H.img [ A.src "https://whatpulse.org/images/dashboard/logo.png" ] []
+                    , H.h3 [] [ H.text "Whatpulse" ]
+                    ]
+                , H.div [ A.class "right-side" ]
+                    [ H.div []
+                        [ H.strong [] [ H.text "Rank" ]
+                        , H.ul [ Icon.ul ]
+                            [ H.li []
+                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                                , H.text <| String.fromInt <| rankKeys
+                                ]
+                            , H.li []
+                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                                , H.text <| String.fromInt <| rankClicks
                                 ]
                             ]
-                        , H.div []
-                            [ H.strong [] [ H.text "Total" ]
-                            , H.ul [ Icon.ul ]
-                                [ H.li []
-                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                                    , H.text <| String.fromInt <| totalKeys
-                                    ]
-                                , H.li []
-                                    [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                                    , H.text <| String.fromInt <| totalClicks
-                                    ]
+                        ]
+                    , H.div []
+                        [ H.strong [] [ H.text "Total" ]
+                        , H.ul [ Icon.ul ]
+                            [ H.li []
+                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                                , H.text <| String.fromInt <| totalKeys
+                                ]
+                            , H.li []
+                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                                , H.text <| String.fromInt <| totalClicks
                                 ]
                             ]
                         ]
                     ]
-        ]
+                ]
 
 
 navigation : H.Html never
@@ -241,6 +303,7 @@ type Msg
     = URLRequest Browser.UrlRequest
     | URLChanged Url.Url
     | GotWhatPulseProfile (RemoteData.WebData WhatPulseProfile)
+    | ReceivedWakatimeStats Ports.WakatimeStatsResponse
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -248,6 +311,53 @@ update msg model =
     case msg of
         GotWhatPulseProfile result ->
             ( { model | whatPulseProfile = result }, Cmd.none )
+
+        ReceivedWakatimeStats { category, data } ->
+            let
+                top3Decoder dataDecoder dataFilter =
+                    Decode.decodeValue
+                        (Decode.field "data"
+                            (Decode.list dataDecoder)
+                            |> Decode.andThen
+                                (List.filter dataFilter
+                                    >> List.sortBy Tuple.second
+                                    >> List.reverse
+                                    >> List.take 3
+                                    >> Decode.succeed
+                                )
+                        )
+
+                langDecoder =
+                    top3Decoder
+                        (Decode.map2 Tuple.pair
+                            (Decode.field "name" Decode.string)
+                            (Decode.field "percent" Decode.float)
+                        )
+                        (Tuple.first >> String.toLower >> (/=) "other")
+
+                editorDecoder =
+                    top3Decoder
+                        (Decode.map2 Tuple.pair
+                            (Decode.field "name" Decode.string)
+                            (Decode.field "percent" Decode.float)
+                        )
+                        (always True)
+
+                oldStats =
+                    model.wakatimeStats
+
+                newStats =
+                    case category of
+                        "languages" ->
+                            { oldStats | top3Languages = data |> langDecoder |> Just }
+
+                        "editors" ->
+                            { oldStats | top3Editors = data |> editorDecoder |> Just }
+
+                        _ ->
+                            oldStats
+            in
+            ( { model | wakatimeStats = newStats }, Cmd.none )
 
         URLRequest request ->
             case request of
@@ -266,6 +376,15 @@ update msg model =
 
 
 
+---- SUBSCRIPTIONS ---
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Ports.receiveWakatimeStats ReceivedWakatimeStats
+
+
+
 ---- PROGRAM ----
 
 
@@ -275,7 +394,7 @@ main =
         { view = view
         , init = init
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         , onUrlChange = URLChanged
         , onUrlRequest = URLRequest
         }

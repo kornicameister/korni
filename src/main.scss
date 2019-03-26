@@ -70,7 +70,7 @@ body {
         '. avatar avatar . content content content .'
         '. avatar avatar . content content content .'
         '. avatar avatar . content content content .'
-        '. . footer footer footer footer . .';
+        'footer footer footer footer footer footer footer footer';
       grid-gap: 1rem;
     }
 
@@ -108,12 +108,31 @@ body {
       grid-area: footer;
 
       display: inline-flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
+      align-self: end;
 
-      .whatpulse {
+      max-height: 5vh;
+      padding: 0.5rem 0.5rem;
+
+      font-size: small;
+
+      .whatpulse,
+      .wakatime {
         @extend .has-background-grey;
         padding-right: 2rem;
+        display: flex;
+      }
+
+      .wakatime dt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+      }
+
+      img {
+        max-width: 25px;
       }
     }
 
