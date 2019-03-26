@@ -111,7 +111,8 @@ body {
       align-items: center;
       justify-content: center;
 
-      .whatpulse {
+      .whatpulse,
+      .wakatime {
         @extend .has-background-grey;
         padding-right: 2rem;
       }
