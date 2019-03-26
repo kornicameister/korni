@@ -11,11 +11,9 @@ import Html as H
 import Html.Attributes as A
 import Html.Lazy as HL
 import Http
-import Iso8601
 import Json.Decode as Decode
 import Ports
 import RemoteData
-import Time
 import Url
 
 
@@ -156,8 +154,9 @@ wakatimeStats wakatime =
                     , top3Languages
                         |> List.map
                             (\( language, percent ) ->
-                                H.span []
-                                    [ H.strong [] [ H.text language ]
+                                H.dt []
+                                    [ H.dl [] [ H.strong [] [ H.text language ] ]
+                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
                             )
                         |> List.intersperse (H.text ",")
@@ -165,9 +164,10 @@ wakatimeStats wakatime =
                     , H.text " utilizing "
                     , top3Editors
                         |> List.map
-                            (\( language, percent ) ->
-                                H.span []
-                                    [ H.strong [] [ H.text language ]
+                            (\( editor, percent ) ->
+                                H.dt []
+                                    [ H.dl [] [ H.strong [] [ H.text editor ] ]
+                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
                                     ]
                             )
                         |> List.intersperse (H.text ",")
