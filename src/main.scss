@@ -9,29 +9,6 @@
   font-style: normal;
 }
 
-.side-by-side {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .left-side,
-  .right-side {
-    display: flex;
-    & > * {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  .left-side {
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .right-side {
-    align-items: center;
-    justify-content: flex-end;
-  }
-}
-
 img {
   height: auto;
   max-width: 100%;
@@ -70,7 +47,7 @@ body {
         '. avatar avatar . content content content .'
         '. avatar avatar . content content content .'
         '. avatar avatar . content content content .'
-        'footer footer footer footer footer footer footer footer';
+        '. footer footer footer footer footer footer .';
       grid-gap: 1rem;
     }
 
@@ -104,35 +81,50 @@ body {
         }
       }
     }
+
     footer {
       grid-area: footer;
 
-      display: inline-flex;
+      display: flex;
       align-items: stretch;
-      justify-content: center;
-      align-self: end;
+      justify-content: flex-end;
+      align-self: flex-end;
 
       max-height: 5vh;
       padding: 0.5rem 0.5rem;
 
       font-size: small;
 
-      .whatpulse,
-      .wakatime {
-        @extend .has-background-grey;
-        padding-right: 2rem;
-        display: flex;
-      }
-
-      .wakatime dt {
+      .footer-item {
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-flow: column;
+        border-bottom: 1px solid $grey;
+        * {
+          &:not(:last-child) {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      .footer-item:not(:last-child) {
+        padding-right: 2rem;
       }
 
-      img {
-        max-width: 25px;
+      .wakatime-stats {
+        line-height: 0.25rem;
+        p {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        img {
+          max-width: 25px;
+        }
+      }
+      .whatpulse-stats {
+        img {
+          max-height: 25px;
+          border-radius: unset;
+        }
       }
     }
 

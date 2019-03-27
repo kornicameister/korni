@@ -136,92 +136,83 @@ footer whatPulse wakatime =
 
 wakatimeStats : WakatimeStats -> H.Html never
 wakatimeStats wakatime =
-    case ( wakatime.top3Languages, wakatime.top3Editors ) of
-        ( Just (Ok top3Languages), Just (Ok top3Editors) ) ->
-            H.div [ A.class "wakatime side-by-side" ]
-                [ H.div [ A.class "left-side" ]
-                    [ H.img
-                        [ A.src "%PUBLIC_URL%/wakatime_logo.svg"
-                        , A.title "Wakatime"
-                        , A.alt "Wakatime logo"
-                        ]
-                        []
+    H.div [ A.class "footer-item wakatime-stats" ] <|
+        case ( wakatime.top3Languages, wakatime.top3Editors ) of
+            ( _, Nothing ) ->
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
+
+            ( Nothing, _ ) ->
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
+
+            ( Just (Ok top3Languages), Just (Ok top3Editors) ) ->
+                [ H.img
+                    [ A.src "%PUBLIC_URL%/wakatime_logo.svg"
+                    , A.title "Wakatime"
+                    , A.alt "Wakatime logo"
                     ]
-                , H.div [ A.class "right-side" ]
-                    [ H.text "In last "
-                    , H.strong [] [ H.text "7" ]
-                    , H.text " days, I have been coding the most in "
-                    , top3Languages
-                        |> List.map
-                            (\( language, percent ) ->
-                                H.dt []
-                                    [ H.dl [] [ H.strong [] [ H.text language ] ]
-                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
-                                    ]
-                            )
-                        |> H.span []
-                    , H.text " utilizing "
-                    , top3Editors
-                        |> List.map
-                            (\( editor, percent ) ->
-                                H.dt []
-                                    [ H.dl [] [ H.strong [] [ H.text editor ] ]
-                                    , H.dd [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
-                                    ]
-                            )
-                        |> H.span []
-                    , H.text " editors."
-                    ]
+                    []
+                , top3Languages
+                    |> List.map
+                        (\( language, percent ) ->
+                            H.p []
+                                [ H.strong [] [ H.text language ]
+                                , H.span [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
+                                ]
+                        )
+                    |> H.div [ A.title "Top 3 programming languages in last 7 days" ]
+                , top3Editors
+                    |> List.map
+                        (\( editor, percent ) ->
+                            H.p []
+                                [ H.strong [] [ H.text editor ]
+                                , H.span [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
+                                ]
+                        )
+                    |> H.div [ A.title "Top 3 editors in last 7 days" ]
                 ]
 
-        ( _, _ ) ->
-            H.text ""
+            ( _, _ ) ->
+                [ H.text "" ]
 
 
 whatPulseStats : RemoteData.WebData WhatPulseProfile -> H.Html never
 whatPulseStats whatPulse =
-    case whatPulse of
-        RemoteData.NotAsked ->
-            H.text ""
+    H.div [ A.class "footer-item whatpulse-stats" ] <|
+        case whatPulse of
+            RemoteData.NotAsked ->
+                [ H.text "" ]
 
-        RemoteData.Loading ->
-            Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner
+            RemoteData.Loading ->
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
 
-        RemoteData.Failure _ ->
-            H.text ""
+            RemoteData.Failure _ ->
+                [ H.text "" ]
 
-        RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
-            H.div [ A.class "whatpulse side-by-side" ]
-                [ H.div [ A.class "left-side" ]
-                    [ H.img [ A.src "https://whatpulse.org/images/dashboard/logo.png" ] []
-                    , H.h3 [] [ H.text "Whatpulse" ]
+            RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
+                [ H.img
+                    [ A.src "%PUBLIC_URL%/whatpulse_logo.png"
+                    , A.title "Whatpulse"
+                    , A.alt "Whatpulse logo"
                     ]
-                , H.div [ A.class "right-side" ]
-                    [ H.div []
-                        [ H.strong [] [ H.text "Rank" ]
-                        , H.ul [ Icon.ul ]
-                            [ H.li []
-                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                                , H.text <| String.fromInt <| rankKeys
-                                ]
-                            , H.li []
-                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                                , H.text <| String.fromInt <| rankClicks
-                                ]
-                            ]
+                    []
+                , H.ul [ Icon.ul, A.title "Whatpulse rank click & keys" ]
+                    [ H.li []
+                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                        , H.text <| String.fromInt <| rankKeys
                         ]
-                    , H.div []
-                        [ H.strong [] [ H.text "Total" ]
-                        , H.ul [ Icon.ul ]
-                            [ H.li []
-                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                                , H.text <| String.fromInt <| totalKeys
-                                ]
-                            , H.li []
-                                [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                                , H.text <| String.fromInt <| totalClicks
-                                ]
-                            ]
+                    , H.li []
+                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                        , H.text <| String.fromInt <| rankClicks
+                        ]
+                    ]
+                , H.ul [ Icon.ul, A.title "Whatpulse total keys & clicks" ]
+                    [ H.li []
+                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
+                        , H.text <| String.fromInt <| totalKeys
+                        ]
+                    , H.li []
+                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
+                        , H.text <| String.fromInt <| totalClicks
                         ]
                     ]
                 ]
