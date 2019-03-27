@@ -3,7 +3,7 @@ import jsonp from 'jsonp';
 
 // styles
 import 'normalize.css';
-import './main.css';
+import './Main.css';
 
 // Elm and rest
 import { Elm } from './Main.elm';
