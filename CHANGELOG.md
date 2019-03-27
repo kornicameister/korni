@@ -1,3 +1,19 @@
+0.3.3 / 2019-03-28
+==================
+
+  * Change name of scss file
+  * Change font to roboto
+  * Footer styling
+  * fix elm dependency
+  * Cleanup and full output
+  * Wakatime profile in footer
+  * Display wakatime (#703)
+  * Update CHANGELOG.md
+  * Whatpulse profile in footer (#702)
+  * Rebuild package lock
+  * Add a check against correct node&npm version
+  * Upgrade node & npm
+
 0.3.2 / 2019-03-23
 ==================
 
