@@ -2,9 +2,8 @@
 @import './colors.scss';
 
 @font-face {
-  font-family: 'hattori_hanzolight';
-  src: local('Hattori Hanzo Light'),
-    url('./fonts/Hattori_Hanzo-webfont.woff') format('woff');
+  font-family: 'Roboto', sans-setif;
+  src: url('https://fonts.googleapis.com/css?family=Roboto');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,7 +16,6 @@ img {
 }
 
 body {
-  font-family: 'hattori_hanzolight';
   @extend .is-black;
 
   &:before {
