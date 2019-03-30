@@ -26,13 +26,14 @@
     "prestart": "npx check-node-version --package",
     "preinstall": "npx check-node-version --package",
     "pretest": "npx check-node-version --package",
-    "start": "concurrently \"elm-app start\" \"npm run watch-css\"",
+    "start": "concurrently \"npm run watch-elm\" \"npm run watch-css\"",
     "build": "npm run build-css && elm-app build",
     "test": "elm-app test",
     "eject": "elm-app eject",
     "lint": "elm-format --validate src tests && prettier --list-different '**/*.*' && elm-analyse",
-    "prettier": "prettier --write --config .prettierrc 'src/*.js'",
+    "prettier": "prettier --write --config .prettierrc '**/*.*'",
     "build-css": "node-sass-chokidar --output-style compressed --include-path node_modules/ src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path node_modules/ src/ -o src/ --watch"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path node_modules/ src/ -o src/ --watch",
+    "watch-elm": "HTTPS=true elm-app start"
   }
 }
