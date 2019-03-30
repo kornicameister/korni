@@ -79,7 +79,7 @@ getWhatpulseProfile =
                 (Decode.at [ "Ranks", "Clicks" ] Decode.string |> Decode.andThen decodeStringToInt)
     in
     Http.get
-        { url = "http://api.whatpulse.org/user.php?user=kornicameister&format=json"
+        { url = "https://api.whatpulse.org/user.php?user=kornicameister&format=json"
         , expect = Http.expectJson (RemoteData.fromResult >> GotWhatPulseProfile) decoder
         }
 
