@@ -47,7 +47,7 @@ view _ =
             [ Icon.css
             , H.ul [ A.class "timeline" ]
                 [ H.li [ A.class "event", A.attribute "data-date" "2018-today" ]
-                    [ H.h3 [] [ H.text "Functional world" ]
+                    [ H.h3 [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat, H.text "Functional world" ]
                     , H.p []
                         [ H.text "Since "
                         , H.em [] [ H.strong [] [ H.text "glorious" ] ]
@@ -62,7 +62,27 @@ view _ =
                         , H.text "."
                         ]
                     , H.p [] [ H.i [] [ H.text "How did it all start?" ] ]
-                    , H.p [] [ H.text "The story goes back to me joining ", H.em [] [ H.a [] [ H.text "EOS" ] ], H.text " project" ]
+                    , H.p []
+                        [ H.text "The story goes back to me joining "
+                        , H.em []
+                            [ H.a [ A.href "http://docs.fcsm.io/", A.target "_blank" ] [ H.text "EOS" ]
+                            ]
+                        , H.text " project. "
+                        , H.text "Long story short, but that project was the one that set me on my way functional path. "
+                        , H.text "Currently I can tell that I know following languages: "
+                        , H.ul [ Icon.ul ]
+                            [ H.li [] [ H.span [ Icon.li ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.book ], H.text "Elm" ]
+                            , H.li [] [ H.span [ Icon.li ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.book ], H.text "Haskell" ]
+                            , H.li [] [ H.span [ Icon.li ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.book ], H.text "F#" ]
+                            ]
+                        ]
+                    , H.p []
+                        [ H.text "If you are looking for an example, you do not have to look far, "
+                        , H.strong [] [ H.text "this" ]
+                        , H.text " page was built with "
+                        , H.em [] [ H.a [ A.href "https://elm-lang.org", A.target "_blank" ] [ H.text "Elm" ] ]
+                        , H.text "."
+                        ]
                     ]
                 ]
             ]

@@ -1,0 +1,85 @@
+@import './colors.scss';
+
+$line: 4px;
+$radius: 4px;
+$spacing: 50px;
+$dot: 4px;
+$dotborder: 4px;
+$date: 120px;
+
+@mixin timeline($gridArea) {
+  .timeline {
+    grid-area: $gridArea;
+
+    border-left: $line solid $primary;
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+    background: fade($light, 3%);
+    color: fade(white, 80%);
+    margin: $spacing auto;
+    letter-spacing: 0.5px;
+    position: relative;
+    line-height: 1.4em;
+    font-size: 1.03em;
+    list-style: none;
+    text-align: left;
+    font-weight: 100;
+    max-width: 30%;
+
+    h1 {
+      letter-spacing: 1.5px;
+      font-weight: 100;
+      font-size: 1.4em;
+    }
+
+    h2,
+    h3 {
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      font-size: 1.4em;
+    }
+
+    .event {
+      border-bottom: 1px dashed fade($light, 10%);
+      padding-bottom: ($spacing * 0.5);
+      margin-bottom: $spacing;
+      position: relative;
+
+      text-align: justify;
+
+      &:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: none;
+      }
+
+      &:before,
+      &:after {
+        position: absolute;
+        display: block;
+        top: 0;
+      }
+
+      &:before {
+        left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;
+        color: fade($light, 40%);
+        content: attr(data-date);
+        text-align: right;
+        font-weight: 100;
+        font-size: 0.9em;
+        min-width: $date;
+      }
+
+      &:after {
+        box-shadow: 0 0 0 $dotborder fade($primary, 100%);
+        left: ($spacing + $line + ($dot * 0.35)) * -1;
+        background: lighten($black, 5%);
+        border-radius: 50%;
+        height: $dot;
+        width: $dot;
+        content: '';
+        top: 5px;
+      }
+    }
+  }
+}
