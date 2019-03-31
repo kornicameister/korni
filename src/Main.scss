@@ -2,11 +2,13 @@
 @import './colors.scss';
 
 @font-face {
-  font-family: 'Roboto', sans-setif;
-  src: url('https://fonts.googleapis.com/css?family=Roboto');
+  src: url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i|Saira+Extra+Condensed:100,200,300,400,500,600,700,800|Saira:100,200,300,400,500,600,700,800');
   font-weight: normal;
   font-style: normal;
 }
+
+$font-title: 'Saira', sans-serif;
+$font-text: 'Chivo', sans-serif;
 
 img {
   height: auto;
@@ -16,7 +18,10 @@ img {
 }
 
 body {
-  @extend .is-black;
+  font-family: $font-text;
+
+  background-color: $black;
+  color: $light;
 
   &:before {
     content: '';
@@ -30,148 +35,85 @@ body {
   }
 
   overflow: hidden auto;
-  align-items: stretch;
-  justify-content: stretch;
-  align-content: stretch;
 
-  main {
-    @include fullhd {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-      grid-template-areas:
-        '. header header . . . nav .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. footer footer footer footer footer footer .';
-      grid-gap: 1rem;
+  $line: 4px;
+  $radius: 4px;
+  $spacing: 50px;
+  $dot: 4px;
+  $dotborder: 4px;
+  $date: 120px;
+
+  .timeline {
+    border-left: $line solid $primary;
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+    background: fade($light, 3%);
+    color: fade(white, 80%);
+    margin: $spacing auto;
+    letter-spacing: 0.5px;
+    position: relative;
+    line-height: 1.4em;
+    font-size: 1.03em;
+    padding: $spacing;
+    list-style: none;
+    text-align: left;
+    font-weight: 100;
+    max-width: 30%;
+
+    h1 {
+      font-family: $font-title;
+      letter-spacing: 1.5px;
+      font-weight: 100;
+      font-size: 1.4em;
     }
 
-    @include mobile {
-      display: grid;
-      grid-template-areas:
-        'header'
-        'nav'
-        'content'
-        'footer';
-      grid-row-gap: 1.5rem;
+    h2,
+    h3 {
+      font-family: $font-title;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      font-size: 1.4em;
     }
 
-    margin: 2vh 1vw 2vh 1vw;
-    width: 98vw;
-    height: 96vh;
+    .event {
+      border-bottom: 1px dashed fade($light, 10%);
+      padding-bottom: ($spacing * 0.5);
+      margin-bottom: $spacing;
+      position: relative;
 
-    header {
-      grid-area: header;
-      position: sticky;
-      top: -1px;
-
-      @include mobile {
-        display: inline-flex;
-        align-items: center;
-        .header {
-          flex: 1 0 75%;
-        }
-        .version {
-          flex: 1 0 15%;
-        }
-      }
-    }
-
-    footer {
-      grid-area: footer;
-
-      display: flex;
-      align-items: stretch;
-      justify-content: flex-end;
-      align-self: flex-end;
-
-      max-height: 5vh;
-      padding: 0.5rem 0.5rem;
-
-      font-size: small;
-
-      .footer-item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid $grey;
-        * {
-          &:not(:last-child) {
-            margin-right: 0.5rem;
-          }
-        }
-      }
-      .footer-item:not(:last-child) {
-        padding-right: 2rem;
+      &:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: none;
       }
 
-      .wakatime-stats {
-        line-height: 0.25rem;
-        p {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-        }
-        img {
-          max-width: 25px;
-        }
+      &:before,
+      &:after {
+        position: absolute;
+        display: block;
+        top: 0;
       }
-      .whatpulse-stats {
-        img {
-          max-height: 25px;
-          border-radius: unset;
-        }
+
+      &:before {
+        left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;
+        color: fade($light, 40%);
+        content: attr(data-date);
+        text-align: right;
+        font-weight: 100;
+        font-size: 0.9em;
+        min-width: $date;
+        font-family: $font-title;
       }
-    }
 
-    nav {
-      grid-area: nav;
-      display: flex;
-      & {
-        flex: 1 0 0;
-      }
-      justify-content: space-between;
-      @include fullhd {
-        justify-content: center;
-      }
-    }
-
-    .avatar {
-      display: none;
-      visibility: hidden;
-    }
-    @include fullhd {
-      .avatar {
-        grid-area: avatar;
-
-        display: flex;
-        flex-flow: column;
-
-        visibility: visible;
-
-        align-items: center;
-        justify-content: center;
-
-        .caption {
-          height: 10px;
-          font-weight: bold;
-          opacity: 0.7;
-        }
-      }
-    }
-
-    .content {
-      grid-area: content;
-      display: flex;
-      flex-flow: column;
-
-      .greeting {
-        text-align: center;
-      }
-      section {
-        padding: 0 1.25rem 0 1.25rem;
+      &:after {
+        box-shadow: 0 0 0 $dotborder fade($primary, 100%);
+        left: ($spacing + $line + ($dot * 0.35)) * -1;
+        background: lighten($black, 5%);
+        border-radius: 50%;
+        height: $dot;
+        width: $dot;
+        content: '';
+        top: 5px;
       }
     }
   }
