@@ -1,6 +1,7 @@
 @import './responsivness.scss';
 @import './colors.scss';
 @import './timeline.scss';
+@import './nav.scss';
 
 @font-face {
   src: url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
@@ -35,14 +36,13 @@ body {
 
   main {
     display: grid;
-    grid-template-columns: 15vw 1fr 60vw;
+    grid-template-columns: 3fr 1fr 3fr;
     grid-template-rows: 90vh;
     grid-template: 'nav . content';
     align-self: center;
     justify-self: center;
 
     grid-gap: 1rem;
-
-    @include timeline(content);
+    padding: 2rem 10rem;
   }
 }

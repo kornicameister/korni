@@ -45,9 +45,13 @@ view _ =
     , body =
         [ H.main_ []
             [ Icon.css
+            , H.nav [] []
             , H.ul [ A.class "timeline" ]
-                [ H.li [ A.class "event", A.attribute "data-date" "2018-today" ]
-                    [ H.h3 [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat, H.text "Functional world" ]
+                [ H.li [ A.class "event", A.attribute "data-date" "EOS" ]
+                    [ H.h3 []
+                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat
+                        , H.text "Functional world"
+                        ]
                     , H.p []
                         [ H.text "Since "
                         , H.em [] [ H.strong [] [ H.text "glorious" ] ]
@@ -82,6 +86,12 @@ view _ =
                         , H.text " page was built with "
                         , H.em [] [ H.a [ A.href "https://elm-lang.org", A.target "_blank" ] [ H.text "Elm" ] ]
                         , H.text "."
+                        ]
+                    ]
+                , H.li [ A.class "event", A.attribute "data-date" "monasca" ]
+                    [ H.h3 []
+                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.dog
+                        , H.text "Logging & Monitoring"
                         ]
                     ]
                 ]
