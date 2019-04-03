@@ -45,7 +45,10 @@ view _ =
     , body =
         [ H.main_ []
             [ Icon.css
-            , H.nav [] []
+            , H.aside []
+                [ H.nav [] []
+                , H.footer [] []
+                ]
             , H.ul [ A.class "timeline" ]
                 [ H.li [ A.class "event", A.attribute "data-date" "EOS" ]
                     [ H.h3 []
@@ -90,8 +93,32 @@ view _ =
                     ]
                 , H.li [ A.class "event", A.attribute "data-date" "monasca" ]
                     [ H.h3 []
-                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.dog
+                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.python
                         , H.text "Logging & Monitoring"
+                        ]
+                    , H.p []
+                        [ H.a [] [ H.strong [] [] ]
+                        , H.text " was my first serious assignment in Fujitsu. "
+                        , H.text "We have concentrated on enhancing "
+                        , H.em [] [ H.text "Openstack" ]
+                        , H.text " monitoring solution with "
+                        , H.strong [] [ H.text "collecting" ]
+                        , H.text " and "
+                        , H.strong [] [ H.text "analyzing" ]
+                        , H.text " logs."
+                        ]
+                    , H.p []
+                        [ H.text "All of the work I have done was done with the little help of "
+                        , H.a [ A.href "https://www.python.org/", A.target "_blank", A.title "Python" ] [ Icon.viewStyled [ Icon.fw ] Icon.python ]
+                        , H.text ". "
+                        , H.text "Needless to say that I learnt a lot of that language, going from not knowing a thing about it "
+                        , H.text "to mastering its strenthgs."
+                        ]
+                    , H.p []
+                        [ H.text "It is worth mentioning that I was top contributor for "
+                        , H.strong [] [ H.text "monasca" ]
+                        , H.text " inside of Fujitsu."
+                        , H.text "And those were not commits only but also code reviews."
                         ]
                     ]
                 ]

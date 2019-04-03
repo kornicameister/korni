@@ -8,6 +8,7 @@
   font-family: 'Chivo', sans-serif;
   font-weight: normal;
   font-style: normal;
+  font-size: smaller;
 }
 
 img {
@@ -37,12 +38,29 @@ body {
   main {
     display: grid;
     grid-template-columns: 3fr 1fr 3fr;
-    grid-template-rows: 90vh;
-    grid-template: 'nav . content';
+    grid-template-rows: 1fr;
+    grid-template: 'aside . content';
     align-self: center;
     justify-self: center;
 
     grid-gap: 1rem;
     padding: 2rem 10rem;
+
+    aside {
+      display: grid;
+      grid-area: aside;
+      grid-template-columns: 1fr;
+      grid-template-rows: 75vh 1fr;
+      grid-template: '
+        aside-nav
+        aside-footer';
+      grid-row-gap: 2rem;
+      nav {
+        grid-area: aside-nav;
+      }
+      footer {
+        grid-area: aside-footer;
+      }
+    }
   }
 }
