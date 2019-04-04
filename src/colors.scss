@@ -1,8 +1,6 @@
 $primary: #004ffc;
 $light: white;
 $dim: #6c6d6d;
-
-// actual colors
 $black: #252827;
 
 @each $name, $color in ('black' $black, 'primary' $primary, 'light' $light, 'dim' $dim) {

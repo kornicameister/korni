@@ -50,8 +50,8 @@ view _ =
                 , H.footer [] []
                 ]
             , H.ul [ A.class "timeline" ]
-                [ H.li [ A.class "event", A.attribute "data-date" "EOS" ]
-                    [ H.h3 []
+                [ H.li [ A.class "event" ]
+                    [ H.h3 [ A.class "header" ]
                         [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat
                         , H.text "Functional world"
                         ]
@@ -87,17 +87,35 @@ view _ =
                         [ H.text "If you are looking for an example, you do not have to look far, "
                         , H.strong [] [ H.text "this" ]
                         , H.text " page was built with "
-                        , H.em [] [ H.a [ A.href "https://elm-lang.org", A.target "_blank" ] [ H.text "Elm" ] ]
+                        , H.em []
+                            [ H.span [ A.style "color" "red" ] [ Icon.viewStyled [ Icon.fw ] Icon.heart ]
+                            , H.a [ A.href "https://elm-lang.org", A.target "_blank" ] [ H.text "Elm" ]
+                            ]
                         , H.text "."
                         ]
+                    , H.p []
+                        [ H.text "I am currently in a process of learning how to learn others with functional programming. "
+                        , H.text "I find this goal very "
+                        , H.em [] [ H.text "important" ]
+                        , H.text " to pursue. "
+                        , H.text "Reason is quite simple! "
+                        , H.text "Since early years of studies, my and others heads were filled with imperative programming model. "
+                        , H.text "Learning something opposite, at least for me, "
+                        , H.strong [] [ H.text "rebooting" ]
+                        , H.text " my mind. Not to mention about boosting up soft skills, especially an ability to share the accumulated knowledge."
+                        ]
                     ]
-                , H.li [ A.class "event", A.attribute "data-date" "monasca" ]
-                    [ H.h3 []
+                , H.li [ A.class "event" ]
+                    [ H.h3 [ A.class "header" ]
                         [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.python
                         , H.text "Logging & Monitoring"
                         ]
                     , H.p []
-                        [ H.a [] [ H.strong [] [] ]
+                        [ H.a
+                            [ A.href "https://monasca.io"
+                            , A.target "_blank"
+                            ]
+                            [ H.strong [] [ H.text "monasca" ] ]
                         , H.text " was my first serious assignment in Fujitsu. "
                         , H.text "We have concentrated on enhancing "
                         , H.em [] [ H.text "Openstack" ]
@@ -115,10 +133,86 @@ view _ =
                         , H.text "to mastering its strenthgs."
                         ]
                     , H.p []
-                        [ H.text "It is worth mentioning that I was top contributor for "
-                        , H.strong [] [ H.text "monasca" ]
-                        , H.text " inside of Fujitsu."
+                        [ H.text "It is worth mentioning that I was "
+                        , H.strong [] [ H.text "core" ]
+                        , H.text " contributor for "
+                        , H.a
+                            [ A.href "http://monasca.io/"
+                            , A.target "_blank"
+                            ]
+                            [ H.strong [] [ H.text "monasca" ] ]
+                        , H.text " inside of Fujitsu. "
                         , H.text "And those were not commits only but also code reviews."
+                        ]
+                    , H.p []
+                        [ H.text "My contributions can still be examined in following locations:"
+                        , H.ul []
+                            [ H.li []
+                                [ H.a
+                                    [ A.href "http://stackalytics.com/?user_id=kornicameister&release=all&project_type=all"
+                                    , A.target "_blank"
+                                    , A.style "display" "flex"
+                                    ]
+                                    [ H.img
+                                        [ A.src "%PUBLIC_URL%/stackalytics_logo.png"
+                                        , A.alt "Stackanalytics for Openstack"
+                                        , A.title "Stackanalytics for Openstack"
+                                        , A.style "height" "20px"
+                                        ]
+                                        []
+                                    ]
+                                ]
+                            , H.li []
+                                [ H.a
+                                    [ A.href "https://review.openstack.org/#/q/owner:trebskit+status:merged"
+                                    , A.target "_blank"
+                                    , A.style "display" "flex"
+                                    ]
+                                    [ H.img
+                                        [ A.src "%PUBLIC_URL%/gerrit_logo.svg"
+                                        , A.alt "Openstack Gerrit"
+                                        , A.title "Openstack Gerrit"
+                                        , A.style "height" "20px"
+                                        ]
+                                        []
+                                    ]
+                                ]
+                            ]
+                        , H.text "."
+                        ]
+                    ]
+                , H.li [ A.class "event" ]
+                    [ H.h3 [ A.class "header" ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.java
+                        , H.text "Cooking the beans"
+                        ]
+                    , H.p []
+                        [ H.strong [] [ H.text "First" ]
+                        , H.text " real work together with "
+                        , H.a
+                            [ A.href "https://tt.com.pl"
+                            , A.target "_blank"
+                            ]
+                            [ H.text "Transition Technologies" ]
+                        , H.text "."
+                        ]
+                    , H.p []
+                        [ H.text "I think that what best describes this part of my life is being confronted "
+                        , H.text " with the real world. No more professors but real deal people to "
+                        , H.text "appreciate me or to blame me for not doing something right."
+                        ]
+                    , H.p []
+                        [ H.text "I have learnt a great deal about Java and doing things in it."
+                        , H.text "Everything was Java, not only at work but also theses. "
+                        , H.text "Spring-* was my best friend for quite some time "
+                        , H.span [ A.class "emoji" ] [ H.text "\u{1F923}" ]
+                        , H.text "."
+                        ]
+                    ]
+                , H.li [ A.class "event" ]
+                    [ H.h3 [ A.class "header" ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.heart
+                        , H.text "Beginning"
                         ]
                     ]
                 ]
