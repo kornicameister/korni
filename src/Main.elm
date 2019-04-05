@@ -9,11 +9,6 @@ import FontAwesome.Solid as Icon
 import FontAwesome.Styles as Icon
 import Html as H
 import Html.Attributes as A
-import Html.Lazy as HL
-import Http
-import Json.Decode as Decode
-import Ports
-import RemoteData
 import Url
 
 
@@ -24,8 +19,6 @@ import Url
 type alias Model =
     { version : String
     , navKey : Browser.Navigation.Key
-    , whatPulseProfile : RemoteData.WebData WhatPulseProfile
-    , wakatimeStats : WakatimeStats
     }
 
 
@@ -37,51 +30,9 @@ init : Version -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
 init version _ navKey =
     ( { version = version
       , navKey = navKey
-      , whatPulseProfile = RemoteData.Loading
-      , wakatimeStats =
-            { top3Languages = Nothing
-            , top3Editors = Nothing
-            }
       }
-    , getWhatpulseProfile
+    , Cmd.none
     )
-
-
-
----- REQUESTS ----
-
-
-type alias WhatPulseProfile =
-    { totalKeys : Int
-    , totalClicks : Int
-    , rankKeys : Int
-    , rankClicks : Int
-    }
-
-
-type alias WakatimeStats =
-    { top3Languages : Maybe (Result Decode.Error (List ( String, Float )))
-    , top3Editors : Maybe (Result Decode.Error (List ( String, Float )))
-    }
-
-
-getWhatpulseProfile : Cmd Msg
-getWhatpulseProfile =
-    let
-        decodeStringToInt =
-            String.toInt >> Maybe.map Decode.succeed >> Maybe.withDefault (Decode.fail <| "Failed to decode String to Int")
-
-        decoder =
-            Decode.map4 WhatPulseProfile
-                (Decode.field "Keys" Decode.string |> Decode.andThen decodeStringToInt)
-                (Decode.field "Clicks" Decode.string |> Decode.andThen decodeStringToInt)
-                (Decode.at [ "Ranks", "Keys" ] Decode.string |> Decode.andThen decodeStringToInt)
-                (Decode.at [ "Ranks", "Clicks" ] Decode.string |> Decode.andThen decodeStringToInt)
-    in
-    Http.get
-        { url = "https://api.whatpulse.org/user.php?user=kornicameister&format=json"
-        , expect = Http.expectJson (RemoteData.fromResult >> GotWhatPulseProfile) decoder
-        }
 
 
 
@@ -89,198 +40,229 @@ getWhatpulseProfile =
 
 
 view : Model -> Browser.Document Msg
-view model =
+view _ =
     { title = "Korni"
     , body =
-        [ H.main_ []
+        [ H.div [ A.id "root" ]
             [ Icon.css
-            , HL.lazy header model.version
-            , H.section [ A.class "avatar" ]
-                [ H.a
-                    [ A.href "https://www.github.com/kornicameister"
-                    , A.title "My Github profile"
-                    , A.target "_blank"
-                    ]
-                    [ H.img [ A.src "%PUBLIC_URL%/logo.png" ] []
-                    ]
-                , H.span [ A.class "caption is-grey" ]
-                    [ H.text "My github profile"
-                    ]
+            , H.aside []
+                [ H.nav [] []
+                , H.footer [] []
                 ]
-            , navigation
-            , content
-            , HL.lazy2 footer model.whatPulseProfile model.wakatimeStats
+            , H.main_ []
+                [ timeline
+                ]
             ]
         ]
     }
 
 
-header : Version -> H.Html never
-header version =
-    H.header []
-        [ H.h1 [ A.class "header" ]
-            [ H.a [ A.href "/" ] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.home ]
-            , H.span [] [ H.text "kornicameister home page..." ]
-            ]
-        , H.h3 [ A.class "version" ] [ version |> H.text ]
-        ]
-
-
-footer : RemoteData.WebData WhatPulseProfile -> WakatimeStats -> H.Html never
-footer whatPulse wakatime =
-    H.footer []
-        [ whatPulseStats whatPulse
-        , wakatimeStats wakatime
-        ]
-
-
-wakatimeStats : WakatimeStats -> H.Html never
-wakatimeStats wakatime =
-    H.div [ A.class "footer-item wakatime-stats" ] <|
-        case ( wakatime.top3Languages, wakatime.top3Editors ) of
-            ( _, Nothing ) ->
-                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
-
-            ( Nothing, _ ) ->
-                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
-
-            ( Just (Ok top3Languages), Just (Ok top3Editors) ) ->
-                [ H.img
-                    [ A.src "%PUBLIC_URL%/wakatime_logo.svg"
-                    , A.title "Wakatime"
-                    , A.alt "Wakatime logo"
-                    ]
-                    []
-                , top3Languages
-                    |> List.map
-                        (\( language, percent ) ->
-                            H.p []
-                                [ H.strong [] [ H.text language ]
-                                , H.span [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
-                                ]
-                        )
-                    |> H.div [ A.title "Top 3 programming languages in last 7 days" ]
-                , top3Editors
-                    |> List.map
-                        (\( editor, percent ) ->
-                            H.p []
-                                [ H.strong [] [ H.text editor ]
-                                , H.span [] [ [ percent |> String.fromFloat, "%" ] |> String.join " " |> H.text ]
-                                ]
-                        )
-                    |> H.div [ A.title "Top 3 editors in last 7 days" ]
+timeline : H.Html never
+timeline =
+    H.ul [ A.class "timeline" ]
+        [ H.li [ A.class "event" ]
+            [ H.h3 [ A.class "header" ]
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat
+                , H.text "Functional world"
                 ]
-
-            ( _, _ ) ->
-                [ H.text "" ]
-
-
-whatPulseStats : RemoteData.WebData WhatPulseProfile -> H.Html never
-whatPulseStats whatPulse =
-    H.div [ A.class "footer-item whatpulse-stats" ] <|
-        case whatPulse of
-            RemoteData.NotAsked ->
-                [ H.text "" ]
-
-            RemoteData.Loading ->
-                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.spin ] Icon.spinner ]
-
-            RemoteData.Failure _ ->
-                [ H.text "" ]
-
-            RemoteData.Success { totalKeys, totalClicks, rankClicks, rankKeys } ->
-                [ H.img
-                    [ A.src "%PUBLIC_URL%/whatpulse_logo.png"
-                    , A.title "Whatpulse"
-                    , A.alt "Whatpulse logo"
-                    ]
-                    []
-                , H.ul [ Icon.ul, A.title "Whatpulse rank click & keys" ]
-                    [ H.li []
-                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                        , H.text <| String.fromInt <| rankKeys
-                        ]
-                    , H.li []
-                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                        , H.text <| String.fromInt <| rankClicks
-                        ]
-                    ]
-                , H.ul [ Icon.ul, A.title "Whatpulse total keys & clicks" ]
-                    [ H.li []
-                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.key ]
-                        , H.text <| String.fromInt <| totalKeys
-                        ]
-                    , H.li []
-                        [ H.span [] [ Icon.viewStyled [ Icon.fw, Icon.pullLeft ] Icon.mousePointer ]
-                        , H.text <| String.fromInt <| totalClicks
-                        ]
-                    ]
-                ]
-
-
-navigation : H.Html never
-navigation =
-    H.nav []
-        [ H.a
-            [ A.href "https://www.linkedin.com/in/tomasz-trębski"
-            , A.title "My LinkedIn profile"
-            , A.target "_blank"
-            ]
-            [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.linkedin ]
-        , H.a
-            [ A.href "https://www.github.com/kornicameister"
-            , A.title "My Github profile"
-            , A.target "_blank"
-            ]
-            [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.github ]
-        , H.a
-            [ A.href "https://www.gitlab.com/kornicameister"
-            , A.title "My Gitlab profile"
-            , A.target "_blank"
-            ]
-            [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.gitlab ]
-        ]
-
-
-content : H.Html never
-content =
-    H.article [ A.class "content" ]
-        [ H.h1 [ A.class "greeting" ] [ H.text "Boya mates" ]
-        , H.section []
-            [ H.p []
-                [ H.text "I am "
-                , H.strong [] [ H.text "kornicameister" ]
-                , H.text " also known as "
-                , H.i [] [ H.text "Tomasz Trębski." ]
-                ]
-            ]
-        , H.section []
-            [ H.p []
-                [ H.text "Born in 1990 in Łowicz, Poland - I actually never thought my journey with computers "
-                , H.text "might be something more than playing video games or being exhausted after being forced to write those "
-                , H.text "\"hello-world\"-ish programs in Pascal during my high school classes. "
-                , H.strong [] [ H.text "I was so wrong, wasn't I?" ]
-                ]
-            ]
-        , H.section []
-            [ H.p []
-                [ H.text "I think that some credit must be given to my classmate from the time I was doing my engineering degree "
-                , H.text " from Logistic. He was, back then, about to graduate with the same degree from computer science. "
-                , H.text "As a extracurricular activity; ha has infected me with the love for programming"
-                ]
-            ]
-        , H.section []
-            [ H.p []
-                [ H.text "I started out by doing simple C/C++ programs, just to get myself familiar with the world I was "
-                , H.text "entering. After that I met Java and I think that it kept me busy for around 3 years, including "
-                , H.text "my first 2 years of professional career. "
-                , H.text "Then, I joined Python camp and I have been its faitful member since 2015."
-                ]
-            , H.hr [] []
             , H.p []
-                [ H.text "But I haven't stopped there and I am still exploring this wonderful world that allowed me to "
-                , H.text "indulge my passion to learn, give me only so much joy a challange can bring "
-                , H.text "and, last but no less important, to start a family to share a life. "
+                [ H.text "Since "
+                , H.em [] [ H.strong [] [ H.text "glorious" ] ]
+                , H.text " 2018, I have been extending my knowledge regarding "
+                , H.em []
+                    [ H.a
+                        [ A.href "https://en.wikipedia.org/wiki/Functional_programming"
+                        , A.target "_blank"
+                        ]
+                        [ H.text "functional programming" ]
+                    ]
+                , H.text "."
+                ]
+            , H.p [] [ H.i [] [ H.text "How did it all start?" ] ]
+            , H.p []
+                [ H.text "The story goes back to me joining "
+                , H.em []
+                    [ H.a [ A.href "http://docs.fcsm.io/", A.target "_blank" ] [ H.text "EOS" ]
+                    ]
+                , H.text " project. "
+                , H.text "Long story short, but that project was the one that set me on my way functional path. "
+                , H.text "Currently I can tell that I know following languages: "
+                , H.ul []
+                    [ H.li []
+                        [ H.a [ A.href "https://elm-lang.org", A.target "_blank" ]
+                            [ H.img
+                                [ A.src "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/512px-Elm_logo.svg.png"
+                                , A.title "Elm"
+                                , A.alt "Elm logo"
+                                ]
+                                []
+                            ]
+                        ]
+                    , H.li []
+                        [ H.a [ A.href "https://www.haskell.org/", A.target "_blank" ]
+                            [ H.img
+                                [ A.src "https://evenmere.org/~bts/haskell-logo/logo-0.svg"
+                                , A.title "Haskell"
+                                , A.alt "Haskell logo"
+                                ]
+                                []
+                            ]
+                        ]
+                    , H.li []
+                        [ H.a [ A.href "https://fsharp.org/", A.target "_blank" ]
+                            [ H.img
+                                [ A.src "http://fsharp.org/img/logo/fsharp.svg"
+                                , A.title "F#"
+                                , A.alt "F#"
+                                ]
+                                []
+                            ]
+                        ]
+                    ]
+                ]
+            , H.p []
+                [ H.text "If you are looking for an example, you do not have to look far, "
+                , H.strong [] [ H.text "this" ]
+                , H.text " page was built with "
+                , H.em []
+                    [ H.span [ A.style "color" "red" ] [ Icon.viewStyled [ Icon.fw ] Icon.heart ]
+                    , H.a [ A.href "https://elm-lang.org", A.target "_blank" ] [ H.text "Elm" ]
+                    ]
+                , H.text "."
+                ]
+            , H.p []
+                [ H.text "I am currently in a process of learning how to learn others with functional programming. "
+                , H.text "I find this goal very "
+                , H.em [] [ H.text "important" ]
+                , H.text " to pursue. "
+                , H.text "Reason is quite simple! "
+                , H.text "Since early years of studies, my and others heads were filled with imperative programming model. "
+                , H.text "Learning something opposite, at least for me, "
+                , H.strong [] [ H.text "rebooting" ]
+                , H.text " my mind. Not to mention about boosting up soft skills, especially an ability to share the accumulated knowledge."
+                ]
+            ]
+        , H.li [ A.class "event" ]
+            [ H.h3 [ A.class "header" ]
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.python
+                , H.text "Logging & Monitoring"
+                ]
+            , H.p []
+                [ H.a
+                    [ A.href "https://monasca.io"
+                    , A.target "_blank"
+                    ]
+                    [ H.strong [] [ H.text "monasca" ] ]
+                , H.text " was my first serious assignment in Fujitsu. "
+                , H.text "We have concentrated on enhancing "
+                , H.em [] [ H.text "Openstack" ]
+                , H.text " monitoring solution with "
+                , H.strong [] [ H.text "collecting" ]
+                , H.text " and "
+                , H.strong [] [ H.text "analyzing" ]
+                , H.text " logs. "
+                , H.text "All of the work I have done was done with the little help of "
+                , H.a [ A.href "https://www.python.org/", A.target "_blank", A.title "Python" ] [ Icon.viewStyled [ Icon.fw ] Icon.python ]
+                , H.text ". "
+                , H.text "Needless to say that I learnt a lot of that language, going from not knowing a thing about it "
+                , H.text "to mastering its strenthgs. "
+                , H.text "It is worth mentioning that I was "
+                , H.strong [] [ H.text "core" ]
+                , H.text " contributor for "
+                , H.a
+                    [ A.href "http://monasca.io/"
+                    , A.target "_blank"
+                    ]
+                    [ H.strong [] [ H.text "monasca" ] ]
+                , H.text " inside of Fujitsu. "
+                , H.text "And those were not commits only but also code reviews."
+                ]
+            , H.p []
+                [ H.text "My contributions can still be examined in following locations:"
+                , H.ul []
+                    [ H.li []
+                        [ H.a
+                            [ A.href "http://stackalytics.com/?user_id=kornicameister&release=all&project_type=all"
+                            , A.target "_blank"
+                            , A.style "display" "flex"
+                            ]
+                            [ H.img
+                                [ A.src "%PUBLIC_URL%/stackalytics_logo.png"
+                                , A.alt "Stackanalytics for Openstack"
+                                , A.title "Stackanalytics for Openstack"
+                                , A.style "height" "20px"
+                                ]
+                                []
+                            ]
+                        ]
+                    , H.li []
+                        [ H.a
+                            [ A.href "https://review.openstack.org/#/q/owner:trebskit+status:merged"
+                            , A.target "_blank"
+                            , A.style "display" "flex"
+                            ]
+                            [ H.img
+                                [ A.src "%PUBLIC_URL%/gerrit_logo.svg"
+                                , A.alt "Openstack Gerrit"
+                                , A.title "Openstack Gerrit"
+                                , A.style "height" "20px"
+                                ]
+                                []
+                            ]
+                        ]
+                    ]
+                , H.text "."
+                ]
+            ]
+        , H.li [ A.class "event" ]
+            [ H.h3 [ A.class "header" ]
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.java
+                , H.text "Cooking the beans"
+                ]
+            , H.p []
+                [ H.strong [] [ H.text "First" ]
+                , H.text " real work together with "
+                , H.a
+                    [ A.href "https://tt.com.pl"
+                    , A.target "_blank"
+                    ]
+                    [ H.text "Transition Technologies" ]
+                , H.text "."
+                ]
+            , H.p []
+                [ H.text "I think that what best describes this part of my life is being confronted "
+                , H.text " with the real world. No more professors but real deal people to "
+                , H.text "appreciate me or to blame me for not doing something right."
+                ]
+            , H.p []
+                [ H.text "I have learnt a great deal about Java and doing things in it."
+                , H.text "Everything was Java, not only at work but also theses. "
+                , H.text "Spring-* was my best friend for quite some time "
+                , H.span [ A.class "emoji" ] [ H.text "\u{1F923}" ]
+                , H.text "."
+                ]
+            ]
+        , H.li [ A.class "event" ]
+            [ H.h3 [ A.class "header" ]
+                [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.heart
+                , H.text "Beginning"
+                ]
+            , H.p []
+                [ H.text "Beginnings are often hard and it was the case for me as well. "
+                , H.text "Starting out with "
+                , H.em [] [ H.text "Pascal" ]
+                , H.text " was not very good choice."
+                , H.text "I felt like I cannot do anything."
+                ]
+            , H.p []
+                [ H.text "Resurection of, what later has become a "
+                , H.strong [] [ H.text "passion" ]
+                , H.text " came when I was a student. "
+                , H.text "Who would've thought that starting out with "
+                , H.strong [] [ H.text "C++" ]
+                , H.text " and "
+                , H.strong [] [ H.text "Qt" ]
+                , H.text " will lead to exploring depths of objective and functional programming in future."
                 ]
             ]
         ]
@@ -293,63 +275,11 @@ content =
 type Msg
     = URLRequest Browser.UrlRequest
     | URLChanged Url.Url
-    | GotWhatPulseProfile (RemoteData.WebData WhatPulseProfile)
-    | ReceivedWakatimeStats Ports.WakatimeStatsResponse
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GotWhatPulseProfile result ->
-            ( { model | whatPulseProfile = result }, Cmd.none )
-
-        ReceivedWakatimeStats { category, data } ->
-            let
-                top3Decoder dataDecoder dataFilter =
-                    Decode.decodeValue
-                        (Decode.field "data"
-                            (Decode.list dataDecoder)
-                            |> Decode.andThen
-                                (List.filter dataFilter
-                                    >> List.sortBy Tuple.second
-                                    >> List.reverse
-                                    >> List.take 3
-                                    >> Decode.succeed
-                                )
-                        )
-
-                langDecoder =
-                    top3Decoder
-                        (Decode.map2 Tuple.pair
-                            (Decode.field "name" Decode.string)
-                            (Decode.field "percent" Decode.float)
-                        )
-                        (Tuple.first >> String.toLower >> (/=) "other")
-
-                editorDecoder =
-                    top3Decoder
-                        (Decode.map2 Tuple.pair
-                            (Decode.field "name" Decode.string)
-                            (Decode.field "percent" Decode.float)
-                        )
-                        (always True)
-
-                oldStats =
-                    model.wakatimeStats
-
-                newStats =
-                    case category of
-                        "languages" ->
-                            { oldStats | top3Languages = data |> langDecoder |> Just }
-
-                        "editors" ->
-                            { oldStats | top3Editors = data |> editorDecoder |> Just }
-
-                        _ ->
-                            oldStats
-            in
-            ( { model | wakatimeStats = newStats }, Cmd.none )
-
         URLRequest request ->
             case request of
                 Browser.Internal url ->
@@ -367,15 +297,6 @@ update msg model =
 
 
 
----- SUBSCRIPTIONS ---
-
-
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    Ports.receiveWakatimeStats ReceivedWakatimeStats
-
-
-
 ---- PROGRAM ----
 
 
@@ -385,7 +306,7 @@ main =
         { view = view
         , init = init
         , update = update
-        , subscriptions = subscriptions
+        , subscriptions = always Sub.none
         , onUrlChange = URLChanged
         , onUrlRequest = URLRequest
         }

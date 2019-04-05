@@ -1,9 +1,12 @@
 @import './responsivness.scss';
 @import './colors.scss';
+@import './timeline.scss';
+@import './nav.scss';
+@import './emoji.scss';
 
 @font-face {
-  font-family: 'Roboto', sans-setif;
-  src: url('https://fonts.googleapis.com/css?family=Roboto');
+  src: url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
+  font-family: 'Chivo', sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +19,8 @@ img {
 }
 
 body {
-  @extend .is-black;
+  background-color: $light;
+  color: $black;
 
   &:before {
     content: '';
@@ -25,153 +29,41 @@ body {
     left: 0;
     width: 100%;
     height: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 15px 15px transparentize($black, 0.5);
     z-index: 100;
   }
 
   overflow: hidden auto;
-  align-items: stretch;
-  justify-content: stretch;
-  align-content: stretch;
 
-  main {
-    @include fullhd {
+  #root {
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template: 'aside . main';
+    align-self: center;
+    justify-self: center;
+
+    grid-gap: 1rem;
+    padding: 2rem 2rem;
+    margin: 0 1rem;
+
+    main {
+      grid-area: main;
+    }
+    aside {
       display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-      grid-template-areas:
-        '. header header . . . nav .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. avatar avatar . content content content .'
-        '. footer footer footer footer footer footer .';
-      grid-gap: 1rem;
-    }
-
-    @include mobile {
-      display: grid;
-      grid-template-areas:
-        'header'
-        'nav'
-        'content'
-        'footer';
-      grid-row-gap: 1.5rem;
-    }
-
-    margin: 2vh 1vw 2vh 1vw;
-    width: 98vw;
-    height: 96vh;
-
-    header {
-      grid-area: header;
-      position: sticky;
-      top: -1px;
-
-      @include mobile {
-        display: inline-flex;
-        align-items: center;
-        .header {
-          flex: 1 0 75%;
-        }
-        .version {
-          flex: 1 0 15%;
-        }
+      grid-area: aside;
+      grid-template-columns: 1fr;
+      grid-template-rows: 75vh 1fr;
+      grid-template: '
+        aside-nav
+        aside-footer';
+      grid-row-gap: 2rem;
+      nav {
+        grid-area: aside-nav;
       }
-    }
-
-    footer {
-      grid-area: footer;
-
-      display: flex;
-      align-items: stretch;
-      justify-content: flex-end;
-      align-self: flex-end;
-
-      max-height: 5vh;
-      padding: 0.5rem 0.5rem;
-
-      font-size: small;
-
-      .footer-item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid $grey;
-        * {
-          &:not(:last-child) {
-            margin-right: 0.5rem;
-          }
-        }
-      }
-      .footer-item:not(:last-child) {
-        padding-right: 2rem;
-      }
-
-      .wakatime-stats {
-        line-height: 0.25rem;
-        p {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-        }
-        img {
-          max-width: 25px;
-        }
-      }
-      .whatpulse-stats {
-        img {
-          max-height: 25px;
-          border-radius: unset;
-        }
-      }
-    }
-
-    nav {
-      grid-area: nav;
-      display: flex;
-      & {
-        flex: 1 0 0;
-      }
-      justify-content: space-between;
-      @include fullhd {
-        justify-content: center;
-      }
-    }
-
-    .avatar {
-      display: none;
-      visibility: hidden;
-    }
-    @include fullhd {
-      .avatar {
-        grid-area: avatar;
-
-        display: flex;
-        flex-flow: column;
-
-        visibility: visible;
-
-        align-items: center;
-        justify-content: center;
-
-        .caption {
-          height: 10px;
-          font-weight: bold;
-          opacity: 0.7;
-        }
-      }
-    }
-
-    .content {
-      grid-area: content;
-      display: flex;
-      flex-flow: column;
-
-      .greeting {
-        text-align: center;
-      }
-      section {
-        padding: 0 1.25rem 0 1.25rem;
+      footer {
+        grid-area: aside-footer;
       }
     }
   }

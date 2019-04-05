@@ -1,29 +1,9 @@
-// colors taken from http://materialuicolors.co/
+$primary: #004ffc;
+$light: #ffffff;
+$dim: #6c6d6d;
+$black: #252827;
 
-$red: #f44336;
-$grey: #607d8b;
-$pink: #e91e63;
-$purple: #673ab7;
-$blue: #3f51b5;
-$green: #4caf50;
-$yellow: #ffc107;
-$orange: #ff5722;
-$black: #000011;
-
-@each $name,
-  $color
-    in (
-      'yellow' $yellow,
-      'orange' $orange,
-      'black' $black,
-      'green' $green,
-      'blue' $blue,
-      'red' $red,
-      'grey' $grey,
-      'pink' $pink,
-      'purple' $purple
-    )
-{
+@each $name, $color in ('black' $black, 'primary' $primary, 'light' $light, 'dim' $dim) {
   .is-#{$name} {
     color: $color;
   }
