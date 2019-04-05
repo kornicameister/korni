@@ -43,24 +43,38 @@ view : Model -> Browser.Document Msg
 view _ =
     { title = "Korni"
     , body =
-        [ H.div [ A.id "root" ]
-            [ Icon.css
-            , H.aside []
-                [ H.nav [] []
-                , H.footer [] []
+        [ H.aside []
+            [ H.nav [] []
+            , H.footer [] []
+            ]
+        , H.header []
+            [ H.img
+                [ A.src "%PUBLIC_URL%/me.jpeg"
+                , A.title "Tomasz Trębski"
+                , A.alt "me"
                 ]
-            , H.main_ []
-                [ timeline
+                []
+            , H.address []
+                [ H.h1 [] [ H.text "Tomasz Trębski" ]
+                , H.h2 [] [ H.text "kornicameister" ]
+                , H.h3 [] [ H.a [ A.href "mailto: kornicameister@gmail" ] [ H.text "kornicameister@gmail.com" ] ]
+                ]
+            , H.aside []
+                [ H.p [] [ Icon.viewStyled [ Icon.fw, Icon.fa2x ] Icon.github ]
                 ]
             ]
+        , H.main_ []
+            [ timeline
+            ]
+        , Icon.css
         ]
     }
 
 
 timeline : H.Html never
 timeline =
-    H.ul [ A.class "timeline" ]
-        [ H.li [ A.class "event" ]
+    H.article [ A.class "timeline" ]
+        [ H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat
                 , H.text "Functional world"
@@ -142,7 +156,7 @@ timeline =
                 , H.text " my mind. Not to mention about boosting up soft skills, especially an ability to share the accumulated knowledge."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.python
                 , H.text "Logging & Monitoring"
@@ -214,7 +228,7 @@ timeline =
                 , H.text "."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.java
                 , H.text "Cooking the beans"
@@ -242,7 +256,7 @@ timeline =
                 , H.text "."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.heart
                 , H.text "Beginning"

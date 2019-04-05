@@ -21,6 +21,7 @@ img {
 body {
   background-color: $light;
   color: $black;
+  overflow: hidden auto;
 
   &:before {
     content: '';
@@ -33,38 +34,78 @@ body {
     z-index: 100;
   }
 
-  overflow: hidden auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr;
+  grid-template-rows: 100px 1fr;
+  grid-template:
+    'header header header'
+    'aside . main';
+  align-self: center;
+  justify-self: center;
 
-  #root {
-    display: grid;
-    grid-template-columns: 3fr 1fr 3fr;
-    grid-template-rows: 1fr;
-    grid-template: 'aside . main';
-    align-self: center;
-    justify-self: center;
+  grid-gap: 1rem;
+  padding: 2rem 2rem;
+  margin: 0 1rem;
 
-    grid-gap: 1rem;
-    padding: 2rem 2rem;
-    margin: 0 1rem;
+  main {
+    grid-area: main;
+    max-height: 70vh;
+    overflow: hidden auto;
+    &::-webkit-scrollbar {
+      width: ($line * 2);
+    }
 
-    main {
-      grid-area: main;
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px transparentize($dim, 0.9);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary;
+      outline: 1px dashed $black;
+    }
+  }
+  header {
+    grid-area: header;
+
+    display: flex;
+    justify-items: baseline;
+    align-items: center;
+
+    padding: 1rem;
+
+    line-height: 0.5em;
+
+    address {
+      display: block;
+      font-size: smaller;
+      align-items: last baseline;
+    }
+    img {
+      display: block;
+      max-height: 100px;
+      &:first-child {
+        margin-right: 2rem;
+      }
     }
     aside {
-      display: grid;
-      grid-area: aside;
-      grid-template-columns: 1fr;
-      grid-template-rows: 75vh 1fr;
-      grid-template: '
+      display: flex;
+      align-items: center;
+    }
+  }
+  aside {
+    display: grid;
+    grid-area: aside;
+    grid-template-columns: 1fr;
+    grid-template-rows: 75vh 1fr;
+    grid-template: '
         aside-nav
         aside-footer';
-      grid-row-gap: 2rem;
-      nav {
-        grid-area: aside-nav;
-      }
-      footer {
-        grid-area: aside-footer;
-      }
+    grid-row-gap: 2rem;
+    nav {
+      grid-area: aside-nav;
+    }
+    footer {
+      grid-area: aside-footer;
     }
   }
 }
