@@ -5,13 +5,9 @@ $radius: 5px;
 $spacing: 50px;
 
 .timeline {
-  grid-area: content;
   justify-self: flex-end;
 
-  border-left: $line solid $primary;
-  border-bottom-right-radius: $radius;
-  border-top-right-radius: $radius;
-  background: fade($light, 3%);
+  background: $light;
   color: fade(white, 80%);
   letter-spacing: 0.5px;
   line-height: 1.4em;
@@ -46,6 +42,30 @@ $spacing: 50px;
     padding-right: ($spacing * 0.75);
     margin-bottom: ($spacing * 0.5);
     text-align: justify;
+
+    strong {
+      font-weight: 700;
+    }
+    em {
+      font-weight: 500;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-content: space-betweem;
+      li {
+        display: flex;
+        padding: 5px 0;
+        &:not(:last-child) {
+          margin-right: 5px;
+        }
+        img {
+          max-height: 25px;
+          border-radius: unset;
+        }
+      }
+    }
 
     &:last-of-type {
       padding-bottom: 0;
