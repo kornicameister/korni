@@ -49,12 +49,22 @@ view model =
     { title = model.version |> me
     , body =
         [ H.header []
-            [ H.img
-                [ A.src "%PUBLIC_URL%/me.jpeg"
-                , model.version |> me |> A.title
-                , A.alt "me"
+            [ H.div [ A.class "avatar" ]
+                [ H.img
+                    [ A.class "primary"
+                    , A.src "%PUBLIC_URL%/me.jpeg"
+                    , model.version |> me |> A.title
+                    , A.alt "me"
+                    ]
+                    []
+                , H.img
+                    [ A.class "secondary"
+                    , A.src "%PUBLIC_URL%/logo.png"
+                    , model.version |> me |> A.title
+                    , A.alt "me"
+                    ]
+                    []
                 ]
-                []
             , H.address []
                 [ H.h1 [] [ H.text "Tomasz Trębski" ]
                 , H.h2 [] [ H.text "kornicameister" ]

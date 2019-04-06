@@ -92,17 +92,35 @@ body {
     grid-area: header;
 
     address {
-      display: block;
+      display: flex;
+      flex-flow: column;
       font-size: smaller;
-      align-items: last baseline;
-      text-align: center;
+      align-items: center;
+      justify-items: center;
       font-size: xx-small;
     }
-    img {
-      display: block;
-      max-height: 100px;
-      &:first-child {
-        margin-right: 2rem;
+    .avatar {
+      display: flex;
+      img {
+        max-height: 100px;
+        opacity: 1;
+        visibility: visible;
+        transition: visibility 0s linear 300ms, opacity 300ms;
+        float: left;
+      }
+      .secondary {
+        opacity: 0;
+        visibility: hidden;
+      }
+      &:hover {
+        .primary {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .secondary {
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
     aside {
@@ -112,5 +130,7 @@ body {
   }
   footer {
     grid-area: footer;
+    color: $light;
+    background: transparentize($black, 0.5);
   }
 }
