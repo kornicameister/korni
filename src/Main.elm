@@ -35,18 +35,23 @@ init version _ navKey =
     )
 
 
+me : Version -> String
+me version =
+    [ version, "Tomasz Trębski", "@kornicameister" ] |> String.join " |> "
+
+
 
 ---- VIEW ----
 
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "Korni"
+    { title = model.version |> me
     , body =
         [ H.header []
             [ H.img
                 [ A.src "%PUBLIC_URL%/me.jpeg"
-                , A.title "Tomasz Trębski"
+                , model.version |> me |> A.title
                 , A.alt "me"
                 ]
                 []
