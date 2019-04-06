@@ -2,13 +2,13 @@
 @import './colors.scss';
 @import './timeline.scss';
 @import './nav.scss';
-@import './emoji.scss';
 
 @font-face {
   src: url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
   font-family: 'Chivo', sans-serif;
   font-weight: normal;
   font-style: normal;
+  font-size: 700;
 }
 
 img {
@@ -21,6 +21,7 @@ img {
 body {
   background-color: $light;
   color: $black;
+  overflow: hidden auto;
 
   &:before {
     content: '';
@@ -33,38 +34,108 @@ body {
     z-index: 100;
   }
 
-  overflow: hidden auto;
+  display: grid;
+  grid-template-columns: 200px repeat(2, 1fr);
+  grid-template-rows: 100px auto 25px;
+  grid-template:
+    'header header header'
+    'content content content'
+    'footer footer footer';
+  align-self: center;
+  justify-self: center;
 
-  #root {
-    display: grid;
-    grid-template-columns: 3fr 1fr 3fr;
-    grid-template-rows: 1fr;
-    grid-template: 'aside . main';
-    align-self: center;
-    justify-self: center;
+  grid-gap: 1.5rem;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
 
-    grid-gap: 1rem;
-    padding: 2rem 2rem;
-    margin: 0 1rem;
+  main {
+    grid-area: content;
 
-    main {
-      grid-area: main;
+    & > * {
+      max-height: 70vh;
+      overflow: hidden auto;
+
+      &::-webkit-scrollbar {
+        width: ($line * 2);
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 10px transparentize($light, 0.5);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          to bottom,
+          $primary 25%,
+          lighten($primary, 50%) 95%,
+          $light 100%
+        );
+        outline: 1px dashed $dim;
+      }
+    }
+  }
+
+  header,
+  footer {
+    display: flex;
+    justify-items: baseline;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 1rem;
+
+    line-height: 0.5em;
+  }
+
+  header {
+    grid-area: header;
+
+    address {
+      display: flex;
+      flex-flow: column;
+      justify-items: center;
+      align-items: center;
+      font-size: xx-small;
+      line-height: 1px;
+    }
+    .avatar {
+      display: flex;
+      img {
+        max-height: 100px;
+        opacity: 1;
+        visibility: visible;
+        transition: visibility 0s linear 300ms, opacity 300ms;
+        float: left;
+      }
+      .secondary {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+      }
+      &:hover {
+        .primary {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .secondary {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
     }
     aside {
-      display: grid;
-      grid-area: aside;
-      grid-template-columns: 1fr;
-      grid-template-rows: 75vh 1fr;
-      grid-template: '
-        aside-nav
-        aside-footer';
-      grid-row-gap: 2rem;
+      display: flex;
       nav {
-        grid-area: aside-nav;
-      }
-      footer {
-        grid-area: aside-footer;
+        a {
+          color: $black;
+          &:hover {
+            color: $primary;
+          }
+        }
       }
     }
+  }
+  footer {
+    grid-area: footer;
   }
 }

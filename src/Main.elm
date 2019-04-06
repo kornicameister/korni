@@ -35,32 +35,90 @@ init version _ navKey =
     )
 
 
+me : String
+me =
+    [ "Tomasz Trębski", "@kornicameister" ] |> String.join " |> "
+
+
 
 ---- VIEW ----
 
 
 view : Model -> Browser.Document Msg
-view _ =
-    { title = "Korni"
+view model =
+    { title = me
     , body =
-        [ H.div [ A.id "root" ]
-            [ Icon.css
-            , H.aside []
-                [ H.nav [] []
-                , H.footer [] []
+        [ H.header []
+            [ H.div [ A.class "avatar" ]
+                [ H.img
+                    [ A.class "primary"
+                    , A.src "%PUBLIC_URL%/me.jpeg"
+                    , me |> A.title
+                    , A.alt "me"
+                    ]
+                    []
+                , H.img
+                    [ A.class "secondary"
+                    , A.src "%PUBLIC_URL%/logo.png"
+                    , me |> A.title
+                    , A.alt "me"
+                    ]
+                    []
                 ]
-            , H.main_ []
-                [ timeline
+            , H.address []
+                [ H.h1 [] [ H.text "Tomasz Trębski" ]
+                , H.h2 [] [ H.text "kornicameister" ]
+                , H.h3 [] [ H.a [ A.href "mailto: kornicameister@gmail" ] [ H.text "kornicameister@gmail.com" ] ]
+                ]
+            , H.aside []
+                [ H.nav []
+                    [ H.a
+                        [ A.href "https://github.com/kornicameister"
+                        , A.target "_blank"
+                        , A.title "Github profile"
+                        ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.lg, Icon.border ] Icon.github ]
+                    , H.a
+                        [ A.href "https://gitlab.com/kornicameister"
+                        , A.target "_blank"
+                        , A.title "Gitlab profile"
+                        ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.lg, Icon.border ] Icon.gitlab ]
+                    , H.a
+                        [ A.href "https://www.linkedin.com/in/tomasz-trębski/"
+                        , A.target "_blank"
+                        , A.title "LinkedIn profile"
+                        ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.lg, Icon.border ] Icon.linkedin ]
+                    , H.a
+                        [ A.href "https://medium.com/@kornicameister"
+                        , A.target "_blank"
+                        , A.title "Medium profile"
+                        ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.lg, Icon.border ] Icon.medium ]
+                    , H.a
+                        [ A.href "https://www.last.fm/user/kornicameister"
+                        , A.target "_blank"
+                        , A.title "LastFM profile"
+                        ]
+                        [ Icon.viewStyled [ Icon.fw, Icon.lg, Icon.border ] Icon.lastfm ]
+                    ]
                 ]
             ]
+        , H.main_ []
+            [ timeline
+            ]
+        , H.footer []
+            [ H.strong [] [ H.text model.version ] ]
+        , Icon.css
         ]
     }
 
 
 timeline : H.Html never
 timeline =
-    H.ul [ A.class "timeline" ]
-        [ H.li [ A.class "event" ]
+    H.article [ A.class "timeline" ]
+        [ H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.cat
                 , H.text "Functional world"
@@ -142,7 +200,7 @@ timeline =
                 , H.text " my mind. Not to mention about boosting up soft skills, especially an ability to share the accumulated knowledge."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.python
                 , H.text "Logging & Monitoring"
@@ -153,8 +211,7 @@ timeline =
                     , A.target "_blank"
                     ]
                     [ H.strong [] [ H.text "monasca" ] ]
-                , H.text " was my first serious assignment in Fujitsu. "
-                , H.text "We have concentrated on enhancing "
+                , H.text " was my first serious assignment in Fujitsu. We have concentrated on enhancing "
                 , H.em [] [ H.text "Openstack" ]
                 , H.text " monitoring solution with "
                 , H.strong [] [ H.text "collecting" ]
@@ -175,10 +232,7 @@ timeline =
                     ]
                     [ H.strong [] [ H.text "monasca" ] ]
                 , H.text " inside of Fujitsu. "
-                , H.text "And those were not commits only but also code reviews."
-                ]
-            , H.p []
-                [ H.text "My contributions can still be examined in following locations:"
+                , H.text "My contributions can still be examined in following locations:"
                 , H.ul []
                     [ H.li []
                         [ H.a
@@ -214,7 +268,7 @@ timeline =
                 , H.text "."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.java
                 , H.text "Cooking the beans"
@@ -227,22 +281,22 @@ timeline =
                     , A.target "_blank"
                     ]
                     [ H.text "Transition Technologies" ]
-                , H.text "."
-                ]
-            , H.p []
-                [ H.text "I think that what best describes this part of my life is being confronted "
+                , H.text ". "
+                , H.text "I think that what best describes this part of my life is being confronted "
                 , H.text " with the real world. No more professors but real deal people to "
                 , H.text "appreciate me or to blame me for not doing something right."
+                , H.text "I have learnt a great deal about Java and doing things in it."
+                , H.text "Everything was Java, not only at work but also theses. "
+                , H.text "Spring-* was my best friend for quite some time \u{1F923}."
                 ]
             , H.p []
-                [ H.text "I have learnt a great deal about Java and doing things in it."
-                , H.text "Everything was Java, not only at work but also theses. "
-                , H.text "Spring-* was my best friend for quite some time "
-                , H.span [ A.class "emoji" ] [ H.text "\u{1F923}" ]
-                , H.text "."
+                [ H.text "I remember that it was especially hard time for me. "
+                , H.text "I have been, simultaneously, studying Logistic and Computer Science. "
+                , H.text "No time to sleep with, exams and theses. "
+                , H.text "But everything worked out somehow."
                 ]
             ]
-        , H.li [ A.class "event" ]
+        , H.section [ A.class "event" ]
             [ H.h3 [ A.class "header" ]
                 [ Icon.viewStyled [ Icon.fw, Icon.fa2x, Icon.pullLeft, Icon.border ] Icon.heart
                 , H.text "Beginning"
@@ -253,9 +307,7 @@ timeline =
                 , H.em [] [ H.text "Pascal" ]
                 , H.text " was not very good choice."
                 , H.text "I felt like I cannot do anything."
-                ]
-            , H.p []
-                [ H.text "Resurection of, what later has become a "
+                , H.text "Resurection of, what later has become a "
                 , H.strong [] [ H.text "passion" ]
                 , H.text " came when I was a student. "
                 , H.text "Who would've thought that starting out with "
