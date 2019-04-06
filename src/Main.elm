@@ -202,10 +202,7 @@ timeline =
                     ]
                     [ H.strong [] [ H.text "monasca" ] ]
                 , H.text " inside of Fujitsu. "
-                , H.text "And those were not commits only but also code reviews."
-                ]
-            , H.p []
-                [ H.text "My contributions can still be examined in following locations:"
+                , H.text "My contributions can still be examined in following locations:"
                 , H.ul []
                     [ H.li []
                         [ H.a
@@ -264,9 +261,7 @@ timeline =
             , H.p []
                 [ H.text "I have learnt a great deal about Java and doing things in it."
                 , H.text "Everything was Java, not only at work but also theses. "
-                , H.text "Spring-* was my best friend for quite some time "
-                , H.span [ A.class "emoji" ] [ H.text "\u{1F923}" ]
-                , H.text "."
+                , H.text "Spring-* was my best friend for quite some time \u{1F923}."
                 ]
             ]
         , H.section [ A.class "event" ]
