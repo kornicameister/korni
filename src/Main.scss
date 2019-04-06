@@ -91,11 +91,12 @@ body {
     grid-area: header;
 
     address {
+      display: flex;
       flex-flow: column;
-      font-size: smaller;
-      align-items: center;
       justify-items: center;
+      align-items: center;
       font-size: xx-small;
+      line-height: 1px;
     }
     .avatar {
       display: flex;
@@ -123,7 +124,15 @@ body {
       }
     }
     aside {
-      align-items: center;
+      display: flex;
+      nav {
+        a {
+          color: $black;
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
     }
   }
   footer {
