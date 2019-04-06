@@ -35,9 +35,9 @@ init version _ navKey =
     )
 
 
-me : Version -> String
-me version =
-    [ version, "Tomasz Trębski", "@kornicameister" ] |> String.join " |> "
+me : String
+me =
+    [ "Tomasz Trębski", "@kornicameister" ] |> String.join " |> "
 
 
 
@@ -46,21 +46,21 @@ me version =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = model.version |> me
+    { title = me
     , body =
         [ H.header []
             [ H.div [ A.class "avatar" ]
                 [ H.img
                     [ A.class "primary"
                     , A.src "%PUBLIC_URL%/me.jpeg"
-                    , model.version |> me |> A.title
+                    , me |> A.title
                     , A.alt "me"
                     ]
                     []
                 , H.img
                     [ A.class "secondary"
                     , A.src "%PUBLIC_URL%/logo.png"
-                    , model.version |> me |> A.title
+                    , me |> A.title
                     , A.alt "me"
                     ]
                     []
