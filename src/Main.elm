@@ -40,14 +40,10 @@ init version _ navKey =
 
 
 view : Model -> Browser.Document Msg
-view _ =
+view model =
     { title = "Korni"
     , body =
-        [ H.aside []
-            [ H.nav [] []
-            , H.footer [] []
-            ]
-        , H.header []
+        [ H.header []
             [ H.img
                 [ A.src "%PUBLIC_URL%/me.jpeg"
                 , A.title "Tomasz Trębski"
@@ -66,6 +62,8 @@ view _ =
         , H.main_ []
             [ timeline
             ]
+        , H.footer []
+            [ H.strong [] [ H.text model.version ] ]
         , Icon.css
         ]
     }

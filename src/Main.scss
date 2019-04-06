@@ -9,6 +9,7 @@
   font-family: 'Chivo', sans-serif;
   font-weight: normal;
   font-style: normal;
+  font-size: 700;
 }
 
 img {
@@ -35,50 +36,67 @@ body {
   }
 
   display: grid;
-  grid-template-columns: 3fr 1fr 3fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-columns: 200px repeat(2, 1fr);
+  grid-template-rows: 100px auto 25px;
   grid-template:
     'header header header'
-    'aside . main';
+    'content content content'
+    'footer footer footer';
   align-self: center;
   justify-self: center;
 
-  grid-gap: 1rem;
-  padding: 2rem 2rem;
-  margin: 0 1rem;
+  grid-gap: 1.5rem;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
 
   main {
-    grid-area: main;
-    max-height: 70vh;
-    overflow: hidden auto;
-    &::-webkit-scrollbar {
-      width: ($line * 2);
-    }
+    grid-area: content;
 
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px transparentize($dim, 0.9);
-    }
+    & > * {
+      max-height: 70vh;
+      overflow: hidden auto;
 
-    &::-webkit-scrollbar-thumb {
-      background-color: $primary;
-      outline: 1px dashed $black;
+      &::-webkit-scrollbar {
+        width: ($line * 2);
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 10px transparentize($light, 0.5);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          to bottom,
+          $primary 25%,
+          lighten($primary, 50%) 95%,
+          $light 100%
+        );
+        outline: 1px dashed $dim;
+      }
     }
   }
-  header {
-    grid-area: header;
 
+  header,
+  footer {
     display: flex;
     justify-items: baseline;
+    justify-content: space-around;
     align-items: center;
 
     padding: 1rem;
 
     line-height: 0.5em;
+  }
+
+  header {
+    grid-area: header;
 
     address {
       display: block;
       font-size: smaller;
       align-items: last baseline;
+      text-align: center;
+      font-size: xx-small;
     }
     img {
       display: block;
@@ -92,20 +110,7 @@ body {
       align-items: center;
     }
   }
-  aside {
-    display: grid;
-    grid-area: aside;
-    grid-template-columns: 1fr;
-    grid-template-rows: 75vh 1fr;
-    grid-template: '
-        aside-nav
-        aside-footer';
-    grid-row-gap: 2rem;
-    nav {
-      grid-area: aside-nav;
-    }
-    footer {
-      grid-area: aside-footer;
-    }
+  footer {
+    grid-area: footer;
   }
 }

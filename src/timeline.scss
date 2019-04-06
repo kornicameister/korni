@@ -5,12 +5,8 @@ $radius: 5px;
 $spacing: 50px;
 
 .timeline {
-  background: $light;
-  color: fade(white, 80%);
+  color: fade($black, 80%);
   letter-spacing: 0.5px;
-  line-height: 1.4em;
-  font-size: 1.03em;
-  font-weight: 100;
 
   .event {
     .header {
