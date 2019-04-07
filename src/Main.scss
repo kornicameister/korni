@@ -79,7 +79,7 @@ body {
   footer {
     display: flex;
     justify-items: baseline;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     padding: 1rem;
@@ -137,5 +137,6 @@ body {
   }
   footer {
     grid-area: footer;
+    justify-content: center;
   }
 }
