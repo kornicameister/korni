@@ -109,7 +109,9 @@ view model =
             [ timeline
             ]
         , H.footer []
-            [ H.strong [] [ H.text model.version ] ]
+            [ H.strong [] [ H.text model.version ]
+            , H.img [ A.src "https://circleci.com/gh/kornicameister/korni/tree/master.svg?style=svg" ] []
+            ]
         , Icon.css
         ]
     }
