@@ -19,7 +19,7 @@
     "elm-format": "0.8.1",
     "elm-analyse": "^0.16.3",
     "elm-lsp": "^1.0.2",
-    "webpack": "^4.29.6"
+    "webpack": "^4.30.0"
   },
   "scripts": {
     "prestart": "npx check-node-version --package",
