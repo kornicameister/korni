@@ -15,7 +15,7 @@
   "devDependencies": {
     "check-node-version": "^3.2.0",
     "concurrently": "^4.0.1",
-    "prettier": "^1.16.4",
+    "prettier": "^1.17.0",
     "elm-format": "0.8.1",
     "elm-analyse": "^0.16.3",
     "elm-lsp": "^1.0.2",
