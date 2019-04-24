@@ -15,10 +15,11 @@
   "devDependencies": {
     "check-node-version": "^3.2.0",
     "concurrently": "^4.0.1",
-    "prettier": "^1.17.0",
-    "elm-format": "0.8.1",
     "elm-analyse": "^0.16.3",
-    "elm-lsp": "^1.0.2",
+    "elm-format": "0.8.1",
+    "elm-lsp": "^1.0.3",
+    "elm-xref": "^4.0.0",
+    "prettier": "^1.17.0",
     "webpack": "^4.30.0"
   },
   "scripts": {
@@ -29,7 +30,7 @@
     "build": "npm run build-css && elm-app build",
     "test": "elm-app test",
     "eject": "elm-app eject",
-    "lint": "elm-format --validate src tests && prettier --list-different '**/*.*' && elm-analyse",
+    "lint": "elm-format --validate src tests && prettier --list-different '**/*.*' && elm-analyse && elm-xref",
     "prettier": "prettier --write --config .prettierrc '**/*.*'",
     "build-css": "node-sass-chokidar --output-style compressed --include-path node_modules/ src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path node_modules/ src/ -o src/ --watch",
