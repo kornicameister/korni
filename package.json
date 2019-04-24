@@ -18,7 +18,7 @@
     "prettier": "^1.17.0",
     "elm-format": "0.8.1",
     "elm-analyse": "^0.16.3",
-    "elm-lsp": "^1.0.2",
+    "elm-lsp": "^1.0.3",
     "webpack": "^4.30.0"
   },
   "scripts": {
