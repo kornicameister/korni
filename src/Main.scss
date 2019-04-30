@@ -1,7 +1,6 @@
 @import './responsivness.scss';
 @import './colors.scss';
 @import './timeline.scss';
-@import './nav.scss';
 
 @font-face {
   src: url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
@@ -46,7 +45,10 @@ body {
 
   grid-gap: 1.5rem;
   padding: 1rem 1rem;
-  margin: 1rem 1rem;
+  margin: 1rem 25rem;
+  @include mobile {
+    margin: 1rem 1rem;
+  }
 
   main {
     grid-area: content;
@@ -56,22 +58,24 @@ body {
       overflow: hidden auto;
       margin-bottom: -5px;
 
-      &::-webkit-scrollbar {
-        width: ($line * 2);
-      }
+      @include fullhd {
+        &::-webkit-scrollbar {
+          width: ($line * 2);
+        }
 
-      &::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 10px transparentize($light, 0.5);
-      }
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 10px transparentize($light, 0.5);
+        }
 
-      &::-webkit-scrollbar-thumb {
-        background: linear-gradient(
-          to bottom,
-          $primary 25%,
-          lighten($primary, 50%) 95%,
-          $light 100%
-        );
-        outline: 1px dashed $primary;
+        &::-webkit-scrollbar-thumb {
+          background: linear-gradient(
+            to bottom,
+            $primary 25%,
+            lighten($primary, 50%) 95%,
+            $light 100%
+          );
+          outline: 1px dashed $primary;
+        }
       }
     }
   }
@@ -91,6 +95,11 @@ body {
   header {
     grid-area: header;
 
+    @include mobile {
+      display: flex;
+      flex-flow: column;
+    }
+
     address {
       display: flex;
       flex-flow: column;
@@ -103,6 +112,9 @@ body {
       display: flex;
       img {
         max-height: 100px;
+        @include mobile {
+          max-height: 50px;
+        }
         opacity: 1;
         visibility: visible;
         transition: visibility 0s linear 300ms, opacity 300ms;
@@ -144,6 +156,11 @@ body {
     flex-flow: row;
     & > * {
       padding: 0 0.25rem;
+    }
+    @include mobile {
+      display: none;
+      visibility: hidden;
+      overflow: none;
     }
   }
 }
