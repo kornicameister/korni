@@ -1,17 +1,25 @@
+// https://gist.github.com/charlesponti/db5272a8e64d23e320d8
+
 @mixin mobile {
-  @media (min-width: 480px) and (max-width: 786px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: 787px) and (max-width: 1024px) {
+  @media (min-width: 786px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin screen {
+  @media (min-width: 1224px) {
     @content;
   }
 }
 
 @mixin fullhd {
-  @media (min-width: 1200px) {
+  @media (min-width: 1824px) {
     @content;
   }
 }
