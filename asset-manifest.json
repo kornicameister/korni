@@ -1,13 +1,13 @@
 {
-  "main.css": "/korni/static/css/main.3ce0612b.chunk.css",
-  "main.js": "/korni/static/js/main.c6b484bf.chunk.js",
-  "main.css.map": "/korni/static/css/main.3ce0612b.chunk.css.map",
-  "main.js.map": "/korni/static/js/main.c6b484bf.chunk.js.map",
+  "main.css": "/korni/static/css/main.cef63cb5.chunk.css",
+  "main.js": "/korni/static/js/main.a9113b4a.chunk.js",
+  "main.css.map": "/korni/static/css/main.cef63cb5.chunk.css.map",
+  "main.js.map": "/korni/static/js/main.a9113b4a.chunk.js.map",
   "runtime~main.js": "/korni/static/js/runtime~main.5b676a5a.js",
   "runtime~main.js.map": "/korni/static/js/runtime~main.5b676a5a.js.map",
   "vendors~main.css": "/korni/static/css/vendors~main.b0f8db13.chunk.css",
-  "vendors~main.js": "/korni/static/js/vendors~main.96d27105.chunk.js",
+  "vendors~main.js": "/korni/static/js/vendors~main.6442ee56.chunk.js",
   "vendors~main.css.map": "/korni/static/css/vendors~main.b0f8db13.chunk.css.map",
-  "vendors~main.js.map": "/korni/static/js/vendors~main.96d27105.chunk.js.map",
+  "vendors~main.js.map": "/korni/static/js/vendors~main.6442ee56.chunk.js.map",
   "index.html": "/korni/index.html"
 }
