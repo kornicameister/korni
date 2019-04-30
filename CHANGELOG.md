@@ -1,3 +1,25 @@
+0.3.4 / 2019-05-01
+==================
+
+  * Layout with loots of room on both sides (#717)
+  * Add elm-xref (#716)
+  * Bump prettier from 1.16.4 to 1.17.0 (#713)
+  * Bump lattyware/elm-fontawesome from 2.2.0 to 2.3.0 (#714)
+  * Bump webpack from 4.29.6 to 4.30.0 (#712)
+  * Bump elm-analyse from 0.16.2 to 0.16.3 (#711)
+  * Fluent UI colors
+  * Add current build status
+  * Better header,footer content distribution
+  * [ImgBot] Optimize images (#710)
+  * New layout (#708)
+  * [ImgBot] Optimize images (#709)
+  * Timeline (#706)
+  * Bump elm-lsp from 1.0.1 to 1.0.2 (#707)
+  * Request whatpulse by asking via https
+  * Run in HTTPS by default and fix prettier to fix scss
+  * Add elm-lsp
+  * Bump elm-analyse from 0.16.1 to 0.16.2 (#704)
+
 0.3.3 / 2019-03-28
 ==================
 
