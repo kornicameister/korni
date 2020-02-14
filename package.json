@@ -20,7 +20,7 @@
     "elm-lsp": "^1.0.3",
     "elm-xref": "^4.1.0",
     "prettier": "^1.19.1",
-    "webpack": "^4.41.5"
+    "webpack": "^4.41.6"
   },
   "scripts": {
     "prestart": "npx check-node-version --package",
