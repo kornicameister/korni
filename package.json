@@ -8,7 +8,7 @@
     "npm": "6.9.0"
   },
   "dependencies": {
-    "create-elm-app": "4.2.2",
+    "create-elm-app": "4.2.3",
     "node-sass-chokidar": "^1.4.0",
     "normalize.css": "^8.0.1"
   },
