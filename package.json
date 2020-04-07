@@ -8,7 +8,7 @@
     "npm": "6.9.0"
   },
   "dependencies": {
-    "create-elm-app": "4.2.2",
+    "create-elm-app": "^4.2.5",
     "node-sass-chokidar": "^1.4.0",
     "normalize.css": "^8.0.1"
   },
@@ -19,7 +19,7 @@
     "elm-format": "0.8.3",
     "elm-lsp": "^1.0.3",
     "elm-xref": "^4.1.0",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "webpack": "^4.42.0"
   },
   "scripts": {
