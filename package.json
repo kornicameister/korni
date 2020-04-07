@@ -13,7 +13,7 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
-    "check-node-version": "^4.0.2",
+    "check-node-version": "^4.0.3",
     "concurrently": "^5.1.0",
     "elm-analyse": "^0.16.5",
     "elm-format": "0.8.3",
