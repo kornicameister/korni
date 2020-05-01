@@ -1,17 +1,18 @@
+---
 version: 2
 jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:11.12.0
+      - image: circleci/node:14.0.0
 
     steps:
       - checkout
-      - run: sudo npm install -g npm@6.9.0
+      - run: sudo npm install -g npm@6.14.4
 
       - restore_cache:
           keys:
-          - cache-v4-{{ checksum "package.json" }}
+            - cache-v4-{{ checksum "package.json" }}
       - run: npm ci
       - save_cache:
           paths:
@@ -39,14 +40,13 @@ jobs:
   verify_version_match:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:11.12.0
+      - image: circleci/node:14.0.0
     steps:
       - checkout
       - run:
           command: |
             pkg_tag=$(node -p "require('./package.json').version")
             if [ "${CIRCLE_TAG}" != "${pkg_tag}" ]; then echo "Tag ${repo_tag} and application version ${pkg_tag} differ"; exit 1;  fi
-
 
   # deploy github releases
   deploy_gr:
@@ -85,7 +85,7 @@ jobs:
       # setup everything
       - run:
           command: |
-            sudo npm install -g npm@6.9.0 ; \
+            sudo npm install -g npm@6.14.4 ; \
             npm install gh-pages --no-save ; \
             git config --global user.email "build_${CIRCLE_BUILD_NUM}@circleci.com" ; \
             git config --global user.name "CircleCI"
@@ -95,7 +95,6 @@ jobs:
             ./node_modules/.bin/gh-pages \
               -d build \
               -m "Released with CircleCI@${CIRCLE_BUILD_NUM}"
-
 
 workflows:
   version: 2
