@@ -18,7 +18,7 @@
     "elm-analyse": "^0.16.5",
     "elm-format": "0.8.5",
     "elm-lsp": "^1.0.3",
-    "elm-xref": "^4.1.0",
+    "elm-xref": "^4.1.1",
     "prettier": "^2.4.1",
     "webpack": "^4.46.0"
   },
