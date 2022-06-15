@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "check-node-version": "^4.2.1",
-    "concurrently": "^6.2.1",
+    "concurrently": "^7.2.2",
     "elm-analyse": "^0.16.5",
     "elm-format": "0.8.5",
     "elm-lsp": "^1.0.3",
