@@ -19,7 +19,7 @@
     "elm-format": "0.8.5",
     "elm-lsp": "^1.0.3",
     "elm-xref": "^4.1.0",
-    "prettier": "^2.4.1",
+    "prettier": "^2.7.1",
     "webpack": "^4.46.0"
   },
   "scripts": {
