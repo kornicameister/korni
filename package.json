@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "create-elm-app": "^5.22.0",
-    "node-sass-chokidar": "^1.5.0",
+    "node-sass-chokidar": "^2.0.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
