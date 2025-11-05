@@ -1,8 +1,47 @@
-[![CircleCI](https://circleci.com/gh/kornicameister/korni/tree/master.svg?style=svg)](https://circleci.com/gh/kornicameister/korni/tree/master)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=kornicameister/korni)](https://dependabot.com)
-
 # Korni
 
-**korni** is a project aiming to be my personal webpage.
-Written with `Elm` help is a chance to write something cool and make my mark in `Elm` world.
+**korni** is my personal webpage built with **Astro** - a modern, fast, content-focused web framework.
+
+## 🚀 Tech Stack
+
+- **Astro 5.1** - Modern static site generator
+- **TypeScript 5.7** - Type-safe development
+- **Tailwind CSS 3.4** - Utility-first CSS
+- **Node.js 25.1** - Latest LTS runtime
+
+## 🛠️ Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 📦 Project Structure
+
+```
+/
+├── public/          # Static assets (images, icons)
+├── src/
+│   ├── components/  # Reusable Astro components
+│   ├── layouts/     # Page layouts
+│   └── pages/       # Routes (index.astro = /)
+├── astro.config.mts # Astro configuration
+└── package.json     # Dependencies
+```
+
+## 🌐 Deployment
+
+Deployed to GitHub Pages at: https://kornicameister.github.io/korni
+
+## 📝 License
+
+MIT

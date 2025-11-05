@@ -1,18 +1,27 @@
-# production
-build/
+# build output
+dist/
+.astro/
 
-# elm deps
-elm-stuff/
-
-# node deps
+# dependencies
 node_modules/
 
-# misc
+# logs
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# css files, because we build from scss
-*.css
+# environment variables
+.env
+.env.production
 
-# env files for local dev
-.env.development*
-.env.*.local
+# macOS-specific files
+.DS_Store
+
+# old elm files
+elm-stuff/
+src/Main.elm
+src/*.scss
+src/*.js
+public/index.html
+elm.json
