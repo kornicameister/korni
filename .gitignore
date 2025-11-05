@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# generated types
+.astro/
+
 # dependencies
 node_modules/
 
@@ -18,10 +21,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# old elm files
-elm-stuff/
-src/Main.elm
-src/*.scss
-src/*.js
-public/index.html
-elm.json
+# test screenshots
+test-screenshots/*.png
+test-screenshots/*.jpg
+test-screenshots/*.jpeg
+!test-screenshots/README.md

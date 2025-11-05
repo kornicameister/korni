@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Timeline from '../components/Timeline.astro';
 
 const title = 'Tomasz Trębski |> @kornicameister';
-const version = '1.0.0';
+const version = '1.0.1';
 ---
 
 <BaseLayout title={title} version={version}>
@@ -20,19 +20,19 @@ const version = '1.0.0';
     <aside>
       <nav>
         <a href="https://github.com/kornicameister" target="_blank" title="Github profile">
-          <i class="fa-brands fa-github fa-lg fa-fw fa-border"></i>
+          <i class="fa-brands fa-github fa-lg fa-fw"></i>
         </a>
         <a href="https://gitlab.com/kornicameister" target="_blank" title="Gitlab profile">
-          <i class="fa-brands fa-gitlab fa-lg fa-fw fa-border"></i>
+          <i class="fa-brands fa-gitlab fa-lg fa-fw"></i>
         </a>
         <a href="https://www.linkedin.com/in/tomasz-trębski/" target="_blank" title="LinkedIn profile">
-          <i class="fa-brands fa-linkedin fa-lg fa-fw fa-border"></i>
+          <i class="fa-brands fa-linkedin fa-lg fa-fw"></i>
         </a>
         <a href="https://medium.com/@kornicameister" target="_blank" title="Medium profile">
-          <i class="fa-brands fa-medium fa-lg fa-fw fa-border"></i>
+          <i class="fa-brands fa-medium fa-lg fa-fw"></i>
         </a>
         <a href="https://www.last.fm/user/kornicameister" target="_blank" title="LastFM profile">
-          <i class="fa-brands fa-lastfm fa-lg fa-fw fa-border"></i>
+          <i class="fa-brands fa-lastfm fa-lg fa-fw"></i>
         </a>
       </nav>
     </aside>
@@ -121,7 +121,11 @@ const version = '1.0.0';
   nav a {
     color: var(--primary-color);
     transition: color 0.2s, transform 0.2s;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 
   nav a:hover {
