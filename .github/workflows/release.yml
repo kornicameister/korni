@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify version match
+        run: |
+          pkg_version=$(node -p "require('./package.json').version")
+          tag_version=${GITHUB_REF#refs/tags/}
+          if [ "$tag_version" != "$pkg_version" ]; then
+            echo "Tag $tag_version and package.json version $pkg_version differ"
+            exit 1
+          fi
+
+  release:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '25'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Write version
+        run: echo "ELM_APP_VERSION=${GITHUB_REF#refs/tags/}" > .env.production
+
+      - run: npm run build
+
+      - name: Create release archive
+        run: tar -czf build.tar.gz dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build.tar.gz
+            CHANGELOG.md
+          body_path: CHANGELOG.md
+          fail_on_unmatched_files: false

@@ -1,0 +1,171 @@
+---
+// Timeline component with all your career events
+---
+
+<article class="timeline">
+  <section class="event">
+    <h3 class="header">
+      <i class="fa-solid fa-cat fa-2x fa-fw fa-border fa-pull-left"></i>
+      Functional world
+    </h3>
+    <p>
+      Since <em><strong>glorious</strong></em> 2018, I have been extending my knowledge regarding 
+      <em><a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank">functional programming</a></em>.
+    </p>
+    <p><i>How did it all start?</i></p>
+    <p>
+      The story goes back to me joining <em><a href="http://docs.fcsm.io/" target="_blank">EOS</a></em> project. 
+      Long story short, but that project was the one that set me on my way functional path. 
+      Currently I can tell that I know following languages:
+    </p>
+    <ul>
+      <li>
+        <a href="https://elm-lang.org" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/512px-Elm_logo.svg.png" title="Elm" alt="Elm logo" />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.haskell.org/" target="_blank">
+          <img src="https://evenmere.org/~bts/haskell-logo/logo-0.svg" title="Haskell" alt="Haskell logo" />
+        </a>
+      </li>
+      <li>
+        <a href="https://fsharp.org/" target="_blank">
+          <img src="http://fsharp.org/img/logo/fsharp.svg" title="F#" alt="F#" />
+        </a>
+      </li>
+    </ul>
+    <p>
+      If you are looking for an example, you do not have to look far, <strong>this</strong> page was built with 
+      <em>
+        <span style="color: red;"><i class="fa-solid fa-heart fa-fw"></i></span>
+        <a href="https://astro.build" target="_blank">Astro</a>
+      </em>.
+    </p>
+    <p>
+      I am currently in a process of learning how to learn others with functional programming. 
+      I find this goal very <em>important</em> to pursue. 
+      Reason is quite simple! Since early years of studies, my and others heads were filled with imperative programming model. 
+      Learning something opposite, at least for me, <strong>rebooting</strong> my mind. 
+      Not to mention about boosting up soft skills, especially an ability to share the accumulated knowledge.
+    </p>
+  </section>
+
+  <section class="event">
+    <h3 class="header">
+      <i class="fa-brands fa-python fa-2x fa-fw fa-border fa-pull-left"></i>
+      Logging & Monitoring
+    </h3>
+    <p>
+      <a href="https://monasca.io" target="_blank"><strong>monasca</strong></a> was my first serious assignment in Fujitsu. 
+      We have concentrated on enhancing <em>Openstack</em> monitoring solution with <strong>collecting</strong> and 
+      <strong>analyzing</strong> logs. All of the work I have done was done with the little help of 
+      <a href="https://www.python.org/" target="_blank" title="Python"><i class="fa-brands fa-python fa-fw"></i></a>. 
+      Needless to say that I learnt a lot of that language, going from not knowing a thing about it to mastering its strengths. 
+      It is worth mentioning that I was <strong>core</strong> contributor for 
+      <a href="http://monasca.io/" target="_blank"><strong>monasca</strong></a> inside of Fujitsu. 
+      My contributions can still be examined in following locations:
+    </p>
+    <ul>
+      <li>
+        <a href="http://stackalytics.com/?user_id=kornicameister&release=all&project_type=all" target="_blank" style="display: flex;">
+          <img src={`${import.meta.env.BASE_URL}/stackalytics_logo.png`} alt="Stackanalytics for Openstack" title="Stackanalytics for Openstack" style="height: 20px;" />
+        </a>
+      </li>
+      <li>
+        <a href="https://review.openstack.org/#/q/owner:trebskit+status:merged" target="_blank" style="display: flex;">
+          <img src={`${import.meta.env.BASE_URL}/gerrit_logo.svg`} alt="Openstack Gerrit" title="Openstack Gerrit" style="height: 20px;" />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="event">
+    <h3 class="header">
+      <i class="fa-brands fa-java fa-2x fa-fw fa-border fa-pull-left"></i>
+      Cooking the beans
+    </h3>
+    <p>
+      <strong>First</strong> real work together with <a href="https://tt.com.pl" target="_blank">Transition Technologies</a>. 
+      I think that what best describes this part of my life is being confronted with the real world. 
+      No more professors but real deal people to appreciate me or to blame me for not doing something right. 
+      I have learnt a great deal about Java and doing things in it. 
+      Everything was Java, not only at work but also theses. 
+      Spring-* was my best friend for quite some time 🤣.
+    </p>
+    <p>
+      I remember that it was especially hard time for me. 
+      I have been, simultaneously, studying Logistic and Computer Science. 
+      No time to sleep with, exams and theses. But everything worked out somehow.
+    </p>
+  </section>
+
+  <section class="event">
+    <h3 class="header">
+      <i class="fa-solid fa-heart fa-2x fa-fw fa-border fa-pull-left"></i>
+      Beginning
+    </h3>
+    <p>
+      Beginnings are often hard and it was the case for me as well. 
+      Starting out with <em>Pascal</em> was not very good choice. I felt like I cannot do anything. 
+      Resurection of, what later has become a <strong>passion</strong> came when I was a student. 
+      Who would've thought that starting out with <strong>C++</strong> and <strong>Qt</strong> 
+      will lead to exploring depths of objective and functional programming in future.
+    </p>
+  </section>
+</article>
+
+<style>
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .event {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .header {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .event p {
+    margin-bottom: 1rem;
+  }
+
+  .event ul {
+    list-style: none;
+    padding: 1rem 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .event ul li img {
+    height: 60px;
+    width: auto;
+    transition: transform 0.2s;
+  }
+
+  .event ul li img:hover {
+    transform: scale(1.1);
+  }
+
+  .event a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .event a:hover {
+    text-decoration: underline;
+  }
+</style>
